@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@font-face {
+	font-family: AV Estiana;
+	src: url("../src/assets/fonts/AV\ Estiana-VF.ttf");
+}
+
+@font-face {
+	font-family: Satoshi;
+	src: url("../src/assets/fonts/Satoshi-Variable.ttf");
+}
+
+@font-face {
+	font-family: Satoshi Italic;
+	src: url("../src/assets/fonts/Satoshi-VariableItalic.ttf");
+}
+
+:root {
+	--circle-size: 100%;
+	--blending: hard-light;
+	--blob-1-color: 144, 207, 238; /* Light blue */
+	--blob-2-color: 242, 195, 141; /* Light orange */
+	--blob-3-color: 132, 221, 206; /* Light green */
+	--blob-4-color: 230, 146, 121; /* Light red */
+	--blob-5-color: 188, 204, 212; /* Urg Black 25 */
+	--color-interactive: 32, 156, 218; /* Urg Blue */
+}
+
+@theme {
+	--font-primary: "AV Estiana", sans-serif;
+	--font-secondary: "Satoshi", sans-serif;
+	--font-secondary-italic: "Satoshi Italic", sans-serif;
+	--color-urg-white: #f3f6f7;
+	--color-urg-black-10: #e6ecef;
+	--color-urg-black-25: #bcccd4;
+	--color-urg-black-50: #7b9aa9;
+	--color-urg-black-75: #48616e;
+	--color-urg-black: #1c262b;
+	--color-urg-blue: #209cda;
+	--color-urg-blue-light: #90cfee;
+	--color-urg-blue-dark: #3a4f59;
+	--color-urg-orange: #e79536;
+	--color-urg-orange-light: #f2c38d;
+	--color-urg-orange-dark: #6e4d28;
+	--color-urg-green: #239884;
+}
+
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	button {
+		@apply font-primary;
+	}
+
+	p {
+		@apply font-secondary;
+	}
+}
+
+@layer components {
+	.primary-button {
+		@apply font-primary text-xl text-urg-white py-3 px-6 rounded-[5px] bg-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue hover:cursor-pointer;
+	}
+
+	.secondary-button {
+		@apply font-primary text-xl text-urg-black py-3 px-6 rounded-[5px] border-2 border-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-black hover:cursor-pointer hover:text-urg-white;
+	}
+}
+
+body {
+	@apply m-0 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA];
+}
+
+@keyframes moveInCircle {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(180deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes moveVertical {
+	0% {
+		transform: translateY(-50%);
+	}
+
+	50% {
+		transform: translateY(50%);
+	}
+
+	100% {
+		transform: translateY(-50%);
+	}
+}
+
+@keyframes moveHorizontal {
+	0% {
+		transform: translateX(-50%) translateY(-10%);
+	}
+
+	50% {
+		transform: translateX(50%) translateY(10%);
+	}
+
+	100% {
+		transform: translateX(-50%) translateY(-10%);
+	}
+}
+
+@keyframes colorChange {
+	0% {
+		--blob-1-color: 144, 207, 238;
+	}
+	50% {
+		--blob-1-color: 188, 204, 212;
+	}
+	100% {
+		--blob-1-color: 144, 207, 238;
+	}
+}
+
+.animated-blob-1 {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--blob-1-color), 0.8) 0,
+			rgba(var(--blob-1-color), 0) 40%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	transform-origin: calc(50% - 400px);
+	animation: moveInCircle 20s reverse infinite;
+
+	opacity: 1;
+}
+
+.animated-blob-2 {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--blob-2-color), 0.8) 0,
+			rgba(var(--blob-2-color), 0) 40%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	transform-origin: center center;
+	animation: moveVertical 30s ease infinite;
+
+	opacity: 1;
+}
+
+.animated-blob-3 {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--blob-3-color), 0.8) 0,
+			rgba(var(--blob-3-color), 0) 40%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	transform-origin: calc(50% + 400px);
+	animation: moveInCircle 40s linear infinite;
+
+	opacity: 1;
+}
+
+.animated-blob-4 {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--blob-4-color), 0.8) 0,
+			rgba(var(--blob-4-color), 0) 40%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	transform-origin: calc(50% - 200px);
+	animation: moveHorizontal 40s ease infinite;
+
+	opacity: 1;
+}
+
+.animated-blob-5 {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--blob-5-color), 0.8) 0,
+			rgba(var(--blob-5-color), 0) 40%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: var(--circle-size);
+	height: var(--circle-size);
+
+	transform-origin: calc(50% - 200px);
+	animation: moveInCircle 20s ease infinite;
+
+	opacity: 1;
+}
+
+.interactive {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--color-interactive), 0.8) 0,
+			rgba(var(--color-interactive), 0) 50%
+		)
+		no-repeat;
+	mix-blend-mode: var(--blending);
+
+	width: 100%;
+	height: 100%;
+	top: -50%;
+	left: -50%;
+
+	opacity: 0.7;
+}
+
+.svg-filter-blur {
+	filter: url(#goo) blur(20px);
+}
+
+.svg-filter-grain {
+	filter: url(#grainy);
+}
+
+.try-blob {
+	position: absolute;
+	background: radial-gradient(
+			circle at center,
+			rgba(var(--color-interactive), 0.8) 0,
+			rgba(var(--color-interactive), 0) 50%
+		)
+		no-repeat;
+	width: var(--circle-size);
+	height: var(--circle-size);
+	transition: transform 6s ease;
+	opacity: 1;
+}
+
+.creative-button-with-marquee:hover .creative-marquee {
+	@apply fill-urg-blue-dark;
+}
+
+.creative-button-with-marquee:hover .creative-text {
+	@apply text-urg-blue-dark;
+}
