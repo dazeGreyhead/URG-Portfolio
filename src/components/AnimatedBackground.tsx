@@ -67,7 +67,7 @@ function AnimatedBackground() {
 	// has access to the most up-to-date mouse position.
 	return (
 		// The gradient background
-		<div className="h-screen w-screen absolute -z-10 bg-urg-white overflow-hidden svg-filter-grain">
+		<div className="h-full w-full absolute -z-10 bg-urg-white svg-filter-grain overflow-hidden">
 			{/* SVG blur and mix Filter */}
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ function AnimatedBackground() {
 			</svg>
 			{/* SVG grain filter */}
 			<svg className="fixed top-0 left-0 w-0 h-0">
-				<filter id="grainy">
+				<filter id="grainy" x="-50%" y="-50%" width="150%" height="150%">
 					<feTurbulence
 						type="turbulence"
 						baseFrequency="2.58"
@@ -122,7 +122,7 @@ function AnimatedBackground() {
 				</filter>
 			</svg>
 			{/* Gradients Container */}
-			<div className="w-full h-full svg-filter-blur">
+			<div className="w-full h-full svg-filter-blur overflow-hidden">
 				{/* Gradient blobs */}
 				{/* First blob */}
 				<div
