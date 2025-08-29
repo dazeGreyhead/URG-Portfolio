@@ -1,4 +1,6 @@
+import FancyArrow from "@/assets/svg/fancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 
 export default function HomepageLanding() {
@@ -75,10 +77,24 @@ export default function HomepageLanding() {
 				</div>
 
 				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">
-					<button className="primary-button text-2xl px-16" type="button">
+					<button className="secondary-button text-2xl px-16" type="button">
 						kedrite@gmail.com
 					</button>
-					<h6 className="font-normal">My Featured Works</h6>
+					<div className="flex  gap-4">
+						<motion.div
+							animate={{
+								y: [8, -8, 8],
+							}}
+							transition={{
+								duration: 2,
+								repeat: Infinity,
+								ease: "easeInOut",
+							}}
+						>
+							<FancyArrow className="size-10 rotate-180" />
+						</motion.div>
+						<h5 className="font-normal">My Featured Works</h5>
+					</div>
 				</div>
 			</div>
 

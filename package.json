@@ -1,5 +1,6 @@
 {
   "name": ".",
+  "homepage": "https://dazegreyhead.github.io/URG-Portfolio/",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,13 +11,17 @@
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-router": "^1.121.2",
     "@tanstack/react-router-devtools": "^1.121.2",
     "@tanstack/router-plugin": "^1.121.2",
+    "gh-pages": "^6.3.0",
+    "motion": "^12.23.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.6"
