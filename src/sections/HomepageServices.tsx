@@ -12,7 +12,7 @@ export default function HomepageServices({
 			<h3>Services</h3>
 			<div className="flex justify-center mt-10 sm:mt-18">
 				<div className="flex flex-wrap justify-between w-full sm:w-[84%] gap-y-17">
-					{servicesProvided.map((service, index) => {
+					{servicesProvided.map((service) => {
 						return (
 							<div
 								key={service.title}

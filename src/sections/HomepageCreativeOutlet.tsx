@@ -1,4 +1,4 @@
-import FancyArrow from "@/assets/svg/fancyArrow";
+import FancyArrow from "@/assets/svg/FancyArrow";
 import type { siteContent } from "@/utilities/types";
 
 type HomepageCreativeOutletProps = {
