@@ -1,4 +1,4 @@
-import FancyArrow from "@/assets/svg/fancyArrow";
+import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
