@@ -16,7 +16,7 @@
 }
 
 :root {
-	--circle-size: 150%;
+	--circle-size: 115%;
 	--blending: hard-light;
 	--blob-1-color: 144, 207, 238; /* Light blue */
 	--blob-2-color: 242, 195, 141; /* Light orange */
@@ -116,64 +116,12 @@ body {
 	@apply m-0 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA];
 }
 
-@keyframes moveInCircle {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	50% {
-		transform: rotate(180deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
-@keyframes moveVertical {
-	0% {
-		transform: translateY(-50%);
-	}
-
-	50% {
-		transform: translateY(50%);
-	}
-
-	100% {
-		transform: translateY(-50%);
-	}
-}
-
-@keyframes moveHorizontal {
-	0% {
-		transform: translateX(-50%) translateY(-10%);
-	}
-
-	50% {
-		transform: translateX(50%) translateY(10%);
-	}
-
-	100% {
-		transform: translateX(-50%) translateY(-10%);
-	}
-}
-
-@keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
 .animated-blob-1 {
 	position: absolute;
 	background: radial-gradient(
 			circle at center,
-			rgba(var(--blob-2-color), 0.8) 0,
-			rgba(var(--blob-2-color), 0) 40%
+			rgba(var(--blob-1-color), 0.8) 0,
+			rgba(var(--blob-1-color), 0) 40%
 		)
 		no-repeat;
 
@@ -181,9 +129,6 @@ body {
 
 	width: var(--circle-size);
 	height: var(--circle-size);
-
-	transform-origin: calc(50% - 400px);
-	animation: moveInCircle 20s reverse infinite;
 
 	opacity: 1;
 }
@@ -201,9 +146,6 @@ body {
 	width: var(--circle-size);
 	height: var(--circle-size);
 
-	transform-origin: center center;
-	animation: moveVertical 30s ease infinite;
-
 	opacity: 1;
 }
 
@@ -219,9 +161,6 @@ body {
 
 	width: var(--circle-size);
 	height: var(--circle-size);
-
-	transform-origin: calc(50% + 400px);
-	animation: moveInCircle 40s linear infinite;
 
 	opacity: 1;
 }
@@ -239,9 +178,6 @@ body {
 	width: var(--circle-size);
 	height: var(--circle-size);
 
-	transform-origin: calc(50% - 200px);
-	animation: moveHorizontal 40s ease infinite;
-
 	opacity: 1;
 }
 
@@ -257,9 +193,6 @@ body {
 
 	width: var(--circle-size);
 	height: var(--circle-size);
-
-	transform-origin: calc(50% - 200px);
-	animation: moveInCircle 20s ease infinite;
 
 	opacity: 1;
 }

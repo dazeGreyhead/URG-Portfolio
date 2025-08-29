@@ -1,40 +1,8 @@
 import FancyArrow from "@/assets/svg/fancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
 
 export default function HomepageLanding() {
-	// A ref to hold the <textPath> DOM element for animating the 'GO TO CREATIVE CORNER' text along the rectangular path.
-	const textPathRef = useRef<SVGTextPathElement>(null);
-
-	// A ref to store the animation frame ID for cleanup
-	const animationRef = useRef<number>(0);
-
-	useEffect(() => {
-		// Current offset value for the animation
-		let currentOffset = 0;
-
-		// The animation loop function
-		const animateText = () => {
-			// Check if the ref has a current value
-			if (textPathRef.current) {
-				// Directly set the SVG attribute
-				currentOffset = (currentOffset + 0.02) % 50; // This is what moves the text
-				textPathRef.current.setAttribute("startOffset", `${currentOffset}%`);
-			}
-
-			// Schedule the next frame
-			animationRef.current = requestAnimationFrame(animateText);
-		};
-
-		// Start the animation loop
-		animationRef.current = requestAnimationFrame(animateText);
-
-		// Cleanup function: runs when the component unmounts
-		return () => {
-			cancelAnimationFrame(animationRef.current);
-		};
-	}, []);
 	return (
 		<section className="flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden">
 			<div className="flex flex-col h-[77vh] sm:h-full w-full">
@@ -57,16 +25,25 @@ export default function HomepageLanding() {
 								id="text-path"
 								d="M156.79,43.84H7.17c-3.89,0-7.05-3.16-7.05-7.05V7.17C.12,3.28,3.28.12,7.17.12h149.62c3.89,0,7.05,3.16,7.05,7.05v29.62c0,3.89-3.16,7.05-7.05,7.05Z M156.79,43.84H7.17c-3.89,0-7.05-3.16-7.05-7.05V7.17C.12,3.28,3.28.12,7.17.12h149.62c3.89,0,7.05,3.16,7.05,7.05v29.62c0,3.89-3.16,7.05-7.05,7.05Z"
 							/>
-							<text>
-								<textPath
+							<motion.text>
+								{/* This is what animates the text along the path of svg. Offset
+								goes from 0 to 50% because the path is doubled as the text would
+								clip out */}
+								<motion.textPath
 									className="font-primary font-light text-[9.1px] fill-urg-black-50 creative-marquee"
 									href="#text-path"
-									ref={textPathRef}
+									initial={{ startOffset: "0%" }}
+									animate={{ startOffset: "50%" }}
+									transition={{
+										duration: 30,
+										repeat: Infinity,
+										ease: "linear",
+									}}
 								>
 									Go to Creative Corner. Go to Creative Corner. Go to Creative
 									Corner. Go to Creative Corner.
-								</textPath>
-							</text>
+								</motion.textPath>
+							</motion.text>
 						</svg>
 					</div>
 					<ul className="flex gap-12 font-primary text-5xl text-urg-black mt-2">
