@@ -8,10 +8,10 @@ export default function HomepageServices({
 	servicesProvided,
 }: HomepageServicesProps) {
 	return (
-		<section className="h-fit pt-22 pb-48 px-16">
+		<section className="min-h-screen px-9 pt-12 pb-18 sm:pt-22 sm:pb-48 sm:px-16">
 			<h3>Services</h3>
-			<div className="flex justify-center mt-18">
-				<div className="flex flex-wrap justify-between w-[84%] gap-y-17">
+			<div className="flex justify-center mt-10 sm:mt-18">
+				<div className="flex flex-wrap justify-between w-full sm:w-[84%] gap-y-17">
 					{servicesProvided.map((service, index) => {
 						return (
 							<div

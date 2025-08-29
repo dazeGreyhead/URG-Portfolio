@@ -16,7 +16,7 @@
 }
 
 :root {
-	--circle-size: 100%;
+	--circle-size: 150%;
 	--blending: hard-light;
 	--blob-1-color: 144, 207, 238; /* Light blue */
 	--blob-2-color: 242, 195, 141; /* Light orange */
@@ -62,19 +62,19 @@
 	}
 
 	h2 {
-		@apply text-[40px] text-urg-black font-primary font-extrabold;
+		@apply text-4xl sm:text-[40px] text-urg-black font-primary font-extrabold;
 	}
 
 	h3 {
-		@apply text-4xl text-urg-black font-primary font-extrabold;
+		@apply text-3xl sm:text-4xl text-urg-black font-primary font-extrabold;
 	}
 
 	h4 {
-		@apply text-[32px] text-urg-black font-primary font-extrabold;
+		@apply text-2xl sm:text-[32px] text-urg-black font-primary font-extrabold;
 	}
 
 	h5 {
-		@apply text-2xl text-urg-black font-primary font-extrabold;
+		@apply text-xl sm:text-2xl text-urg-black font-primary font-extrabold;
 	}
 
 	h6 {
@@ -84,11 +84,11 @@
 
 @layer components {
 	.primary-button {
-		@apply font-primary text-xl text-urg-white py-3 px-6 rounded-[5px] bg-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue hover:cursor-pointer;
+		@apply font-primary text-lg xl:text-xl text-urg-white py-2 px-3 xl:py-3 xl:px-6 w-fit rounded-[5px] bg-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue hover:cursor-pointer;
 	}
 
 	.secondary-button {
-		@apply font-primary text-lg xl:text-xl text-urg-black py-2 px-3 xl:py-3 xl:px-6 rounded-[5px] border-2 border-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-black hover:cursor-pointer hover:text-urg-white;
+		@apply font-primary text-lg xl:text-xl text-urg-black py-2 px-3 xl:py-3 xl:px-6 w-fit rounded-[5px] border-2 border-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-black hover:cursor-pointer hover:text-urg-white;
 	}
 
 	.button-hover-shadow {
@@ -172,10 +172,11 @@ body {
 	position: absolute;
 	background: radial-gradient(
 			circle at center,
-			rgba(var(--blob-1-color), 0.8) 0,
-			rgba(var(--blob-1-color), 0) 40%
+			rgba(var(--blob-2-color), 0.8) 0,
+			rgba(var(--blob-2-color), 0) 40%
 		)
 		no-repeat;
+
 	mix-blend-mode: var(--blending);
 
 	width: var(--circle-size);
@@ -282,11 +283,13 @@ body {
 }
 
 .svg-filter-blur {
-	filter: url(#goo) blur(20px);
+	filter: url(#goo) blur(10px);
 }
 
-.svg-filter-grain {
-	filter: url(#grainy);
+@media screen and (min-width: 40rem) {
+	.svg-filter-grain {
+		filter: url(#grainy);
+	}
 }
 
 .creative-button-with-marquee:hover .creative-marquee {
@@ -312,6 +315,6 @@ body {
 	animation: spin 35s linear infinite;
 }
 
-.continuous-spin-circle-button:hover .spinning-text {
+.continuous-spin-circle-button:hover .spinning-text-button {
 	@apply fill-urg-blue;
 }

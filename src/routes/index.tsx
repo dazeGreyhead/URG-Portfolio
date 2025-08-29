@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
 function App() {
 	return (
 		<main>
-			{/* <HomepageLanding />
+			<HomepageLanding />
 			<HomepageFeaturedWorks
 				sliderDuration={7000}
 				featuredProjects={featuredProjects}
@@ -30,7 +30,8 @@ function App() {
 				otherCreativeContent={featuredCreatives.slice(1)}
 			/>
 			<HomepageContact urgSocialMedia={urgSocialMedia} />
-			<Footer /> */}
+
+			<Footer />
 		</main>
 	);
 }

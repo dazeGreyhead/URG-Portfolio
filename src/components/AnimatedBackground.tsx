@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 
 function AnimatedBackground() {
+	// This is the blob that follows the mouse cursor.
 	const interactiveBubble = React.useRef<HTMLDivElement>(null);
 
+	// This is the array of random positions that the blobs will start out animating from at each reload of the website.
+	// Using a normal js variable beacuse useRef doesn't have a fuction version of an initializer. Also not using useState because it doesn't change state.
 	const positions = [];
 	for (let i = 0; i < 5; i++) {
 		positions.push({
@@ -11,33 +14,30 @@ function AnimatedBackground() {
 		});
 	}
 
+	// Putting the initial starting positions in a useRef because the positions variable would change at each rerender. The blobs would keep rerendering.
 	const randomStartingBlobPositions = useRef(positions);
 
-	// We use a ref to store the current position of the bubble.
-	// Using a ref for these values prevents unnecessary re-renders during the animation loop.
+	// We use a ref to store the current position of the interactive bubble and prevent unecessary rerenders.
 	const curPos = useRef({ x: 0, y: 0 });
 
-	// We use state to store the target coordinates, which are updated by the mouse move event.
-	// This is a good use of state as it reflects a change in user input.
+	// State variable that tracks the position of the mouse cursor.
 	const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
 
-	// The `useEffect` hook handles the side effects of setting up the event listeners
-	// and the animation loop.
 	useEffect(() => {
-		// This is the main animation function, called on every frame.
+		// The function that animates the interactive bubble to the mouse position.
 		const moveBubble = () => {
 			// Get the current and target positions from the refs and state.
 			const { x: curX, y: curY } = curPos.current;
 			const { x: tgX, y: tgY } = targetPos;
 
-			// Calculate the new position with a simple easing effect.
+			// Calculate the new position that the interactive bubble has to move to with a simple easing effect.
 			const newX = curX + (tgX - curX) / 20;
 			const newY = curY + (tgY - curY) / 20;
 
 			// Update the ref with the new current position.
 			curPos.current = { x: newX, y: newY };
 
-			// Update the DOM element's position directly using a transform.
+			// Update the DOM element's position directly using a transform. Set's the interactive bubble's position to be at the calculated new position.
 			if (interactiveBubble.current) {
 				interactiveBubble.current.style.transform = `translate(${Math.round(newX)}px, ${Math.round(newY)}px)`;
 			}
@@ -46,7 +46,7 @@ function AnimatedBackground() {
 			animationFrameId = requestAnimationFrame(moveBubble);
 		};
 
-		// This event listener updates the target position state.
+		// This event listener updates the target position state or in other words tracks the position of the mouse.
 		const handleMouseMove = (event: MouseEvent) => {
 			setTargetPos({ x: event.clientX, y: event.clientY });
 		};
@@ -67,8 +67,8 @@ function AnimatedBackground() {
 	// has access to the most up-to-date mouse position.
 	return (
 		// The gradient background
-		<div className="h-full w-full absolute -z-10 bg-urg-white svg-filter-grain overflow-hidden">
-			{/* SVG blur and mix Filter */}
+		<div className="h-screen w-full absolute -z-10 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA] svg-filter-grain overflow-hidden">
+			{/* SVG blur and mix Filter. This is what makes the bubbles fill together. */}
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				className="fixed top-0 left-0 w-0 h-0"
@@ -92,7 +92,7 @@ function AnimatedBackground() {
 			</svg>
 			{/* SVG grain filter */}
 			<svg className="fixed top-0 left-0 w-0 h-0">
-				<filter id="grainy" x="-50%" y="-50%" width="150%" height="150%">
+				<filter id="grainy">
 					<feTurbulence
 						type="turbulence"
 						baseFrequency="2.58"
@@ -122,23 +122,23 @@ function AnimatedBackground() {
 				</filter>
 			</svg>
 			{/* Gradients Container */}
-			<div className="w-full h-full svg-filter-blur overflow-hidden">
+			<div className="w-full h-full relative svg-filter-blur overflow-hidden">
 				{/* Gradient blobs */}
 				{/* First blob */}
 				<div
-					className="animated-blob-1"
+					className="animated-blob-1 "
 					style={randomStartingBlobPositions.current[0]}
 				/>
 				<div
-					className="animated-blob-2"
+					className="animated-blob-2 "
 					style={randomStartingBlobPositions.current[1]}
 				/>
 				<div
-					className="animated-blob-3"
+					className="animated-blob-3 "
 					style={randomStartingBlobPositions.current[2]}
 				/>
 				<div
-					className="animated-blob-4"
+					className="animated-blob-4 "
 					style={randomStartingBlobPositions.current[3]}
 				/>
 				<div

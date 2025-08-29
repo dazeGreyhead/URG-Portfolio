@@ -2,7 +2,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { useEffect, useRef } from "react";
 
 export default function HomepageLanding() {
-	// A ref to hold the <textPath> DOM element
+	// A ref to hold the <textPath> DOM element for animating the 'GO TO CREATIVE CORNER' text along the rectangular path.
 	const textPathRef = useRef<SVGTextPathElement>(null);
 
 	// A ref to store the animation frame ID for cleanup
@@ -17,7 +17,7 @@ export default function HomepageLanding() {
 			// Check if the ref has a current value
 			if (textPathRef.current) {
 				// Directly set the SVG attribute
-				currentOffset = (currentOffset + 0.02) % 50;
+				currentOffset = (currentOffset + 0.02) % 50; // This is what moves the text
 				textPathRef.current.setAttribute("startOffset", `${currentOffset}%`);
 			}
 
@@ -34,20 +34,20 @@ export default function HomepageLanding() {
 		};
 	}, []);
 	return (
-		<section className="flex flex-col justify-center items-center h-screen">
-			<div className="flex flex-col h-full w-full">
-				<div className="flex flex-col items-center justify-center gap-12 grow-1 mt-12">
-					<div className="font-primary font-bold text-[64px]/12 text-urg-black">
+		<section className="flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden">
+			<div className="flex flex-col h-[77vh] sm:h-full w-full">
+				<div className="flex flex-col items-center justify-center grow-1 gap-2 sm:pt-12 md:gap-12">
+					<div className="font-primary font-bold text-5xl/15 text-urg-black md:text-[64px]/12 text-center">
 						Hi! I'm Umang. I'm a
 					</div>
-					<div className="relative flex items-center justify-center h-49 w-[600px] hover:scale-105 transition-transform duration-300 cursor-pointer creative-button-with-marquee">
-						<div className="absolute font-primary font-bold text-9xl text-urg-black creative-text">
+					<div className="relative flex items-center justify-center h-40 md:h-49 w-[600px] hover:scale-105 transition-transform duration-300 cursor-pointer creative-button-with-marquee">
+						<div className="absolute font-primary font-bold text-urg-black creative-text text-7xl md:text-9xl">
 							Creative
 						</div>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 163.97 43.97"
-							className="overflow-visible"
+							className="overflow-visible w-[350px] md:w-[600px]"
 						>
 							<path
 								stroke="none"
@@ -67,21 +67,21 @@ export default function HomepageLanding() {
 							</text>
 						</svg>
 					</div>
-					<ul className="flex gap-12 font-primary text-5xl text-urg-black">
-						<li>Web Developer</li>
-						<li>Graphic Designer</li>
-						<li>Video Producer</li>
+					<ul className="flex gap-12 font-primary text-5xl text-urg-black mt-2">
+						{/* <li>Web Developer</li> */}
+						<li className="text-center">Graphic Designer</li>
+						{/* <li>Video Producer</li> */}
 					</ul>
 				</div>
-				<div className="flex justify-center items-start h-21">
-					<div className="flex justify-between items-end w-[1792px]">
-						<button className="primary-button text-2xl px-16" type="button">
-							kedrite@gmail.com
-						</button>
-						<h3 className="text-xl">My Featured Works</h3>
-					</div>
+
+				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">
+					<button className="primary-button text-2xl px-16" type="button">
+						kedrite@gmail.com
+					</button>
+					<h6 className="font-normal">My Featured Works</h6>
 				</div>
 			</div>
+
 			<AnimatedBackground />
 		</section>
 	);
