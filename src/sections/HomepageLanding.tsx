@@ -46,12 +46,15 @@ export default function HomepageLanding() {
 							</motion.text>
 						</svg>
 					</div>
-					<ul className="flex gap-12 font-primary text-5xl text-urg-black mt-2">
-						{/* <li>Web Developer</li> */}
-						<li className="text-center">Graphic Designer</li>
-						{/* <li>Video Producer</li> */}
-					</ul>
-				</div>
+					<div className=" w-[600px] h-[60px] overflow-clip flex justify-center items-center mask-gradient">
+						<ul className="flex gap-12 h-full font-primary text-5xl text-urg-black mt-2 whitespace-nowrap">
+							<li>Writer</li>
+							<li>Graphic Designer</li>
+							<li>Web Developer</li>
+							<li>Video Producer</li>
+							<li>Director</li>
+						</ul>
+					</div>
 				</div>
 
 				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">

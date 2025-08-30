@@ -251,3 +251,21 @@ body {
 .continuous-spin-circle-button:hover .spinning-text-button {
 	@apply fill-urg-blue;
 }
+
+.mask-gradient {
+	mask: linear-gradient(
+		to right,
+		transparent 0%,
+		white 15%,
+		white 85%,
+		transparent 100%
+	);
+	-webkit-mask: linear-gradient(
+		to right,
+		transparent 0%,
+		white 15%,
+		white 85%,
+		transparent 100%
+	);
+	overflow: hidden;
+}
