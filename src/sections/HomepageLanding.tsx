@@ -52,6 +52,7 @@ export default function HomepageLanding() {
 						{/* <li>Video Producer</li> */}
 					</ul>
 				</div>
+				</div>
 
 				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">
 					<button className="secondary-button text-2xl px-16" type="button">
