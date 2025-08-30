@@ -1,6 +1,5 @@
 {
-  "name": ".",
-  "homepage": "https://dazegreyhead.github.io/URG-Portfolio/",
+  "name": "URG-Portfolio",
   "private": true,
   "type": "module",
   "scripts": {
