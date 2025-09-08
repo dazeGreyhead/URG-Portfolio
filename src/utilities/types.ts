@@ -20,3 +20,16 @@ export type socialMediaLinks = {
 	icon: string;
 	link: string;
 };
+
+export type thingsILove = {
+	title: string;
+	shortDescription: string;
+	featuredImage: string;
+	altText: string;
+};
+
+export enum ButtonType {
+	primary = "primary-button",
+	secondary = "secondary-button",
+	expandArrow = "arrow-expand-button",
+}

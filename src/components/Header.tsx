@@ -1,4 +1,6 @@
+import { ButtonType } from "@/utilities/types";
 import { Link } from "@tanstack/react-router";
+import URGButton from "./URGButton";
 
 export default function Header() {
 	return (
@@ -46,7 +48,9 @@ export default function Header() {
 
 					{/* This is the set of links that will collapse into a hamburger menu */}
 					<ul className="peer-checked:opacity-100 peer-checked:left-0 opacity-0 transition-opacity duration-300 flex fixed top-0 -left-full z-20 w-dvw h-dvh bg-urg-white flex-col items-center justify-center gap-25 xl:opacity-100 xl:flex xl:flex-row xl:gap-12 xl:static xl:w-auto xl:h-auto xl:bg-transparent">
-						<li className="font-primary text-xl text-urg-black">About me</li>
+						<li className="font-primary text-xl text-urg-black">
+							<Link to="/about-me">About me</Link>
+						</li>
 						<li className="font-primary text-xl text-urg-black">Projects</li>
 						<li className="font-primary text-xl text-urg-black">
 							Creative Corner
@@ -55,9 +59,11 @@ export default function Header() {
 					</ul>
 
 					<li className="hidden md:block">
-						<button type="button" className="secondary-button">
-							Let's Work Together
-						</button>
+						<Link to="/contact">
+							<URGButton buttonType={ButtonType.secondary}>
+								Let's Work Together
+							</URGButton>
+						</Link>
 					</li>
 				</ul>
 			</nav>

@@ -61,6 +61,10 @@
 		@apply font-secondary text-urg-black;
 	}
 
+	h1 {
+		@apply text-6xl sm:text-5xl text-urg-black font-primary font-extrabold;
+	}
+
 	h2 {
 		@apply text-4xl sm:text-[40px] text-urg-black font-primary font-extrabold;
 	}
@@ -95,12 +99,12 @@
 		@apply hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue;
 	}
 
-	.content-button {
+	.arrow-expand-button {
 		@apply font-primary text-lg font-black py-2;
 	}
 
 	.tag {
-		@apply font-secondary text-sm text-urg-white font-medium bg-urg-black-75 p-2 rounded-md;
+		@apply font-secondary text-sm text-urg-orange font-medium border-2 border-urg-orange px-2 py-1 rounded-md;
 	}
 
 	.p-small {
@@ -108,12 +112,12 @@
 	}
 
 	.p-big {
-		@apply font-secondary text-lg text-urg-black;
+		@apply font-secondary text-xl text-urg-black;
 	}
 }
 
 body {
-	@apply m-0 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA];
+	/* @apply m-0 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA]; */
 }
 
 .animated-blob-1 {
@@ -223,6 +227,9 @@ body {
 	.svg-filter-grain {
 		filter: url(#grainy);
 	}
+	.svg-filter-grain-second {
+		filter: url(#grainy-second);
+	}
 }
 
 .creative-button-with-marquee:hover .creative-marquee {
@@ -231,6 +238,14 @@ body {
 
 .creative-button-with-marquee:hover .creative-text {
 	@apply text-urg-blue-dark;
+}
+
+.continuous-spin-circle-animation {
+	animation: spin 35s linear infinite;
+}
+
+.continuous-spin-circle-button:hover .spinning-text-button {
+	@apply fill-urg-blue;
 }
 
 .switch-project {
@@ -244,27 +259,19 @@ body {
 	z-index: 10;
 }
 
-.continuous-spin-circle-animation {
-	animation: spin 35s linear infinite;
-}
-
-.continuous-spin-circle-button:hover .spinning-text-button {
-	@apply fill-urg-blue;
-}
-
 .mask-gradient {
 	mask: linear-gradient(
 		to right,
 		transparent 0%,
-		white 15%,
-		white 85%,
+		white 35%,
+		white 65%,
 		transparent 100%
 	);
 	-webkit-mask: linear-gradient(
 		to right,
 		transparent 0%,
-		white 15%,
-		white 85%,
+		white 35%,
+		white 65%,
 		transparent 100%
 	);
 	overflow: hidden;

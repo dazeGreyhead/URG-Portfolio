@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 type HomepageFeaturedWorksProps = {
 	featuredProjects: siteContent[];
 	sliderDuration: number;
+	className: string;
 };
 
 export default function HomepageFeaturedWorks({
 	featuredProjects,
 	sliderDuration = 3000,
+	className,
 }: HomepageFeaturedWorksProps) {
 	// Implements carousel of featured projects.
 	// Stores the index of project that is to be shown.
@@ -24,7 +26,7 @@ export default function HomepageFeaturedWorks({
 	}, [featuredProjects.length, sliderDuration]);
 
 	return (
-		<section className="relative h-screen overflow-hidden">
+		<section className={`relative h-screen overflow-hidden ${className}`}>
 			<h3 className="absolute z-10 left-9 top-12 sm:left-16 sm:top-22 text-urg-white">
 				My Featured Works
 			</h3>
@@ -52,7 +54,7 @@ export default function HomepageFeaturedWorks({
 									</p>
 								</div>
 							</div>
-							<div className="h-full w-2/3 sm:w-1/2 absolute z-10 bg-linear-to-r from-urg-black/50 to-urg-black/0" />
+							<div className="h-full w-4/5 sm:w-1/2 absolute z-10 bg-linear-to-r from-black/80 to-black/0" />
 							<figure className="absolute z-0 h-full w-full">
 								<img
 									className=" h-full w-full object-cover"

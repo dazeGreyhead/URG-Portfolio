@@ -1,8 +1,111 @@
 import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import { motion } from "motion/react";
+import URGButton from "@/components/URGButton";
+import { ButtonType } from "@/utilities/types";
+import { easeInOut, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 export default function HomepageLanding() {
+	const urgDisciplines = [
+		"Writer",
+		"Graphic Designer",
+		"Web Developer",
+		"Video Producer",
+		"Director",
+	];
+
+	const disciplinesPosition = [
+		"outLeft",
+		"left",
+		"center",
+		"right",
+		"outRight",
+		"botOutRight",
+		"botRight",
+		"botCenter",
+		"botLeft",
+		"botOutLeft",
+	];
+
+	const disciplinesAnimationVariants = {
+		center: { x: "0%", scale: 1, y: "0%", color: "var(--color-urg-black)" },
+		left: {
+			x: "-100%",
+			scale: 0.6,
+			y: "0%",
+			color: "var(--color-urg-black-75)",
+		},
+		outLeft: {
+			x: "-200%",
+			scale: 0.6,
+			y: "0%",
+			color: "var(--color-urg-black-75)",
+		},
+		right: {
+			x: "100%",
+			scale: 0.6,
+			y: "0%",
+			color: "var(--color-urg-black-75)",
+		},
+		outRight: {
+			x: "200%",
+			scale: 0.6,
+			y: "0%",
+			color: "var(--color-urg-black-75)",
+		},
+		botCenter: {
+			x: "0%",
+			scale: 0.6,
+			y: "200%",
+			color: "var(--color-urg-black-75)",
+		},
+		botLeft: {
+			x: "-100%",
+			scale: 0.6,
+			y: "200%",
+			color: "var(--color-urg-black-75)",
+		},
+		botOutLeft: {
+			x: "-200%",
+			scale: 0.6,
+			y: "200%",
+			color: "var(--color-urg-black-75)",
+		},
+		botRight: {
+			x: "100%",
+			scale: 0.6,
+			y: "200%",
+			color: "var(--color-urg-black-75)",
+		},
+		botOutRight: {
+			x: "200%",
+			scale: 0.6,
+			y: "200%",
+			color: "var(--color-urg-black-75)",
+		},
+	};
+
+	const [disciplineIndexes, setDisciplineIndexes] = useState(() => {
+		const initialIndexes = [];
+		for (let i = 0; i < disciplinesPosition.length; i++) {
+			initialIndexes.push(i);
+		}
+		return initialIndexes;
+	});
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setDisciplineIndexes((prevIndexes) => {
+				const updatedIndexes = prevIndexes.map(
+					(prevIndex) => (prevIndex + 1) % disciplinesPosition.length,
+				);
+				return updatedIndexes;
+			});
+		}, 2000);
+
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<section className="flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden">
 			<div className="flex flex-col h-[77vh] sm:h-full w-full">
@@ -46,21 +149,34 @@ export default function HomepageLanding() {
 							</motion.text>
 						</svg>
 					</div>
-					<div className=" w-[600px] h-[60px] overflow-clip flex justify-center items-center mask-gradient">
-						<ul className="flex gap-12 h-full font-primary text-5xl text-urg-black mt-2 whitespace-nowrap">
-							<li>Writer</li>
-							<li>Graphic Designer</li>
-							<li>Web Developer</li>
-							<li>Video Producer</li>
-							<li>Director</li>
+					<div className="h-[80px] w-[1400px] mask-gradient">
+						<ul className="flex h-[50px] justify-center items-center font-primary text-4xl md:text-6xl text-urg-white whitespace-nowrap relative mt-4">
+							{[...urgDisciplines, ...urgDisciplines].map(
+								(discipline, index) => (
+									<motion.li
+										key={`${discipline} ${index}`}
+										className="w-[450px] text-center absolute"
+										initial={disciplinesPosition[disciplineIndexes[index]]}
+										animate={disciplinesPosition[disciplineIndexes[index]]}
+										variants={disciplinesAnimationVariants}
+										transition={{ duration: 0.5 }}
+									>
+										{discipline}
+									</motion.li>
+								),
+							)}
 						</ul>
 					</div>
 				</div>
 
 				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">
-					<button className="secondary-button text-2xl px-16" type="button">
+					<URGButton
+						buttonType={ButtonType.secondary}
+						className="text-2xl px-16"
+					>
 						kedrite@gmail.com
-					</button>
+					</URGButton>
+
 					<div className="flex  gap-4">
 						<motion.div
 							animate={{
