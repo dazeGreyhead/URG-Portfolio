@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
 import HomepageLanding from "@/sections/HomepageLanding";
@@ -8,7 +7,6 @@ import StickyContentWrapper from "@/sections/StickyContentWrapper";
 
 import {
 	featuredCreatives,
-	featuredProjects,
 	servicesProvided,
 	urgSocialMedia,
 } from "@/utilities/data";

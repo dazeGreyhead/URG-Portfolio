@@ -3,10 +3,10 @@ import { urgThingsILove } from "@/utilities/data";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about-me")({
-	component: RouteComponent,
+	component: AboutMe,
 });
 
-function RouteComponent() {
+function AboutMe() {
 	return (
 		<main className="px-9 py-12 xl:pt-32 xl:px-16 xl:pb-12 h-fit min-h-screen flex flex-col gap-16">
 			<section className="flex justify-center items-center">

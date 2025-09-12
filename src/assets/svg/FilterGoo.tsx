@@ -4,7 +4,7 @@ const FilterGoo = (props: SVGProps<SVGSVGElement>) => (
 		<title>Filter Goo</title>
 		<defs>
 			<filter id="goo">
-				<feGaussianBlur in="SourceGraphic" stdDeviation="{7}" result="blur" />
+				<feGaussianBlur in="SourceGraphic" stdDeviation={7} result="blur" />
 				<feColorMatrix
 					in="blur"
 					mode="matrix"
