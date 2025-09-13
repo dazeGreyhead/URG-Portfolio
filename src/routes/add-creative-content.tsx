@@ -1,9 +1,11 @@
 import GrainyBackground from "@/components/GrainyBackground";
+import RichTextEditor from "@/components/RichTextEditor";
 import URGButton from "@/components/URGButton";
 import { supabase } from "@/supabase-client";
 import { ButtonType } from "@/utilities/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createFileRoute } from "@tanstack/react-router";
+
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -51,7 +53,7 @@ function AddCreativeContent() {
 				<h3 className="mb-8">Add Creative Content</h3>
 				<div className="flex justify-center">
 					<form
-						className="flex flex-col gap-10 w-full lg:w-fit items-center lg:items-start"
+						className="flex flex-col gap-10 w-full lg:w-full items-center lg:items-start"
 						onSubmit={handleSubmit(onSubmit)}
 					>
 						<label className="w-full">
@@ -60,7 +62,7 @@ function AddCreativeContent() {
 								{...register("title")}
 								type="text"
 								placeholder="Write a title here"
-								className="p-big text-urg-black w-full lg:w-[500px] h-11 border-b-2 p-4"
+								className="p-big text-urg-black w-full lg:w-full h-11 border-b-2 p-4"
 							/>
 							{errors.title && (
 								<div className="text-urg-red">{errors.title?.message}</div>
@@ -79,6 +81,11 @@ function AddCreativeContent() {
 								<div className="text-urg-red">{errors.content?.message}</div>
 							)}
 						</label>
+
+						<RichTextEditor
+							onChange={() => {}}
+							className="p-big text-urg-black w-full min-h-120 border-2 p-4 rounded-lg"
+						/>
 
 						<URGButton type="submit" buttonType={ButtonType.secondary}>
 							{isSubmitting ? "Submitting" : "Submit"}
