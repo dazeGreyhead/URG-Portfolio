@@ -1,5 +1,5 @@
-import { ButtonType } from "@/utilities/types";
 import { Link } from "@tanstack/react-router";
+import { ButtonType } from "@/utilities/types";
 import URGButton from "./URGButton";
 
 export default function Header() {
@@ -42,20 +42,38 @@ export default function Header() {
 							</svg>
 						</label>
 					</li>
-					<li className="font-bold text-urg-black font-primary text-xl md:text-2xl md:ml-40 xl:ml-0">
+					<li className="font-bold text-urg-black font-primary text-xl md:text-2xl md:ml-40 xl:ml-0  hover:underline hover:underline-offset-10">
 						<Link to="/">UMANG RAJ GURUNG</Link>
 					</li>
 
 					{/* This is the set of links that will collapse into a hamburger menu */}
 					<ul className="peer-checked:opacity-100 peer-checked:left-0 opacity-0 transition-opacity duration-300 flex fixed top-0 -left-full z-20 w-dvw h-dvh bg-urg-white flex-col items-center justify-center gap-25 xl:opacity-100 xl:flex xl:flex-row xl:gap-12 xl:static xl:w-auto xl:h-auto xl:bg-transparent">
-						<li className="font-primary text-xl text-urg-black">
-							<Link to="/about-me">About me</Link>
+						<Link
+							to="/about-me"
+							activeProps={{
+								className: "underline underline-offset-10",
+							}}
+						>
+							<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+								About me
+							</li>
+						</Link>
+						<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+							Projects
 						</li>
-						<li className="font-primary text-xl text-urg-black">Projects</li>
-						<li className="font-primary text-xl text-urg-black">
-							Creative Corner
+						<Link
+							to="/creative-corner"
+							activeProps={{
+								className: "underline underline-offset-10",
+							}}
+						>
+							<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+								Creative Corner
+							</li>
+						</Link>
+						<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+							Experience
 						</li>
-						<li className="font-primary text-xl text-urg-black">Experience</li>
 					</ul>
 
 					<li className="hidden md:block">

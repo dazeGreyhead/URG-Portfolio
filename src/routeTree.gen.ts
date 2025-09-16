@@ -10,19 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AddCreativeContentRouteImport } from './routes/add-creative-content'
 import { Route as AboutMeRouteImport } from './routes/about-me'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CreativeCornerIdRouteImport } from './routes/creative-corner/$id'
+import { Route as CreativeCornerIndexRouteImport } from './routes/creative-corner/index'
+import { Route as CreativeCornerSlugRouteImport } from './routes/creative-corner/$slug'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AddCreativeContentRoute = AddCreativeContentRouteImport.update({
-  id: '/add-creative-content',
-  path: '/add-creative-content',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutMeRoute = AboutMeRouteImport.update({
@@ -35,64 +30,69 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreativeCornerIdRoute = CreativeCornerIdRouteImport.update({
-  id: '/creative-corner/$id',
-  path: '/creative-corner/$id',
+const CreativeCornerIndexRoute = CreativeCornerIndexRouteImport.update({
+  id: '/creative-corner/',
+  path: '/creative-corner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreativeCornerSlugRoute = CreativeCornerSlugRouteImport.update({
+  id: '/creative-corner/$slug',
+  path: '/creative-corner/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
-  '/add-creative-content': typeof AddCreativeContentRoute
   '/contact': typeof ContactRoute
-  '/creative-corner/$id': typeof CreativeCornerIdRoute
+  '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/creative-corner': typeof CreativeCornerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
-  '/add-creative-content': typeof AddCreativeContentRoute
   '/contact': typeof ContactRoute
-  '/creative-corner/$id': typeof CreativeCornerIdRoute
+  '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/creative-corner': typeof CreativeCornerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
-  '/add-creative-content': typeof AddCreativeContentRoute
   '/contact': typeof ContactRoute
-  '/creative-corner/$id': typeof CreativeCornerIdRoute
+  '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/creative-corner/': typeof CreativeCornerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about-me'
-    | '/add-creative-content'
     | '/contact'
-    | '/creative-corner/$id'
+    | '/creative-corner/$slug'
+    | '/creative-corner'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about-me'
-    | '/add-creative-content'
     | '/contact'
-    | '/creative-corner/$id'
+    | '/creative-corner/$slug'
+    | '/creative-corner'
   id:
     | '__root__'
     | '/'
     | '/about-me'
-    | '/add-creative-content'
     | '/contact'
-    | '/creative-corner/$id'
+    | '/creative-corner/$slug'
+    | '/creative-corner/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutMeRoute: typeof AboutMeRoute
-  AddCreativeContentRoute: typeof AddCreativeContentRoute
   ContactRoute: typeof ContactRoute
-  CreativeCornerIdRoute: typeof CreativeCornerIdRoute
+  CreativeCornerSlugRoute: typeof CreativeCornerSlugRoute
+  CreativeCornerIndexRoute: typeof CreativeCornerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -102,13 +102,6 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/add-creative-content': {
-      id: '/add-creative-content'
-      path: '/add-creative-content'
-      fullPath: '/add-creative-content'
-      preLoaderRoute: typeof AddCreativeContentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-me': {
@@ -125,11 +118,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/creative-corner/$id': {
-      id: '/creative-corner/$id'
-      path: '/creative-corner/$id'
-      fullPath: '/creative-corner/$id'
-      preLoaderRoute: typeof CreativeCornerIdRouteImport
+    '/creative-corner/': {
+      id: '/creative-corner/'
+      path: '/creative-corner'
+      fullPath: '/creative-corner'
+      preLoaderRoute: typeof CreativeCornerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creative-corner/$slug': {
+      id: '/creative-corner/$slug'
+      path: '/creative-corner/$slug'
+      fullPath: '/creative-corner/$slug'
+      preLoaderRoute: typeof CreativeCornerSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -138,9 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutMeRoute: AboutMeRoute,
-  AddCreativeContentRoute: AddCreativeContentRoute,
   ContactRoute: ContactRoute,
-  CreativeCornerIdRoute: CreativeCornerIdRoute,
+  CreativeCornerSlugRoute: CreativeCornerSlugRoute,
+  CreativeCornerIndexRoute: CreativeCornerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

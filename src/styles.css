@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @font-face {
 	font-family: AV Estiana;
@@ -30,12 +31,12 @@
 	--font-primary: "AV Estiana", sans-serif;
 	--font-secondary: "Satoshi", sans-serif;
 	--font-secondary-italic: "Satoshi Italic", sans-serif;
-	--color-urg-white: #f3f6f7;
-	--color-urg-black-10: #e6ecef;
-	--color-urg-black-25: #bcccd4;
-	--color-urg-black-50: #7b9aa9;
-	--color-urg-black-75: #48616e;
-	--color-urg-black: #1c262b;
+	--color-urg-white: #f4f5f6;
+	--color-urg-black-10: #e1e7e9;
+	--color-urg-black-25: #bac9d1;
+	--color-urg-black-50: #68818d;
+	--color-urg-black-75: #3c525d;
+	--color-urg-black: #101619;
 	--color-urg-blue: #209cda;
 	--color-urg-blue-light: #90cfee;
 	--color-urg-blue-dark: #3a4f59;
@@ -95,6 +96,10 @@
 		@apply font-primary text-lg xl:text-xl text-urg-black py-2 px-3 xl:py-3 xl:px-6 w-fit rounded-[5px] border-2 border-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-black hover:cursor-pointer hover:text-urg-white;
 	}
 
+	.arrow-expand-button {
+		@apply uppercase font-normal hover:cursor-pointer py-1 xl:py-2 hover:text-urg-blue;
+	}
+
 	.button-hover-shadow {
 		@apply hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue;
 	}
@@ -108,11 +113,15 @@
 	}
 
 	.p-small {
-		@apply font-secondary text-sm text-urg-black;
+		@apply font-secondary text-sm/loose text-urg-black;
 	}
 
 	.p-big {
-		@apply font-secondary text-xl text-urg-black;
+		@apply font-secondary text-xl/normal text-urg-black;
+	}
+
+	.p-regular {
+		@apply font-secondary text-base/loose text-urg-black;
 	}
 }
 

@@ -1,0 +1,16 @@
+import type { SVGProps } from "react";
+
+const FancyArrowStalk = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width={100}
+		height={100}
+		viewBox="0 0 100 100"
+		fill="#231F20"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<title>Fancy Arrow Stalk</title>
+		<path d="M48.5559 1.5197L51 1.5L50.4766 10.4143C50.5267 53.7149 52.5 67.0616 52.5 100H46.5C46.5 65.131 48.7137 56.926 48.6636 10.5423" />
+	</svg>
+);
+export default FancyArrowStalk;

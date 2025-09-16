@@ -1,6 +1,6 @@
+import { createFileRoute } from "@tanstack/react-router";
 import GrainyBackground from "@/components/GrainyBackground";
 import { urgThingsILove } from "@/utilities/data";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about-me")({
 	component: AboutMe,
@@ -41,7 +41,7 @@ function AboutMe() {
 			</section>
 			<section className="flex flex-col gap-8">
 				<h3>Here are some assortments of things I love</h3>
-				<div className="grid grid-cols-2 gap-8">
+				<div className="grid grid-cols-3 gap-8">
 					{urgThingsILove.map((lovelyThings) => {
 						return (
 							<div
@@ -49,9 +49,9 @@ function AboutMe() {
 								className="relative w-full h-full aspect-video rounded-3xl overflow-hidden group"
 							>
 								<div className="absolute z-10 w-full h-full bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-									<div className="absolute z-20 flex flex-col gap-6 left-15 right-15 bottom-15">
-										<h2 className="text-urg-white">{lovelyThings.title}</h2>
-										<p className=" p-big text-urg-black-25 ">
+									<div className="absolute z-20 flex flex-col gap-2 left-6 right-6 bottom-6">
+										<h4 className="text-urg-white">{lovelyThings.title}</h4>
+										<p className=" text-urg-black-25 p-regular">
 											{lovelyThings.shortDescription}
 										</p>
 									</div>

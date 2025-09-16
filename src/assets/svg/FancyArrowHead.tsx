@@ -1,0 +1,16 @@
+import type { SVGProps } from "react";
+
+const FancyArrowHead = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width={100}
+		height={100}
+		viewBox="0 0 100 100"
+		fill="#231F20"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<title>Fancy Arrow</title>
+		<path d="M79.99 24.85L79.92 33.25C79.92 33.25 59.4 29.38 50.51 9.04C45.77 -1.82 52.43 0.95 48.69 9.17C39.38 29.63 19 33.84 19 33.84L19.07 25.44C44.39 25.2 47.84 4.89 48.33 0.02L51.18 0C51.18 0 51 25.15 80 24.86L79.99 24.85Z" />
+	</svg>
+);
+export default FancyArrowHead;
