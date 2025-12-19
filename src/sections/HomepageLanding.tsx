@@ -1,4 +1,4 @@
-import { easeInOut, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -57,6 +57,7 @@ export default function HomepageLanding() {
 							viewBox="0 0 163.97 43.97"
 							className="overflow-visible w-[350px] md:w-[600px]"
 						>
+							<title>Text circling on Creative word</title>
 							<path
 								stroke="none"
 								fill="none"
@@ -116,7 +117,7 @@ export default function HomepageLanding() {
 											scale,
 											opacity,
 										}}
-										transition={{ duration: 0.5 }}
+										transition={{ duration: TRANSITION_DURATION }}
 									>
 										{discipline}
 									</motion.li>

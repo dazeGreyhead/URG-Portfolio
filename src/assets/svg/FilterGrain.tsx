@@ -8,6 +8,7 @@ interface FilterGrainProps extends SVGProps<SVGSVGElement> {
 const FilterGrain = ({ blendMode, ...svgProps }: FilterGrainProps) => (
 	<svg {...svgProps}>
 		<title>Filter grain</title>
+
 		<filter id="grainy">
 			<feTurbulence
 				type="turbulence"
