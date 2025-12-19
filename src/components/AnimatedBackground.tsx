@@ -15,7 +15,8 @@ function AnimatedBackground() {
 
 	useEffect(() => {
 		// This event listener updates the motion values on mouse move.
-		const handleMouseMove = (event) => {
+		// biome-ignore lint/suspicious/noExplicitAny: false
+		const handleMouseMove = (event: any) => {
 			mouseX.set(event.clientX);
 			mouseY.set(event.clientY);
 		};

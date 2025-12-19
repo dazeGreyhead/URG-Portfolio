@@ -3,11 +3,13 @@ import { useEffect } from "react";
 
 export default function RandomlyMovingBlob({
 	className,
-}: { className: string }) {
+}: {
+	className: string;
+}) {
 	const controls = useAnimation();
 
 	// Generate random initial position
-	const initialX = Math.random() * 100;
+	// const initialX = Math.random() * 100;
 	const initialY = Math.random() * 100;
 
 	useEffect(() => {
