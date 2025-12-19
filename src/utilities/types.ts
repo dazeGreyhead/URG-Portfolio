@@ -33,3 +33,23 @@ export enum ButtonType {
 	secondary = "secondary-button",
 	expandArrow = "arrow-expand-button",
 }
+
+export type workHistory = {
+	companyName: string;
+	position: string;
+	startDate: string;
+	endDate: string;
+	jobDescription: string;
+};
+
+export type educationHistory = {
+	schoolName: string;
+	degree: string;
+	startDate: string;
+	endDate: string;
+};
+
+export type softwareProficiency = {
+	softwareName: string;
+	logo: string;
+};

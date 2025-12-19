@@ -1,8 +1,10 @@
 import type {
+	educationHistory,
 	serviceCardData,
 	siteContent,
 	socialMediaLinks,
 	thingsILove,
+	workHistory,
 } from "./types";
 
 export const featuredProjects: siteContent[] = [
@@ -193,5 +195,134 @@ export const urgThingsILove: thingsILove[] = [
 		altText: "Frieren Beyond Journey's End",
 		shortDescription:
 			"An anime that touches your soul. In this modern world, where I began thinking classics need time to become classics or perhaps things are only good because of nostalgia, well here comes a modern masterpiece. I recommend this to everyone and gush about it everywhere. And you, whoever is reading must also watch this.",
+	},
+];
+
+export const urgWorkHistory: workHistory[] = [
+	{
+		companyName: "Gyaltsen Rug Industries / Makamali Carpet & Textile",
+		position: "Freelance Web Developer & Designer",
+		startDate: "April 2024",
+		endDate: "Present",
+		jobDescription:
+			"Developed and maintaining both websites of Gyaltsen Rug and Makamali",
+	},
+	{
+		companyName: "Volunteer Corps Nepal",
+		position: "Freelance Graphic Designer",
+		startDate: "March 2024",
+		endDate: "Present",
+		jobDescription: "Designing VCN website and many marketing materials",
+	},
+	{
+		companyName: "Innovate Tech",
+		position: "Associate Editor",
+		startDate: "May 2022",
+		endDate: "August 2023",
+		jobDescription:
+			"Editing the videos of the education platform: My Second Teacher",
+	},
+	{
+		companyName: "AnkaEK",
+		position:
+			"Video Editor / Animator / Camera Operator / Concept Creator / Writer",
+		startDate: "November 2020",
+		endDate: "July 2021",
+		jobDescription:
+			"Creating concepts for short films, advertisements, documentaries etc.",
+	},
+	{
+		companyName: "Jazz Productions",
+		position: "Video Editor / Production Assistant / Concept Creator",
+		startDate: "August 2019",
+		endDate: "February 2020",
+		jobDescription:
+			"Creating concepts for music videos, helping with the production and editing them.",
+	},
+	{
+		companyName: "Sofar Sounds Kathmandu",
+		position: "Video Editor / Videographer",
+		startDate: "August 2018",
+		endDate: "December 2019",
+		jobDescription: "Shooting the artists’ performances and editing them.",
+	},
+	{
+		companyName: "Kantipur Digital Corp.",
+		position: "Intern Video Editor",
+		startDate: "August 2017",
+		endDate: "November 2017",
+		jobDescription:
+			"Editing footage from Kathmandu TV and radio to upload it on YouTube.",
+	},
+	{
+		companyName: "Techlekh",
+		position: "Creative Design Lead / Video Editor / Videographer",
+		startDate: "April 2016",
+		endDate: "May 2017",
+		jobDescription:
+			"Producing, editing and shooting almost all of Techlekh videos during tenure.",
+	},
+];
+
+export const urgEducationHistory: educationHistory[] = [
+	{
+		schoolName: "Deerwalk Institute of Technology",
+		startDate: "2013",
+		endDate: "2017",
+		degree:
+			"Bachelors of Science in Computer Science and Information Technology",
+	},
+	{
+		schoolName: "Kathmandu Model College",
+		startDate: "2011",
+		endDate: "2013",
+		degree: "Higher Secondary Education Board, Science",
+	},
+];
+
+export const urgSoftwareProficiencies = [
+	{
+		softwareName: "Adobe Premiere Pro",
+		logo: "/Adobe_Premiere_Pro_CC_icon.svg.png",
+	},
+	{
+		softwareName: "Davinci Resolve",
+		logo: "/DaVinci_Resolve_Studio.png",
+	},
+	{
+		softwareName: "Adobe After Effects",
+		logo: "/Adobe_After_Effects_CC_icon.svg.png",
+	},
+	{
+		softwareName: "ReactJS",
+		logo: "/reactLogo.png",
+	},
+	{
+		softwareName: "Javascript",
+		logo: "/javascriptLogo.png",
+	},
+	{
+		softwareName: "WordPress",
+		logo: "/WordPress_blue_logo.svg.png",
+	},
+	{
+		softwareName: "Squarespace",
+		logo: "/Squarespace_Logo.png",
+	},
+	{
+		softwareName: "Adobe Photoshop",
+		logo: "/Adobe_Photoshop_CC_icon.svg.png",
+	},
+	{
+		softwareName: "Figma",
+		logo: "/Figma-logo.svg.png",
+	},
+	{
+		softwareName: "Adobe InDesign",
+		logo: "/indesignIcon.png",
+	},
+	{
+		softwareName: "Adobe Illustrator",
+		logo: "/Adobe_Illustrator_CC_icon.svg.png",
 	},
 ];

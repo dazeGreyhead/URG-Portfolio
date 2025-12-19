@@ -58,9 +58,16 @@ export default function Header() {
 								About me
 							</li>
 						</Link>
-						<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
-							Projects
-						</li>
+						<Link
+							to="/portfolio-projects"
+							activeProps={{
+								className: "underline underline-offset-10",
+							}}
+						>
+							<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+								Projects
+							</li>
+						</Link>
 						<Link
 							to="/creative-corner"
 							activeProps={{
@@ -71,9 +78,16 @@ export default function Header() {
 								Creative Corner
 							</li>
 						</Link>
-						<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
-							Experience
-						</li>
+						<Link
+							to="/experience"
+							activeProps={{
+								className: "underline underline-offset-10",
+							}}
+						>
+							<li className="font-primary text-xl text-urg-black px-1 py-1 hover:underline hover:underline-offset-10">
+								Experience
+							</li>
+						</Link>
 					</ul>
 
 					<li className="hidden md:block">

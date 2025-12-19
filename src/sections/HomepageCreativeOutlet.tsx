@@ -1,15 +1,64 @@
+import type { SanityDocument } from "@sanity/client";
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import FancyArrow from "@/assets/svg/FancyArrow";
-import type { siteContent } from "@/utilities/types";
+import URGButton from "@/components/URGButton";
+import { getHomepageCreativeContent } from "@/sanity/client";
+import { urlFor } from "@/sanity/sanityImageUrl";
+import { dateFormatter } from "@/utilities/dateFormatter";
+import { ButtonType } from "@/utilities/types";
 
-type HomepageCreativeOutletProps = {
-	featuredCreativeContent: siteContent;
-	otherCreativeContent: siteContent[];
-};
+export default function HomepageCreativeOutlet() {
+	// State to hold the fetched data
+	const [creativeContent, setCreativeContent] = useState<SanityDocument[]>([]);
+	// State to manage the loading status
+	const [loading, setLoading] = useState(true);
 
-export default function HomepageCreativeOutlet({
-	featuredCreativeContent,
-	otherCreativeContent,
-}: HomepageCreativeOutletProps) {
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await getHomepageCreativeContent();
+				setCreativeContent(data);
+			} catch (e: unknown) {
+				// Step 4: Handle and set the error state
+				// Use a type guard to ensure 'e' is an Error object before accessing '.message'
+				if (e instanceof Error) {
+					console.error("Failed to fetch data: ", e);
+					setError(e.message);
+				} else {
+					console.error("An unknown error occurred");
+					setError("An unknown error occurred");
+				}
+			} finally {
+				// Step 5: Always set loading to false after the operation completes
+				setLoading(false);
+			}
+		};
+		fetchData();
+
+		// The empty dependency array [] ensures this effect runs only once after the initial render.
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-screen bg-gray-100 font-sans">
+				<p className="text-xl text-gray-700 animate-pulse">
+					Loading creative content...
+				</p>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="flex justify-center items-center h-screen bg-gray-100 font-sans">
+				<p className="text-xl text-red-500">Error: {error}</p>
+			</div>
+		);
+	}
+
 	return (
 		<section className="px-9 py-12 xl:pt-22 xl:px-16 xl:pb-35 h-fit min-h-screen bg-urg-black">
 			<div className="flex flex-col gap-6 xl:flex-row items-center xl:justify-between">
@@ -53,77 +102,125 @@ export default function HomepageCreativeOutlet({
 			</div>
 			<div className="flex flex-col items-center mt-8">
 				<div className="w-full xl:w-[84%] flex flex-col gap-16 xl:gap-24">
-					<div className="flex flex-col xl:flex-row gap-8">
-						<figure className="h-[400px] xl:h-[600px] w-full">
-							<img
-								src={featuredCreativeContent.featuredImage}
-								alt={featuredCreativeContent.title}
-								className="h-full w-full object-cover"
-							/>
-						</figure>
-						<div>
-							<div className="flex flex-col gap-3">
-								<div className="flex flex-col gap-1">
-									<h2 className="text-urg-white">
-										{featuredCreativeContent.title}
-									</h2>
-									<p className="text-urg-orange p-small">
-										{featuredCreativeContent.dateCreated}
-									</p>
-								</div>
-								<div className="flex flex-wrap gap-4">
-									{featuredCreativeContent.tags.map((tag) => {
-										return (
-											<p key={tag} className="tag">
-												{tag}
-											</p>
-										);
-									})}
-								</div>
-								<p className="text-urg-black-25 p-big">
-									{featuredCreativeContent.shortDescription}
-								</p>
-							</div>
-							<button type="button" className="content-button text-urg-white">
-								Read more
-							</button>
-						</div>
-					</div>
-					<div className="flex flex-wrap gap-8 xl:flex-row xl:justify-between">
-						{otherCreativeContent.map((content) => (
+					{creativeContent.map((content) =>
+						content.featured ? (
 							<div
-								key={content.title}
-								className="flex flex-row xl:flex-col w-full xl:w-3/10 gap-5"
+								key={content._id}
+								className="flex flex-col xl:flex-row gap-8"
 							>
-								<figure className="h-[80px] w-[150px] xl:h-[290px] xl:w-full">
-									<img
-										src={content.featuredImage}
-										alt={content.title}
-										className="h-full w-full object-cover"
-									/>
+								<figure className="h-[400px] xl:h-auto w-[65%] aspect-video overflow-hidden shrink-0 hover:brightness-75">
+									<Link
+										to="/creative-corner/$slug"
+										params={{
+											slug: content.slug.current,
+										}}
+									>
+										<img
+											src={urlFor(content.mainImage)
+												.width(1000)
+												.height(600)
+												.url()}
+											alt={content.title}
+											className="h-auto w-full object-cover"
+										/>
+									</Link>
 								</figure>
-								<div className="w-full">
-									<div className="flex flex-col gap-2">
+
+								<div className="flex flex-col">
+									<div className="flex flex-col gap-3">
 										<div className="flex flex-col gap-1">
-											<h4 className="text-urg-white">{content.title}</h4>
+											<Link
+												to="/creative-corner/$slug"
+												params={{
+													slug: content.slug.current,
+												}}
+											>
+												<h2 className="text-urg-white hover:text-urg-blue">
+													{content.title}
+												</h2>
+											</Link>
 											<p className="text-urg-orange p-small">
-												{content.dateCreated}
+												{dateFormatter(content.publishedAt)}
 											</p>
 										</div>
-
-										<p className="text-urg-black-25 xl:p-big">
-											{content.shortDescription}
+										<div className="flex flex-wrap gap-4">
+											{content.tags.map((tag: string) => {
+												return (
+													<p key={tag} className="tag">
+														{tag}
+													</p>
+												);
+											})}
+										</div>
+										<p className="text-urg-black-25 p-big">
+											{content.description}
 										</p>
 									</div>
-									<button
-										type="button"
-										className="content-button text-urg-white"
+									<Link
+										to="/creative-corner/$slug"
+										params={{
+											slug: content.slug.current,
+										}}
 									>
-										Read more
-									</button>
+										<URGButton
+											className="text-urg-white"
+											buttonType={ButtonType.expandArrow}
+										>
+											{content.coverVideo ? "Watch" : "Read more"}
+										</URGButton>
+									</Link>
 								</div>
 							</div>
-						))}
+						) : null,
+					)}
+					<div className="flex flex-wrap gap-8 xl:grid xl:grid-cols-3 xl:gap-24">
+						{creativeContent.map((content) =>
+							content.featured ? null : (
+								<Link
+									key={content._id}
+									to="/creative-corner/$slug"
+									params={{
+										slug: content.slug.current,
+									}}
+								>
+									<div className="flex flex-row xl:flex-col w-full gap-5 group">
+										<figure className="h-[80px] w-[150px] xl:h-auto xl:w-full aspect-video overflow-hidden group-hover:brightness-75">
+											<img
+												src={urlFor(content.mainImage)
+													.width(500)
+													.height(290)
+													.url()}
+												alt={content.title}
+												className="h-full w-full object-cover"
+											/>
+										</figure>
+										<div className="w-full">
+											<div className="flex flex-col gap-2">
+												<div className="flex flex-col gap-1">
+													<h4 className="text-urg-white group-hover:text-urg-blue">
+														{content.title}
+													</h4>
+
+													<p className="text-urg-orange p-small">
+														{dateFormatter(content.publishedAt)}
+													</p>
+												</div>
+
+												<p className="text-urg-black-25 xl:p-big">
+													{content.description}
+												</p>
+											</div>
+											<URGButton
+												className="text-urg-white"
+												buttonType={ButtonType.expandArrow}
+											>
+												{content.coverVideo ? "Watch" : "Read more"}
+											</URGButton>
+										</div>
+									</div>
+								</Link>
+							),
+						)}
 					</div>
 				</div>
 			</div>

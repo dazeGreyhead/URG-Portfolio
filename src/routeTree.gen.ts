@@ -9,12 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutMeRouteImport } from './routes/about-me'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PortfolioProjectsIndexRouteImport } from './routes/portfolio-projects/index'
 import { Route as CreativeCornerIndexRouteImport } from './routes/creative-corner/index'
+import { Route as PortfolioProjectsSlugRouteImport } from './routes/portfolio-projects/$slug'
 import { Route as CreativeCornerSlugRouteImport } from './routes/creative-corner/$slug'
 
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -30,9 +38,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioProjectsIndexRoute = PortfolioProjectsIndexRouteImport.update({
+  id: '/portfolio-projects/',
+  path: '/portfolio-projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreativeCornerIndexRoute = CreativeCornerIndexRouteImport.update({
   id: '/creative-corner/',
   path: '/creative-corner/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioProjectsSlugRoute = PortfolioProjectsSlugRouteImport.update({
+  id: '/portfolio-projects/$slug',
+  path: '/portfolio-projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreativeCornerSlugRoute = CreativeCornerSlugRouteImport.update({
@@ -45,23 +63,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/portfolio-projects/$slug': typeof PortfolioProjectsSlugRoute
   '/creative-corner': typeof CreativeCornerIndexRoute
+  '/portfolio-projects': typeof PortfolioProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/portfolio-projects/$slug': typeof PortfolioProjectsSlugRoute
   '/creative-corner': typeof CreativeCornerIndexRoute
+  '/portfolio-projects': typeof PortfolioProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
   '/contact': typeof ContactRoute
+  '/experience': typeof ExperienceRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugRoute
+  '/portfolio-projects/$slug': typeof PortfolioProjectsSlugRoute
   '/creative-corner/': typeof CreativeCornerIndexRoute
+  '/portfolio-projects/': typeof PortfolioProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -69,34 +96,53 @@ export interface FileRouteTypes {
     | '/'
     | '/about-me'
     | '/contact'
+    | '/experience'
     | '/creative-corner/$slug'
+    | '/portfolio-projects/$slug'
     | '/creative-corner'
+    | '/portfolio-projects'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about-me'
     | '/contact'
+    | '/experience'
     | '/creative-corner/$slug'
+    | '/portfolio-projects/$slug'
     | '/creative-corner'
+    | '/portfolio-projects'
   id:
     | '__root__'
     | '/'
     | '/about-me'
     | '/contact'
+    | '/experience'
     | '/creative-corner/$slug'
+    | '/portfolio-projects/$slug'
     | '/creative-corner/'
+    | '/portfolio-projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutMeRoute: typeof AboutMeRoute
   ContactRoute: typeof ContactRoute
+  ExperienceRoute: typeof ExperienceRoute
   CreativeCornerSlugRoute: typeof CreativeCornerSlugRoute
+  PortfolioProjectsSlugRoute: typeof PortfolioProjectsSlugRoute
   CreativeCornerIndexRoute: typeof CreativeCornerIndexRoute
+  PortfolioProjectsIndexRoute: typeof PortfolioProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -118,11 +164,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio-projects/': {
+      id: '/portfolio-projects/'
+      path: '/portfolio-projects'
+      fullPath: '/portfolio-projects'
+      preLoaderRoute: typeof PortfolioProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/creative-corner/': {
       id: '/creative-corner/'
       path: '/creative-corner'
       fullPath: '/creative-corner'
       preLoaderRoute: typeof CreativeCornerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio-projects/$slug': {
+      id: '/portfolio-projects/$slug'
+      path: '/portfolio-projects/$slug'
+      fullPath: '/portfolio-projects/$slug'
+      preLoaderRoute: typeof PortfolioProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creative-corner/$slug': {
@@ -139,8 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutMeRoute: AboutMeRoute,
   ContactRoute: ContactRoute,
+  ExperienceRoute: ExperienceRoute,
   CreativeCornerSlugRoute: CreativeCornerSlugRoute,
+  PortfolioProjectsSlugRoute: PortfolioProjectsSlugRoute,
   CreativeCornerIndexRoute: CreativeCornerIndexRoute,
+  PortfolioProjectsIndexRoute: PortfolioProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

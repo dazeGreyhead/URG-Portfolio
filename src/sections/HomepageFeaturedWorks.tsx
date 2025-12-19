@@ -1,14 +1,14 @@
-import type { siteContent } from "@/utilities/types";
+import type { SanityDocument } from "@sanity/client";
 import { useEffect, useState } from "react";
+import { getHomepagePortfolioProjects } from "@/sanity/client";
+import { urlFor } from "@/sanity/sanityImageUrl";
 
 type HomepageFeaturedWorksProps = {
-	featuredProjects: siteContent[];
 	sliderDuration: number;
 	className: string;
 };
 
 export default function HomepageFeaturedWorks({
-	featuredProjects,
 	sliderDuration = 3000,
 	className,
 }: HomepageFeaturedWorksProps) {
@@ -16,14 +16,68 @@ export default function HomepageFeaturedWorks({
 	// Stores the index of project that is to be shown.
 	const [projectIndex, setProjectIndex] = useState(0);
 
+	// State to hold the fetched data
+	const [portfolioProjects, setPortfolioProjects] = useState<SanityDocument[]>(
+		[],
+	);
+	// State to manage the loading status
+	const [loading, setLoading] = useState(true);
+
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await getHomepagePortfolioProjects();
+				setPortfolioProjects(data);
+			} catch (e: unknown) {
+				// Step 4: Handle and set the error state
+				// Use a type guard to ensure 'e' is an Error object before accessing '.message'
+				if (e instanceof Error) {
+					console.error("Failed to fetch data: ", e);
+					setError(e.message);
+				} else {
+					console.error("An unknown error occurred");
+					setError("An unknown error occurred");
+				}
+			} finally {
+				// Step 5: Always set loading to false after the operation completes
+				setLoading(false);
+			}
+		};
+		fetchData();
+
+		// The empty dependency array [] ensures this effect runs only once after the initial render.
+	}, []);
+
 	useEffect(() => {
 		// Increments the index of the project to be shown according to the duration of sliderDuration.
 		const timer = setInterval(() => {
-			setProjectIndex((prevIndex) => (prevIndex + 1) % featuredProjects.length);
+			setProjectIndex(
+				(prevIndex) => (prevIndex + 1) % portfolioProjects.length,
+			);
 		}, sliderDuration);
 
 		return () => clearInterval(timer); // cleanup on unmount
-	}, [featuredProjects.length, sliderDuration]);
+	}, [portfolioProjects.length, sliderDuration]);
+
+	if (loading) {
+		return (
+			<div className="flex justify-center items-center h-screen bg-gray-100 font-sans">
+				<p className="text-xl text-gray-700 animate-pulse">
+					Loading projects...
+				</p>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="flex justify-center items-center h-screen bg-gray-100 font-sans">
+				<p className="text-xl text-red-500">Error: {error}</p>
+			</div>
+		);
+	}
 
 	return (
 		<section className={`relative h-screen overflow-hidden ${className}`}>
@@ -31,7 +85,7 @@ export default function HomepageFeaturedWorks({
 				My Featured Works
 			</h3>
 			<div className="relative flex w-fit h-full z-0">
-				{featuredProjects.map((project, index) => {
+				{portfolioProjects.map((project, index) => {
 					return (
 						<div
 							key={project.title}
@@ -39,9 +93,9 @@ export default function HomepageFeaturedWorks({
 						>
 							<div className="absolute z-20 left-9 top-30 sm:left-16 sm:top-50 flex flex-col gap-16 w-[345px] sm:w-[434px]">
 								<div className="flex flex-col gap-4">
-									<h5 className="text-urg-white">{project.title}</h5>
+									<h5 className="text-urg-white uppercase">{project.title}</h5>
 									<div className="flex flex-wrap gap-4">
-										{project.tags.map((tag) => {
+										{project.tags.map((tag: string) => {
 											return (
 												<p key={tag} className="tag">
 													{tag}
@@ -49,17 +103,15 @@ export default function HomepageFeaturedWorks({
 											);
 										})}
 									</div>
-									<p className="text-urg-white p-big">
-										{project.shortDescription}
-									</p>
+									<p className="text-urg-white p-big">{project.description}</p>
 								</div>
 							</div>
 							<div className="h-full w-4/5 sm:w-1/2 absolute z-10 bg-linear-to-r from-black/80 to-black/0" />
 							<figure className="absolute z-0 h-full w-full">
 								<img
 									className=" h-full w-full object-cover"
-									src={project.featuredImage}
-									alt={project.title}
+									src={urlFor(project.mainImage).url()}
+									alt={project.mainImage.alt || "Project Image"}
 								/>
 							</figure>
 						</div>

@@ -85,7 +85,7 @@ function CreativeCorner() {
 										}}
 									>
 										<URGButton buttonType={ButtonType.expandArrow}>
-											Read more
+											{content.coverVideo ? "Watch" : "Read more"}
 										</URGButton>
 									</Link>
 								</div>
@@ -130,7 +130,7 @@ function CreativeCorner() {
 												</p>
 											</div>
 											<URGButton buttonType={ButtonType.expandArrow}>
-												Read more
+												{content.coverVideo ? "Watch" : "Read more"}
 											</URGButton>
 										</div>
 									</div>

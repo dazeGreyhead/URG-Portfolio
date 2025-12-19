@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+body {
+	position: relative;
+}
+
 @font-face {
 	font-family: AV Estiana;
 	src: url("../src/assets/fonts/AV\ Estiana-VF.ttf");
@@ -31,6 +35,7 @@
 	--font-primary: "AV Estiana", sans-serif;
 	--font-secondary: "Satoshi", sans-serif;
 	--font-secondary-italic: "Satoshi Italic", sans-serif;
+	--font-tertiary: "Raleway", sans-serif;
 	--color-urg-white: #f4f5f6;
 	--color-urg-black-10: #e1e7e9;
 	--color-urg-black-25: #bac9d1;
@@ -39,7 +44,7 @@
 	--color-urg-black: #101619;
 	--color-urg-blue: #209cda;
 	--color-urg-blue-light: #90cfee;
-	--color-urg-blue-dark: #3a4f59;
+	--color-urg-blue-dark: #186083;
 	--color-urg-orange: #e79536;
 	--color-urg-orange-light: #f2c38d;
 	--color-urg-orange-dark: #6e4d28;
@@ -109,7 +114,7 @@
 	}
 
 	.tag {
-		@apply font-secondary text-sm text-urg-orange font-medium border-2 border-urg-orange px-2 py-1 rounded-md;
+		@apply font-secondary text-sm text-urg-green font-medium border-2 border-urg-green px-2 py-1 rounded-md before:content-['#'];
 	}
 
 	.p-small {
@@ -123,10 +128,6 @@
 	.p-regular {
 		@apply font-secondary text-base/loose text-urg-black;
 	}
-}
-
-body {
-	/* @apply m-0 bg-linear-to-r from-[#FFFFFF] to-[#DEE2EA]; */
 }
 
 .animated-blob-1 {

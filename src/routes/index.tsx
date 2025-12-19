@@ -1,20 +1,14 @@
+import { createFileRoute } from "@tanstack/react-router";
+import type { LenisRef } from "lenis/react";
+import { ReactLenis } from "lenis/react";
+import { cancelFrame, frame } from "motion/react";
+import { useEffect, useRef } from "react";
 import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
 import HomepageLanding from "@/sections/HomepageLanding";
-
 import HomepageServices from "@/sections/HomepageServices";
 import StickyContentWrapper from "@/sections/StickyContentWrapper";
-
-import {
-	featuredCreatives,
-	servicesProvided,
-	urgSocialMedia,
-} from "@/utilities/data";
-import { createFileRoute } from "@tanstack/react-router";
-import { ReactLenis } from "lenis/react";
-import type { LenisRef } from "lenis/react";
-import { cancelFrame, frame } from "motion/react";
-import { useEffect, useRef } from "react";
+import { servicesProvided, urgSocialMedia } from "@/utilities/data";
 
 export const Route = createFileRoute("/")({
 	component: App,
@@ -41,10 +35,7 @@ function App() {
 			<StickyContentWrapper />
 			<HomepageServices servicesProvided={servicesProvided} />
 
-			<HomepageCreativeOutlet
-				featuredCreativeContent={featuredCreatives[0]}
-				otherCreativeContent={featuredCreatives.slice(1)}
-			/>
+			<HomepageCreativeOutlet />
 			<HomepageContact urgSocialMedia={urgSocialMedia} />
 		</main>
 	);

@@ -1,110 +1,45 @@
+import { easeInOut, motion } from "motion/react";
+import { useEffect, useState } from "react";
 import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import URGButton from "@/components/URGButton";
 import { ButtonType } from "@/utilities/types";
-import { easeInOut, motion } from "motion/react";
-import { useEffect, useState } from "react";
+
+const urgDisciplines = [
+	"Writer",
+	"Graphic Designer",
+	"Web Developer",
+	"Video Producer",
+	"Director",
+	"Tourist Guide",
+];
+
+const TOTAL_ITEMS = urgDisciplines.length; // Total number of items (Dynamically set based on TEXTS)
+const ITEM_WIDTH = 450; // Width of a single item slot (450px)
+
+const CYCLE_MS = 2000; // Time for a full cycle (2 seconds)
+const TRANSITION_DURATION = 0.7; // Duration of the sliding animation (in seconds)
 
 export default function HomepageLanding() {
-	const urgDisciplines = [
-		"Writer",
-		"Graphic Designer",
-		"Web Developer",
-		"Video Producer",
-		"Director",
-	];
+	// offsetStep tracks the number of slots the carousel has moved left.
+	// It cycles from 0 to TOTAL_ITEMS - 1.
+	const [offsetStep, setOffsetStep] = useState(0);
 
-	const disciplinesPosition = [
-		"outLeft",
-		"left",
-		"center",
-		"right",
-		"outRight",
-		"botOutRight",
-		"botRight",
-		"botCenter",
-		"botLeft",
-		"botOutLeft",
-	];
-
-	const disciplinesAnimationVariants = {
-		center: { x: "0%", scale: 1, y: "0%", color: "var(--color-urg-black)" },
-		left: {
-			x: "-100%",
-			scale: 0.6,
-			y: "0%",
-			color: "var(--color-urg-black-75)",
-		},
-		outLeft: {
-			x: "-200%",
-			scale: 0.6,
-			y: "0%",
-			color: "var(--color-urg-black-75)",
-		},
-		right: {
-			x: "100%",
-			scale: 0.6,
-			y: "0%",
-			color: "var(--color-urg-black-75)",
-		},
-		outRight: {
-			x: "200%",
-			scale: 0.6,
-			y: "0%",
-			color: "var(--color-urg-black-75)",
-		},
-		botCenter: {
-			x: "0%",
-			scale: 0.6,
-			y: "200%",
-			color: "var(--color-urg-black-75)",
-		},
-		botLeft: {
-			x: "-100%",
-			scale: 0.6,
-			y: "200%",
-			color: "var(--color-urg-black-75)",
-		},
-		botOutLeft: {
-			x: "-200%",
-			scale: 0.6,
-			y: "200%",
-			color: "var(--color-urg-black-75)",
-		},
-		botRight: {
-			x: "100%",
-			scale: 0.6,
-			y: "200%",
-			color: "var(--color-urg-black-75)",
-		},
-		botOutRight: {
-			x: "200%",
-			scale: 0.6,
-			y: "200%",
-			color: "var(--color-urg-black-75)",
-		},
-	};
-
-	const [disciplineIndexes, setDisciplineIndexes] = useState(() => {
-		const initialIndexes = [];
-		for (let i = 0; i < disciplinesPosition.length; i++) {
-			initialIndexes.push(i);
-		}
-		return initialIndexes;
-	});
-
+	// 1. Setup the automatic cycle timer
 	useEffect(() => {
+		// Interval fires every 2 seconds to initiate the next step
 		const interval = setInterval(() => {
-			setDisciplineIndexes((prevIndexes) => {
-				const updatedIndexes = prevIndexes.map(
-					(prevIndex) => (prevIndex + 1) % disciplinesPosition.length,
-				);
-				return updatedIndexes;
-			});
-		}, 2000);
-
+			setOffsetStep((prev) => (prev + 1) % TOTAL_ITEMS);
+		}, CYCLE_MS);
 		return () => clearInterval(interval);
 	}, []);
+
+	// 2. Utility to calculate the item's current visual slot (0 to TOTAL_ITEMS - 1)
+	// Slot 1 is the first visible item (x=0). Slot 0 is off-screen left (x=-ITEM_WIDTH).
+	const calculateItemSlot = (itemIndex: number, currentOffset: number) => {
+		// Uses modulo arithmetic to achieve the infinite loop effect
+		return (currentOffset - itemIndex + TOTAL_ITEMS) % TOTAL_ITEMS;
+	};
 
 	return (
 		<section className="flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden">
@@ -150,21 +85,43 @@ export default function HomepageLanding() {
 						</svg>
 					</div>
 					<div className="h-[80px] w-[1400px] mask-gradient">
-						<ul className="flex h-[50px] justify-center items-center font-primary text-4xl md:text-6xl text-urg-white whitespace-nowrap relative mt-4">
-							{[...urgDisciplines, ...urgDisciplines].map(
-								(discipline, index) => (
+						<ul className="flex h-[50px] justify-center items-center font-primary text-4xl md:text-6xl text-urg-white whitespace-nowrap mt-4 relative">
+							{urgDisciplines.map((discipline, index) => {
+								// Calculate the item's virtual slot based on the current offset
+								const slot = calculateItemSlot(index, offsetStep);
+
+								// Check if the current item is the designated center slot (e.g., slot 3)
+								const isCenter = slot === 2;
+
+								// Base X position: Slot 1 is the start of the visible area (X=0).
+								const x = (slot - 2) * 100;
+
+								// Calculate visual styles (scale and opacity)
+								const scale = isCenter ? 1 : 0.6;
+								// Hide the item that has just wrapped (slot === TOTAL_ITEMS - 1).
+								const opacity = slot === 0 || slot === TOTAL_ITEMS - 1 ? 0 : 1;
+								return (
 									<motion.li
 										key={`${discipline} ${index}`}
-										className="w-[450px] text-center absolute"
-										initial={disciplinesPosition[disciplineIndexes[index]]}
-										animate={disciplinesPosition[disciplineIndexes[index]]}
-										variants={disciplinesAnimationVariants}
+										className="absolute text-center"
+										style={{
+											width: ITEM_WIDTH,
+											color: isCenter
+												? "var(--color-urg-black)"
+												: "var(--color-urg-black-75)",
+										}}
+										initial={false}
+										animate={{
+											x: `${x}%`,
+											scale,
+											opacity,
+										}}
 										transition={{ duration: 0.5 }}
 									>
 										{discipline}
 									</motion.li>
-								),
-							)}
+								);
+							})}
 						</ul>
 					</div>
 				</div>
