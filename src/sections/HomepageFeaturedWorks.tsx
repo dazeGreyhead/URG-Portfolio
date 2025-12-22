@@ -1,4 +1,6 @@
 import type { SanityDocument } from "@sanity/client";
+import type { MotionValue } from "motion/react";
+import { motion, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 import { getHomepagePortfolioProjects } from "@/sanity/client";
 import { urlFor } from "@/sanity/sanityImageUrl";
@@ -6,11 +8,13 @@ import { urlFor } from "@/sanity/sanityImageUrl";
 type HomepageFeaturedWorksProps = {
 	sliderDuration: number;
 	className: string;
+	scrollYProgress: MotionValue<number>;
 };
 
 export default function HomepageFeaturedWorks({
 	sliderDuration = 3000,
 	className,
+	scrollYProgress,
 }: HomepageFeaturedWorksProps) {
 	// Implements carousel of featured projects.
 	// Stores the index of project that is to be shown.
@@ -24,6 +28,9 @@ export default function HomepageFeaturedWorks({
 	const [loading, setLoading] = useState(true);
 
 	const [error, setError] = useState<string | null>(null);
+
+	// animates the opacity of the section based on scroll progress
+	const opacity = useTransform(scrollYProgress, [0.05, 0.6], [0, 1]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -80,7 +87,10 @@ export default function HomepageFeaturedWorks({
 	}
 
 	return (
-		<section className={`relative h-screen overflow-hidden ${className}`}>
+		<motion.section
+			style={{ opacity }}
+			className={`relative h-screen overflow-hidden ${className}`}
+		>
 			<h3 className="absolute z-10 left-9 top-12 sm:left-16 sm:top-22 text-urg-white">
 				My Featured Works
 			</h3>
@@ -91,10 +101,16 @@ export default function HomepageFeaturedWorks({
 							key={project.title}
 							className={`absolute h-full w-screen switch-project ${index === projectIndex ? "active" : ""}`}
 						>
-							<div className="absolute z-20 left-9 top-30 sm:left-16 sm:top-50 flex flex-col gap-16 w-[345px] sm:w-[434px]">
+							<div className="absolute z-20 left-9 top-30 sm:left-16 sm:top-140 flex flex-col gap-16 w-[345px] sm:w-[1200px]">
 								<div className="flex flex-col gap-4">
-									<h5 className="text-urg-white uppercase">{project.title}</h5>
-									<div className="flex flex-wrap gap-4">
+									<h1 className="text-urg-white uppercase text-7xl">
+										{project.title}
+									</h1>
+
+									<p className="text-urg-white text-3xl">
+										{project.description}
+									</p>
+									<div className="flex flex-wrap gap-2">
 										{project.tags.map((tag: string) => {
 											return (
 												<p key={tag} className="tag">
@@ -103,10 +119,9 @@ export default function HomepageFeaturedWorks({
 											);
 										})}
 									</div>
-									<p className="text-urg-white p-big">{project.description}</p>
 								</div>
 							</div>
-							<div className="h-full w-4/5 sm:w-1/2 absolute z-10 bg-linear-to-r from-black/80 to-black/0" />
+							<div className="h-full w-4/5 sm:w-full absolute z-10 bg-radial-[at_60%_30%] from-black/0 from-40% to-black/80 to-78% " />
 							<figure className="absolute z-0 h-full w-full">
 								<img
 									className=" h-full w-full object-cover"
@@ -118,6 +133,6 @@ export default function HomepageFeaturedWorks({
 					);
 				})}
 			</div>
-		</section>
+		</motion.section>
 	);
 }

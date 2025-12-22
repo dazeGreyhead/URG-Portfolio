@@ -4,7 +4,7 @@ import URGButton from "./URGButton";
 
 export default function Header() {
 	return (
-		<header className="absolute top-0 left-0 z-10 px-7 h-12 xl:px-16 w-full md:h-[74px] flex items-end justify-center">
+		<header className="absolute top-0 left-0 z-100 px-7 h-12 xl:px-16 w-full md:h-[74px] flex items-end justify-center">
 			<nav className="w-full">
 				<ul className="flex justify-end items-center md:justify-between">
 					{/* The checkbox input below is for the middle header links to collapse into a hamburger menu in small screens */}
@@ -16,6 +16,7 @@ export default function Header() {
 								className="fill-urg-black w-[40px] h-[40px] md:w-[50px] md:h-[50px]"
 								xmlns="http://www.w3.org/2000/svg"
 							>
+								<title>Hamburger Icon</title>
 								<line
 									x1={17}
 									y1={20.5}

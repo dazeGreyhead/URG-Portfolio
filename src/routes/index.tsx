@@ -5,7 +5,7 @@ import { cancelFrame, frame } from "motion/react";
 import { useEffect, useRef } from "react";
 import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
-import HomepageLanding from "@/sections/HomepageLanding";
+
 import HomepageServices from "@/sections/HomepageServices";
 import StickyContentWrapper from "@/sections/StickyContentWrapper";
 import { servicesProvided, urgSocialMedia } from "@/utilities/data";
@@ -31,7 +31,7 @@ function App() {
 	return (
 		<main>
 			<ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
-			<HomepageLanding />
+			
 			<StickyContentWrapper />
 			<HomepageServices servicesProvided={servicesProvided} />
 

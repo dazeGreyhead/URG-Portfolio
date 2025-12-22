@@ -114,7 +114,7 @@ body {
 	}
 
 	.tag {
-		@apply font-secondary text-sm text-urg-green font-medium border-2 border-urg-green px-2 py-1 rounded-md before:content-['#'];
+		@apply font-secondary text-sm text-urg-black-25 font-medium  before:content-['#'];
 	}
 
 	.p-small {

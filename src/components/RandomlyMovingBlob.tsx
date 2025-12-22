@@ -9,7 +9,7 @@ export default function RandomlyMovingBlob({
 	const controls = useAnimation();
 
 	// Generate random initial position
-	// const initialX = Math.random() * 100;
+	const initialX = Math.random() * 100;
 	const initialY = Math.random() * 100;
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ export default function RandomlyMovingBlob({
 	return (
 		<motion.div
 			initial={{
-				top: `calc(${initialY}% - var(--circle-size) / 2)`,
+				top: `calc(${initialX}% - var(--circle-size) / 2)`,
 				left: `calc(${initialY}% - var(--circle-size) / 2)`,
 			}}
 			animate={controls}

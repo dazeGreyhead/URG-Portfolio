@@ -4,6 +4,7 @@ import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import URGButton from "@/components/URGButton";
 import { ButtonType } from "@/utilities/types";
+import { Link } from "@tanstack/react-router";
 
 const urgDisciplines = [
 	"Writer",
@@ -20,7 +21,12 @@ const ITEM_WIDTH = 450; // Width of a single item slot (450px)
 const CYCLE_MS = 2000; // Time for a full cycle (2 seconds)
 const TRANSITION_DURATION = 0.7; // Duration of the sliding animation (in seconds)
 
-export default function HomepageLanding() {
+type HomepageLandingProps = {
+	
+	className: string;
+}
+
+export default function HomepageLanding({className} : HomepageLandingProps) {
 	// offsetStep tracks the number of slots the carousel has moved left.
 	// It cycles from 0 to TOTAL_ITEMS - 1.
 	const [offsetStep, setOffsetStep] = useState(0);
@@ -42,12 +48,13 @@ export default function HomepageLanding() {
 	};
 
 	return (
-		<section className="flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden">
+		<section className={`flex flex-col justify-center items-center h-screen px-7 py-9 md:py-10 md:px-16 overflow-hidden ${className}`}>
 			<div className="flex flex-col h-[77vh] sm:h-full w-full">
 				<div className="flex flex-col items-center justify-center grow-1 gap-2 sm:pt-12 md:gap-12">
 					<div className="font-primary font-bold text-5xl/15 text-urg-black md:text-[64px]/12 text-center">
 						Hi! I'm Umang. I'm a
 					</div>
+					<Link to="/creative-corner">
 					<div className="relative flex items-center justify-center h-40 md:h-49 w-[600px] hover:scale-105 transition-transform duration-300 cursor-pointer creative-button-with-marquee">
 						<div className="absolute font-primary font-bold text-urg-black creative-text text-7xl md:text-9xl">
 							Creative
@@ -84,7 +91,7 @@ export default function HomepageLanding() {
 								</motion.textPath>
 							</motion.text>
 						</svg>
-					</div>
+					</div></Link>
 					<div className="h-[80px] w-[1400px] mask-gradient">
 						<ul className="flex h-[50px] justify-center items-center font-primary text-4xl md:text-6xl text-urg-white whitespace-nowrap mt-4 relative">
 							{urgDisciplines.map((discipline, index) => {
@@ -101,6 +108,7 @@ export default function HomepageLanding() {
 								const scale = isCenter ? 1 : 0.6;
 								// Hide the item that has just wrapped (slot === TOTAL_ITEMS - 1).
 								const opacity = slot === 0 || slot === TOTAL_ITEMS - 1 ? 0 : 1;
+								console.log(`${discipline} ${index}`);
 								return (
 									<motion.li
 										key={`${discipline} ${index}`}
