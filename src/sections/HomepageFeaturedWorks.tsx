@@ -227,7 +227,9 @@ export default function HomepageFeaturedWorks({
 							{project.localIntroVideo ? (
 								<video
 									src={`/${project.localIntroVideo}`}
-									ref={(videRef) => (videoRefs.current[index] = videRef)}
+									ref={(videRef) => {
+										if (videRef) videoRefs.current[index] = videRef;
+									}}
 									autoPlay
 									muted
 									loop

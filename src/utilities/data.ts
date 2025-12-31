@@ -1,4 +1,3 @@
-import { client } from "@/sanity/client";
 import type {
 	educationHistory,
 	serviceCardData,

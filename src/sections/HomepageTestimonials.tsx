@@ -1,6 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import GrainyBackground from "@/components/GrainyBackground";
-import StarRating from "@/components/starRating";
+import StarRating from "@/components/StarRating";
 import URGButton from "@/components/URGButton";
 import { ButtonType, type testimonials } from "@/utilities/types";
 
@@ -22,7 +20,7 @@ export default function HomepageTestimonials({
 			<div className="flex justify-center mt-10 sm:mt-18">
 				{urgTestimonials && urgTestimonials.length > 0 ? (
 					<div className="grid grid-cols-2 gap-10">
-						{urgTestimonials.map((testimonial, index) => (
+						{urgTestimonials.map((testimonial) => (
 							<div key={testimonial.clientName} className="p-6">
 								<div className="flex gap-7">
 									<figure className="relative w-50 h-60 rounded-xl flex-shrink-0 overflow-hidden">
