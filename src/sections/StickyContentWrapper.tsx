@@ -10,9 +10,9 @@ export default function StickyContentWrapper() {
 		target: container,
 	});
 	return (
-		<div ref={container} className="relative">
+		<div ref={container} className="relative isolate">
 			<HomepageLanding className="z-30" />
-			<div className="h-[115vh] sticky bottom-0 -z-20">
+			<div className="h-[120vh] sticky bottom-0 -z-20">
 				<HomepageFeaturedWorks
 					className="sticky top-0 origin-top"
 					sliderDuration={10000}

@@ -1,8 +1,10 @@
+import { client } from "@/sanity/client";
 import type {
 	educationHistory,
 	serviceCardData,
 	siteContent,
 	socialMediaLinks,
+	testimonials,
 	thingsILove,
 	workHistory,
 } from "./types";
@@ -324,5 +326,45 @@ export const urgSoftwareProficiencies = [
 	{
 		softwareName: "Adobe Illustrator",
 		logo: "/Adobe_Illustrator_CC_icon.svg.png",
+	},
+];
+
+export const urgTestimonials: testimonials[] = [
+	{
+		clientName: "John Wick",
+		clientPosition: "Badass Hassassin",
+		companyName: "Babayaga Inc.",
+		companyLogo: "/John_Wick_franchise.png",
+		stars: 5,
+		review:
+			"I fear Umang. Such a badass! I don't think I could take him in a fight.",
+		clientPhoto: "/john wick.jpeg",
+	},
+	{
+		clientName: "Some Model",
+		clientPosition: "A Model",
+		stars: 3.5,
+		review:
+			"Yup Umang did my photoshoot and it was quite good. I liked the way he directed me and the shots came out really well. Would recommend to other models as well.",
+		clientPhoto: "/test-model-photo.jpg",
+	},
+	{
+		clientName: "Nikita Mazepin",
+		clientPosition: "F1 Driver",
+		companyName: "Williams F1 Team",
+		companyLogo: "/Logo_Williams_F1.png",
+		stars: 1.8,
+		review: "What the hell Umang! This is not my photo! Also I'm a man!",
+		clientPhoto: "/person 1.jpg",
+	},
+	{
+		clientName: "Alejandro Zivicci",
+		clientPosition: "Dota 2 Pro",
+		stars: 4,
+		review:
+			"I am miffed! I am dying! Umang delivered a plague onto our houses, burned our crops and poisoned our water supply! But he's quite an amazing Dota 2 player nonetheless I guess.",
+		clientPhoto: "/person 2.jpg",
+		companyName: "OG Esports",
+		companyLogo: "/OG_(Redbull).png",
 	},
 ];

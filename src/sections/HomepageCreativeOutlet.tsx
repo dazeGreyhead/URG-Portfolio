@@ -69,36 +69,39 @@ export default function HomepageCreativeOutlet() {
 					</p>
 				</div>
 
-				<div className="relative size-[120px] xl:size-[190px] continuous-spin-circle-button cursor-pointer hover:scale-108 transition-transform duration-300">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 100 100"
-						className="absolute overflow-visible continuous-spin-circle-animation size-[120px] xl:size-[190px]"
-					>
-						<path
-							stroke="none"
-							fill="none"
-							id="circle-text-path"
-							d="M 50, 10 A 40,40 0 1,1 50,90 A 40,40 0 1,1 50,10"
-						/>
-						<text>
-							<textPath
-								className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
-								href="#circle-text-path"
-							>
-								Go to Creative Corner.
-							</textPath>
-							<textPath
-								className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
-								href="#circle-text-path"
-								startOffset={"50%"}
-							>
-								Go to Creative Corner.
-							</textPath>
-						</text>
-					</svg>
-					<FancyArrow className="absolute fill-urg-black-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[90px] rotate-45" />
-				</div>
+				<Link to="/creative-corner">
+					<div className="relative size-[120px] xl:size-[190px] continuous-spin-circle-button cursor-pointer hover:scale-108 transition-transform duration-300">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 100 100"
+							className="absolute overflow-visible continuous-spin-circle-animation size-[120px] xl:size-[190px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+						>
+							<title>Spinning Circle Text</title>
+							<path
+								stroke="none"
+								fill="none"
+								id="circle-text-path"
+								d="M 50, 10 A 40,40 0 1,1 50,90 A 40,40 0 1,1 50,10"
+							/>
+							<text>
+								<textPath
+									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
+									href="#circle-text-path"
+								>
+									Go to Creative Corner.
+								</textPath>
+								<textPath
+									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
+									href="#circle-text-path"
+									startOffset={"50%"}
+								>
+									Go to Creative Corner.
+								</textPath>
+							</text>
+						</svg>
+						<FancyArrow className="absolute fill-urg-black-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[90px] rotate-45" />
+					</div>
+				</Link>
 			</div>
 			<div className="flex flex-col items-center mt-8">
 				<div className="w-full xl:w-[84%] flex flex-col gap-16 xl:gap-24">

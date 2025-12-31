@@ -53,3 +53,13 @@ export type softwareProficiency = {
 	softwareName: string;
 	logo: string;
 };
+
+export type testimonials = {
+	clientName: string;
+	clientPosition: string;
+	companyName?: string;
+	companyLogo?: string;
+	stars: number;
+	review: string;
+	clientPhoto?: string;
+};

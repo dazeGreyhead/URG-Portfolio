@@ -242,20 +242,8 @@ body {
 	}
 }
 
-.creative-button-with-marquee:hover .creative-marquee {
-	@apply fill-urg-blue-dark;
-}
-
-.creative-button-with-marquee:hover .creative-text {
-	@apply text-urg-blue-dark;
-}
-
 .continuous-spin-circle-animation {
 	animation: spin 35s linear infinite;
-}
-
-.continuous-spin-circle-button:hover .spinning-text-button {
-	@apply fill-urg-blue;
 }
 
 .mask-gradient {

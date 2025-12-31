@@ -7,8 +7,13 @@ import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
 
 import HomepageServices from "@/sections/HomepageServices";
+import HomepageTestimonials from "@/sections/HomepageTestimonials";
 import StickyContentWrapper from "@/sections/StickyContentWrapper";
-import { servicesProvided, urgSocialMedia } from "@/utilities/data";
+import {
+	servicesProvided,
+	urgSocialMedia,
+	urgTestimonials,
+} from "@/utilities/data";
 
 export const Route = createFileRoute("/")({
 	component: App,
@@ -31,8 +36,9 @@ function App() {
 	return (
 		<main>
 			<ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
-			
+
 			<StickyContentWrapper />
+			<HomepageTestimonials urgTestimonials={urgTestimonials} />
 			<HomepageServices servicesProvided={servicesProvided} />
 
 			<HomepageCreativeOutlet />

@@ -1,7 +1,10 @@
 import type { SanityDocument } from "@sanity/client";
+import { Link } from "@tanstack/react-router";
 import type { MotionValue } from "motion/react";
-import { motion, useTransform } from "motion/react";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import FancyArrow from "@/assets/svg/FancyArrow";
+import PlayButton from "@/components/PlayPauseButton";
 import { getHomepagePortfolioProjects } from "@/sanity/client";
 import { urlFor } from "@/sanity/sanityImageUrl";
 
@@ -20,6 +23,11 @@ export default function HomepageFeaturedWorks({
 	// Stores the index of project that is to be shown.
 	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 	const [prevProjectIndex, setPrevProjectIndex] = useState<number | null>(null);
+
+	// State for pausing the autoplay
+	const [isPaused, setIsPaused] = useState(false);
+	// Ref to track video elements
+	const videoRefs = useRef<HTMLVideoElement[]>([]);
 
 	// State to hold the fetched data
 	const [portfolioProjects, setPortfolioProjects] = useState<SanityDocument[]>(
@@ -58,6 +66,24 @@ export default function HomepageFeaturedWorks({
 		// The empty dependency array [] ensures this effect runs only once after the initial render.
 	}, []);
 
+	// 2. Play/Pause Control Logic for Videos
+	useEffect(() => {
+		if (loading) return;
+
+		videoRefs.current.forEach((video: HTMLVideoElement, index: number) => {
+			if (!video) return;
+
+			if (index === currentProjectIndex && !isPaused) {
+				video.play().catch(() => {
+					// Browser may block autoplay until user interaction
+					console.log("Autoplay blocked");
+				});
+			} else {
+				video.pause();
+			}
+		});
+	}, [currentProjectIndex, isPaused, loading]);
+
 	const paginate = (newDirection: number) => {
 		if (loading) return;
 		setPrevProjectIndex(currentProjectIndex);
@@ -70,12 +96,12 @@ export default function HomepageFeaturedWorks({
 
 	// Autoplay Logic
 	useEffect(() => {
-		if (loading || portfolioProjects.length === 0) return;
+		if (loading || isPaused || portfolioProjects.length === 0) return;
 		const timer = setInterval(() => {
 			paginate(1);
 		}, sliderDuration);
 		return () => clearInterval(timer);
-	}, [currentProjectIndex, loading, portfolioProjects]);
+	}, [currentProjectIndex, loading, isPaused, portfolioProjects]);
 
 	if (loading) {
 		return (
@@ -127,30 +153,81 @@ export default function HomepageFeaturedWorks({
 							}
 							style={{
 								zIndex,
-								WebkitMaskSize: "200% 100%",
-								maskSize: "200% 100%",
+								WebkitMaskSize: "300% 100%",
+								maskSize: "300% 100%",
 								WebkitMaskRepeat: "no-repeat",
 								maskRepeat: "no-repeat",
 							}}
 						>
-							<div className="absolute z-20 left-9 top-30 sm:left-16 sm:bottom-25 sm:top-auto flex flex-col gap-4 w-[345px] sm:w-[1200px]">
-								<h1 className="text-urg-white text-6xl">{project.title}</h1>
+							<motion.div
+								animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
+								transition={{ delay: 0.8, duration: 1.2 }}
+								className="absolute z-20 left-9 top-30 sm:left-16 sm:bottom-35 sm:top-auto flex flex-col gap-4 min-w-0 max-w-[345px] w-fit sm:max-w-[1000px] "
+							>
+								<Link
+									to="/portfolio-projects/$slug"
+									params={{
+										slug: project.slug.current,
+									}}
+								>
+									<div className="group">
+										<div className="flex gap-2 items-center">
+											<h1 className="text-urg-white text-6xl uppercase group-hover:underline">
+												{project.title}
+											</h1>
 
-								<p className="text-urg-white text-2xl">{project.description}</p>
-								<div className="flex flex-wrap gap-2">
-									{project.tags.map((tag: string) => {
-										return (
-											<p key={tag} className="tag">
-												{tag}
-											</p>
-										);
-									})}
-								</div>
-							</div>
-							<div className="h-full w-4/5 sm:w-full absolute z-10 bg-radial-[at_60%_30%] from-black/0 from-35% to-black/80 to-100%" />
+											<div className="relative size-[120px] xl:size-[140px] cursor-pointer group-hover:scale-108 transition-transform duration-300 shrink-0">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													viewBox="0 0 100 100"
+													className="absolute overflow-visible continuous-spin-circle-animation size-[120px] xl:size-[140px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+												>
+													<title>Spinning Circle Text</title>
+													<path
+														stroke="none"
+														fill="none"
+														id="circle-text-path"
+														d="M 50, 10 A 40,40 0 1,1 50,90 A 40,40 0 1,1 50,10"
+													/>
+													<text>
+														<textPath
+															className="spinning-text-button font-primary font-light text-[65%] fill-urg-white group-hover:fill-urg-blue"
+															href="#circle-text-path"
+														>
+															Open the Project Page.
+														</textPath>
+														<textPath
+															className="spinning-text-button font-primary font-light text-[65%] fill-urg-white group-hover:fill-urg-blue"
+															href="#circle-text-path"
+															startOffset={"50%"}
+														>
+															Open the Project Page.
+														</textPath>
+													</text>
+												</svg>
+												<FancyArrow className="absolute fill-urg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[70px] rotate-45 group-hover:fill-urg-blue" />
+											</div>
+										</div>
+										<p className="text-urg-white text-2xl">
+											{project.description}
+										</p>
+										<div className="flex flex-wrap gap-2">
+											{project.tags.map((tag: string) => {
+												return (
+													<p key={tag} className="tag">
+														{tag}
+													</p>
+												);
+											})}
+										</div>
+									</div>
+								</Link>
+							</motion.div>
+							<div className="h-full w-4/5 sm:w-full absolute z-10 bg-radial-[at_60%_30%] from-black/10 from-35% to-black/80 to-100%" />
 							{project.localIntroVideo ? (
 								<video
 									src={`/${project.localIntroVideo}`}
+									ref={(videRef) => (videoRefs.current[index] = videRef)}
 									autoPlay
 									muted
 									loop
@@ -158,7 +235,10 @@ export default function HomepageFeaturedWorks({
 								/>
 							) : (
 								<figure className="absolute z-0 h-full w-full">
-									<img
+									<motion.img
+										initial={{ scale: isActive ? 1.2 : 1 }}
+										animate={{ scale: isActive ? 1 : 1.2 }}
+										transition={{ duration: 11, ease: "linear" }}
 										className=" h-full w-full object-cover"
 										src={urlFor(project.mainImage).url()}
 										alt={project.mainImage.alt || "Project Image"}
@@ -172,40 +252,72 @@ export default function HomepageFeaturedWorks({
 					<motion.div
 						key={`bar-${currentProjectIndex}`}
 						initial={{ width: "0%" }}
-						animate={{ width: "100%" }}
-						transition={{ duration: sliderDuration / 1000, ease: "linear" }}
+						animate={{ width: isPaused ? "0%" : "100%" }}
+						transition={{
+							duration: isPaused ? 0 : sliderDuration / 1000,
+							ease: "linear",
+						}}
 						className="h-full bg-urg-blue shadow-[0_0_10px_rgba(32,156,218,0.5)]"
 					/>
 				</div>
-				<div className="absolute bottom-12 right-9 sm:right-16 z-50 flex items-center gap-2">
-					<button
-						onClick={() => paginate(-1)}
-						className="p-4 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-full backdrop-blur-sm cursor-pointer"
-						type="button"
-					>
-						Left
-					</button>
-					<button
-						onClick={() => paginate(1)}
-						className="p-4 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-full backdrop-blur-sm cursor-pointer"
-						type="button"
-					>
-						Right
-					</button>
+				<div className="absolute bottom-10 left-16 z-50 flex gap-20 items-center">
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={currentProjectIndex}
+							initial={{ opacity: 0, x: -20 }}
+							animate={{ opacity: 1, x: 0 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.8 }}
+							className="text-white font-bold text-5xl font-secondary min-w-[100px]"
+						>
+							{currentProjectIndex + 1}
+							<span className="text-white/20 text-2xl ml-2 font-secondary">
+								/ {portfolioProjects.length}
+							</span>
+						</motion.div>
+					</AnimatePresence>
+					<div className="flex gap-5">
+						<button
+							onClick={() => paginate(-1)}
+							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							type="button"
+						>
+							<FancyArrow className="size-11 -rotate-90 fill-urg-white" />
+						</button>
+						<button
+							onClick={() => paginate(1)}
+							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							type="button"
+						>
+							<FancyArrow className="size-11 rotate-90 fill-urg-white" />
+						</button>
+						<button
+							onClick={() => setIsPaused(!isPaused)}
+							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							type="button"
+						>
+							<PlayButton
+								className="size-9 fill-urg-white"
+								playVideo={!isPaused}
+							/>
+						</button>
+					</div>
 				</div>
 
-				<div className="absolute top-12 left-9 sm:left-16 z-50 overflow-hidden h-12">
+				<div className="absolute bottom-10 right-16 z-50 flex gap-4">
 					<motion.div
-						key={currentProjectIndex}
-						initial={{ y: 40 }}
-						animate={{ y: 0 }}
-						className="text-white font-bold text-4xl"
+						animate={{
+							y: [8, -8, 8],
+						}}
+						transition={{
+							duration: 2,
+							repeat: Infinity,
+							ease: "easeInOut",
+						}}
 					>
-						0{currentProjectIndex + 1}
-						<span className="text-white/20 text-lg ml-2">
-							/ 0{portfolioProjects.length}
-						</span>
+						<FancyArrow className="size-10 rotate-180 fill-urg-white" />
 					</motion.div>
+					<h5 className="font-normal text-urg-white">Testimonials</h5>
 				</div>
 			</div>
 		</motion.section>
