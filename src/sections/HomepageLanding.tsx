@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import FancyArrow from "@/assets/svg/FancyArrow";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import URGButton from "@/components/URGButton";
+import { urgContact } from "@/utilities/data";
 import { ButtonType } from "@/utilities/types";
 
 const urgDisciplines = [
@@ -110,7 +111,7 @@ export default function HomepageLanding({ className }: HomepageLandingProps) {
 								const scale = isCenter ? 1 : 0.6;
 								// Hide the item that has just wrapped (slot === TOTAL_ITEMS - 1).
 								const opacity = slot === 0 || slot === TOTAL_ITEMS - 1 ? 0 : 1;
-								console.log(`${discipline} ${index}`);
+
 								return (
 									<motion.li
 										key={`${discipline} ${index}`}
@@ -138,12 +139,14 @@ export default function HomepageLanding({ className }: HomepageLandingProps) {
 				</div>
 
 				<div className="flex flex-col md:flex-row md:justify-between items-center gap-8 md:gap-0 md:items-end ">
-					<URGButton
-						buttonType={ButtonType.secondary}
-						className="text-2xl px-16"
-					>
-						kedrite@gmail.com
-					</URGButton>
+					<a href={`mailto:${urgContact.email}`}>
+						<URGButton
+							buttonType={ButtonType.secondary}
+							className="text-2xl px-12"
+						>
+							{urgContact.email}
+						</URGButton>
+					</a>
 
 					<div className="flex  gap-4">
 						<motion.div

@@ -1,39 +1,24 @@
+import { BsLinkedin } from "react-icons/bs";
+import { FaYoutube } from "react-icons/fa6";
+import { ImFacebook2 } from "react-icons/im";
+import { RiInstagramFill } from "react-icons/ri";
 import type {
 	educationHistory,
 	serviceCardData,
-	siteContent,
 	socialMediaLinks,
 	testimonials,
 	thingsILove,
 	workHistory,
 } from "./types";
 
-export const featuredProjects: siteContent[] = [
-	{
-		title: "A GOONER'S TALE 2025",
-		dateCreated: "2025-01-15",
-		shortDescription:
-			"Here we have a gooner who is not doing well. He has to goon. Why does he need to goon? Why is he addicted to this crazy gooning session. Why does it have so much power over him. This is the answers the project is exploring and I am very proud of what I have achieved.",
-		tags: ["Certified Gooner", "English", "Story", "Video", "Website"],
-		featuredImage: "/DSC09016.webp",
-	},
-	{
-		title: "GOONERIFIC 2023",
-		dateCreated: "2023-01-15",
-		shortDescription:
-			"Turns out the gooning sessions never end and the gooner is still gooning. This project explores the never-ending cycle of gooning and how it affects the gooner's life.",
-		tags: ["Certified Gooner", "English", "Watergun", "Video", "Website"],
-		featuredImage: "/Kaiju In Kathmandu.webp",
-	},
-	{
-		title: "CRAZY SHIT INNIT 2021",
-		dateCreated: "2021-01-15",
-		shortDescription:
-			"There aint no end to the crazy shit man. Why do we gotta suffer? I don't really know. Suffering seems to be our motto. Saddened by the fucking bs sometimes.",
-		tags: ["English", "Watergun", "Video", "Website"],
-		featuredImage: "/filmscreengrab.jpeg",
-	},
-];
+export const urgContact = {
+	email: "umangrajgurung@gmail.com",
+	phone: "+977-9818827869",
+	instagram: "https://www.instagram.com/umang_raj_gurung/",
+	facebook: "https://www.facebook.com/ZAKrewdo/",
+	linkedin: "https://www.linkedin.com/in/umang-raj-gurung/",
+	youtube: "https://www.youtube.com/@urg6376",
+};
 
 export const servicesProvided: serviceCardData[] = [
 	{
@@ -80,63 +65,40 @@ export const servicesProvided: serviceCardData[] = [
 			"Oh wait, there’s some writing to be done? Be it fiction or technical, hit me up! You want a story to tell but you don’t know how to do it? I’m hear for you.",
 		icon: "/writingServiceLogo.svg",
 
-		representingColor: "#48616e",
+		representingColor: "#cc5c3b",
 	},
-];
+	{
+		title: "Tour Guiding",
+		description:
+			"So you want to experience the best parts of Nepal - it's culture, history, heritage, religious heritage and of course the mountains? You've found the right guy to show all that Nepal has to offer and more!",
+		icon: "/guideServiceLogo.svg",
 
-export const featuredCreatives: siteContent[] = [
-	{
-		title: "Kaiju In Kathmandu",
-		shortDescription:
-			"On that day, Nepal received a grim reminder of how weak as a country we are.",
-		dateCreated: "Oct 30, 2024",
-		tags: ["Certified Gooner", "English", "Story", "Video", "Website"],
-		featuredImage: "/Kaiju In Kathmandu.webp",
-	},
-	{
-		title: "The Forgotten Man",
-		shortDescription: "A song was stuck in Aakash’s head.",
-		dateCreated: "Oct 30, 2024",
-		tags: ["Certified Gooner", "English", "Story", "Video", "Website"],
-		featuredImage: "/theForgottenMan.webp",
-	},
-	{
-		title: "The Deal",
-		shortDescription: "Yamraj gives a dude the deal of his lifetime.",
-		dateCreated: "Oct 30, 2024",
-		tags: ["Certified Gooner", "English", "Story", "Video", "Website"],
-		featuredImage: "/The Deal.jpg",
-	},
-	{
-		title: "Reconnection",
-		shortDescription:
-			"College friends reunite after a long time and find the reconnection they wanted.",
-		dateCreated: "Oct 30, 2024",
-		tags: ["Certified Gooner", "English", "Story", "Video", "Website"],
-		featuredImage: "/reconnection.jpg",
+		representingColor: "#3c525d",
 	},
 ];
 
 export const urgSocialMedia: socialMediaLinks[] = [
 	{
 		name: "Instagram",
-		icon: "/instagram-1-svgrepo-com.svg",
-		link: "https://www.instagram.com/umang_raj_gurung/",
+		icon: RiInstagramFill,
+		link: urgContact.instagram,
+		sizeAdd: 10,
 	},
 	{
 		name: "Facebook",
-		icon: "/facebook-svgrepo-com.svg",
-		link: "https://www.facebook.com/ZAKrewdo/",
+		icon: ImFacebook2,
+		link: urgContact.facebook,
 	},
 	{
 		name: "LinkedIn",
-		icon: "/linkedin-svgrepo-com.svg",
-		link: "https://www.instagram.com/umang_raj_gurung/",
+		icon: BsLinkedin,
+		link: urgContact.linkedin,
 	},
 	{
 		name: "Youtube",
-		icon: "/youtube-svgrepo-com.svg",
-		link: "https://www.youtube.com/@urg6376",
+		icon: FaYoutube,
+		link: urgContact.youtube,
+		sizeAdd: 18,
 	},
 ];
 

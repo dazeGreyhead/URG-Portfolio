@@ -70,7 +70,7 @@ export default function HomepageCreativeOutlet() {
 				</div>
 
 				<Link to="/creative-corner">
-					<div className="relative size-[120px] xl:size-[190px] continuous-spin-circle-button cursor-pointer hover:scale-108 transition-transform duration-300">
+					<div className="relative size-[120px] xl:size-[190px] continuous-spin-circle-button cursor-pointer group hover:scale-108 transition-transform duration-300">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 100 100"
@@ -85,13 +85,13 @@ export default function HomepageCreativeOutlet() {
 							/>
 							<text>
 								<textPath
-									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
+									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee group-hover:fill-urg-blue"
 									href="#circle-text-path"
 								>
 									Go to Creative Corner.
 								</textPath>
 								<textPath
-									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee"
+									className="spinning-text-button font-primary font-light text-[65%] fill-urg-black-50 creative-marquee group-hover:fill-urg-blue"
 									href="#circle-text-path"
 									startOffset={"50%"}
 								>
@@ -99,7 +99,7 @@ export default function HomepageCreativeOutlet() {
 								</textPath>
 							</text>
 						</svg>
-						<FancyArrow className="absolute fill-urg-black-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[90px] rotate-45" />
+						<FancyArrow className="absolute fill-urg-black-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[90px] rotate-45 group-hover:fill-urg-blue" />
 					</div>
 				</Link>
 			</div>
@@ -109,9 +109,9 @@ export default function HomepageCreativeOutlet() {
 						content.featured ? (
 							<div
 								key={content._id}
-								className="flex flex-col xl:flex-row gap-8"
+								className="flex flex-col xl:flex-row gap-8 group "
 							>
-								<figure className="h-[400px] xl:h-auto w-[65%] aspect-video overflow-hidden shrink-0 hover:brightness-75">
+								<figure className="h-[400px] xl:h-auto w-[65%] aspect-video overflow-hidden shrink-0 ">
 									<Link
 										to="/creative-corner/$slug"
 										params={{
@@ -124,55 +124,49 @@ export default function HomepageCreativeOutlet() {
 												.height(600)
 												.url()}
 											alt={content.title}
-											className="h-auto w-full object-cover"
+											className="h-auto w-full object-cover group-hover:brightness-75"
 										/>
 									</Link>
 								</figure>
-
-								<div className="flex flex-col">
-									<div className="flex flex-col gap-3">
-										<div className="flex flex-col gap-1">
-											<Link
-												to="/creative-corner/$slug"
-												params={{
-													slug: content.slug.current,
-												}}
-											>
-												<h2 className="text-urg-white hover:text-urg-blue">
+								<Link
+									to="/creative-corner/$slug"
+									params={{
+										slug: content.slug.current,
+									}}
+								>
+									<div className="flex flex-col ">
+										<div className="flex flex-col gap-3 ">
+											<div className="flex flex-col gap-1">
+												<h2 className="text-urg-white group-hover:text-urg-blue">
 													{content.title}
 												</h2>
-											</Link>
-											<p className="text-urg-orange p-small">
-												{dateFormatter(content.publishedAt)}
+
+												<p className="text-urg-orange p-small">
+													{dateFormatter(content.publishedAt)}
+												</p>
+											</div>
+											<div className="flex flex-wrap gap-4">
+												{content.tags.map((tag: string) => {
+													return (
+														<p key={tag} className="tag">
+															{tag}
+														</p>
+													);
+												})}
+											</div>
+											<p className="text-urg-black-25 p-big">
+												{content.description}
 											</p>
 										</div>
-										<div className="flex flex-wrap gap-4">
-											{content.tags.map((tag: string) => {
-												return (
-													<p key={tag} className="tag">
-														{tag}
-													</p>
-												);
-											})}
-										</div>
-										<p className="text-urg-black-25 p-big">
-											{content.description}
-										</p>
-									</div>
-									<Link
-										to="/creative-corner/$slug"
-										params={{
-											slug: content.slug.current,
-										}}
-									>
+
 										<URGButton
 											className="text-urg-white"
 											buttonType={ButtonType.expandArrow}
 										>
 											{content.coverVideo ? "Watch" : "Read more"}
 										</URGButton>
-									</Link>
-								</div>
+									</div>
+								</Link>
 							</div>
 						) : null,
 					)}

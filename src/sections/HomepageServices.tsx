@@ -1,3 +1,4 @@
+import FancyArrow from "@/assets/svg/FancyArrow";
 import type { serviceCardData } from "@/utilities/types";
 
 type HomepageServicesProps = {
@@ -11,7 +12,7 @@ export default function HomepageServices({
 		<section className="min-h-screen px-9 pt-12 pb-18 sm:pt-22 sm:pb-48 sm:px-16">
 			<h3>Services</h3>
 			<div className="flex justify-center mt-10 sm:mt-18">
-				<div className="flex flex-wrap justify-between w-full sm:w-[84%] gap-y-17">
+				<div className="flex flex-wrap gap-x-25 w-full sm:w-[84%] gap-y-17">
 					{servicesProvided.map((service) => {
 						return (
 							<div
@@ -20,11 +21,9 @@ export default function HomepageServices({
 								style={{ borderColor: service.representingColor }}
 							>
 								<div className="flex flex-col items-end gap-2">
-									<img
-										src="/goToLinkButton.svg"
-										alt="Button that takes to link"
-										className="h-15 w-15"
-									/>
+									<div className="p-2 rounded-xl bg-urg-black">
+										<FancyArrow className="size-13 rotate-45 fill-urg-white" />
+									</div>
 									<div className="flex flex-col gap-8 items-center">
 										<img
 											src={service.icon}

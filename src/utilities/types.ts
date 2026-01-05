@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons";
+
 export type siteContent = {
 	title: string;
 	shortDescription: string;
@@ -17,8 +19,9 @@ export type serviceCardData = {
 
 export type socialMediaLinks = {
 	name: string;
-	icon: string;
+	icon: IconType;
 	link: string;
+	sizeAdd?: number;
 };
 
 export type thingsILove = {
