@@ -1,3 +1,4 @@
+import { motion, stagger } from "motion/react";
 import StarRating from "@/components/StarRating";
 import URGButton from "@/components/URGButton";
 import { ButtonType, type testimonials } from "@/utilities/types";
@@ -5,6 +6,33 @@ import { ButtonType, type testimonials } from "@/utilities/types";
 type HomepageTestimonialsProps = {
 	urgTestimonials?: testimonials[];
 };
+
+// Container variants to coordinate the staggering of children
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			delayChildren: stagger(0.5), // Delay between each child animation
+		},
+	},
+};
+
+// Individual card variants
+const cardVariants = {
+	hidden: {
+		opacity: 0,
+		y: 100,
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.7,
+			ease: "easeInOut",
+		},
+	},
+} as const;
 
 export default function HomepageTestimonials({
 	urgTestimonials,
@@ -19,9 +47,22 @@ export default function HomepageTestimonials({
 			</div>
 			<div className="flex justify-center mt-10 sm:mt-18">
 				{urgTestimonials && urgTestimonials.length > 0 ? (
-					<div className="grid grid-cols-2 gap-10">
+					<motion.div
+						variants={containerVariants}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{
+							once: true,
+							amount: 0.4,
+						}}
+						className="grid grid-cols-2 gap-10"
+					>
 						{urgTestimonials.map((testimonial) => (
-							<div key={testimonial.clientName} className="p-6">
+							<motion.div
+								key={testimonial.clientName}
+								variants={cardVariants}
+								className="p-6"
+							>
 								<div className="flex gap-7">
 									<figure className="relative w-50 h-60 rounded-xl flex-shrink-0 overflow-hidden">
 										<img
@@ -56,9 +97,9 @@ export default function HomepageTestimonials({
 										</p>
 									</div>
 								</div>
-							</div>
+							</motion.div>
 						))}
-					</div>
+					</motion.div>
 				) : (
 					<p>No testimonials available.</p>
 				)}

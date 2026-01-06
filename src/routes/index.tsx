@@ -3,17 +3,13 @@ import type { LenisRef } from "lenis/react";
 import { ReactLenis } from "lenis/react";
 import { cancelFrame, frame } from "motion/react";
 import { useEffect, useRef } from "react";
+import GrainyBackground from "@/components/GrainyBackground";
 import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
-
 import HomepageServices from "@/sections/HomepageServices";
 import HomepageTestimonials from "@/sections/HomepageTestimonials";
 import StickyContentWrapper from "@/sections/StickyContentWrapper";
-import {
-	servicesProvided,
-	urgSocialMedia,
-	urgTestimonials,
-} from "@/utilities/data";
+import { servicesProvided, urgTestimonials } from "@/utilities/data";
 
 export const Route = createFileRoute("/")({
 	component: App,
@@ -42,7 +38,7 @@ function App() {
 			<HomepageServices servicesProvided={servicesProvided} />
 
 			<HomepageCreativeOutlet />
-			<HomepageContact urgSocialMedia={urgSocialMedia} />
+			<HomepageContact />
 		</main>
 	);
 }

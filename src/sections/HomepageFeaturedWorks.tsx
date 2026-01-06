@@ -126,7 +126,7 @@ export default function HomepageFeaturedWorks({
 			style={{ opacity }}
 			className={`relative h-screen overflow-hidden ${className}`}
 		>
-			<h3 className="absolute z-10 left-9 top-12 sm:left-16 sm:top-22 text-urg-white">
+			<h3 className="absolute z-10 left-9 top-12 sm:left-16 sm:top-25 text-urg-white">
 				My Featured Works
 			</h3>
 			<div className="relative flex w-screen h-screen z-0">

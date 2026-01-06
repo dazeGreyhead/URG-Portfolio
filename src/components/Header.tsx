@@ -1,10 +1,39 @@
 import { Link } from "@tanstack/react-router";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { useState } from "react";
 import { ButtonType } from "@/utilities/types";
 import URGButton from "./URGButton";
 
 export default function Header() {
+	const { scrollY } = useScroll();
+
+	const [hidden, setHidden] = useState(false);
+	const [headerBackdrop, setHeaderBackdrop] = useState(false);
+
+	useMotionValueEvent(scrollY, "change", (latest) => {
+		const previous = scrollY.getPrevious();
+		if (latest > 50) {
+			setHeaderBackdrop(true);
+		} else {
+			setHeaderBackdrop(false);
+		}
+		if (previous && latest > previous && latest && latest > 30) {
+			setHidden(true);
+		} else {
+			setHidden(false);
+		}
+	});
+
 	return (
-		<header className="absolute top-0 left-0 z-100 px-7 h-12 xl:px-16 w-full md:h-[74px] flex items-end justify-center">
+		<motion.header
+			variants={{
+				visible: { y: 0 },
+				hidden: { y: "-100%" },
+			}}
+			animate={hidden ? "hidden" : "visible"}
+			transition={{ duration: 0.3, ease: "linear" }}
+			className={`fixed top-0 left-0 z-100 px-7 h-12 xl:px-16 w-full md:h-[92px] flex items-center justify-center `}
+		>
 			<nav className="w-full">
 				<ul className="flex justify-end items-center md:justify-between">
 					{/* The checkbox input below is for the middle header links to collapse into a hamburger menu in small screens */}
@@ -43,7 +72,7 @@ export default function Header() {
 							</svg>
 						</label>
 					</li>
-					<li className="font-bold text-urg-black font-primary text-xl md:text-2xl md:ml-40 xl:ml-0  hover:underline hover:underline-offset-10">
+					<li className="font-bold text-urg-black font-primary text-xl md:text-2xl md:ml-40 xl:ml-0 hover:underline hover:underline-offset-10">
 						<Link to="/">UMANG RAJ GURUNG</Link>
 					</li>
 
@@ -100,6 +129,12 @@ export default function Header() {
 					</li>
 				</ul>
 			</nav>
-		</header>
+			<motion.div
+				initial={false}
+				animate={{ opacity: headerBackdrop ? 1 : 0 }}
+				transition={{ duration: 1 }}
+				className="absolute inset-0 -z-1 bg-white/50 backdrop-blur-sm"
+			/>
+		</motion.header>
 	);
 }

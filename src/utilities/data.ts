@@ -33,6 +33,7 @@ export const servicesProvided: serviceCardData[] = [
 			"/Squarespace_Logo.png",
 		],
 		representingColor: "#209cda",
+		shadowColor: "rgba(144, 207, 238, 1)",
 	},
 	{
 		title: "Video Production",
@@ -45,6 +46,7 @@ export const servicesProvided: serviceCardData[] = [
 			"/Adobe_After_Effects_CC_icon.svg.png",
 		],
 		representingColor: "#e79536",
+		shadowColor: "rgba(231, 159, 54, 0.5)",
 	},
 	{
 		title: "Graphic Design",
@@ -58,6 +60,7 @@ export const servicesProvided: serviceCardData[] = [
 			"/Adobe_Illustrator_CC_icon.svg.png",
 		],
 		representingColor: "#239884",
+		shadowColor: "rgba(35, 152, 132, 0.5)",
 	},
 	{
 		title: "Writing",
@@ -66,6 +69,7 @@ export const servicesProvided: serviceCardData[] = [
 		icon: "/writingServiceLogo.svg",
 
 		representingColor: "#cc5c3b",
+		shadowColor: "rgba(204, 92, 59, 0.5)",
 	},
 	{
 		title: "Tour Guiding",
@@ -74,6 +78,7 @@ export const servicesProvided: serviceCardData[] = [
 		icon: "/guideServiceLogo.svg",
 
 		representingColor: "#3c525d",
+		shadowColor: "rgba(60, 82, 93, 0.5)",
 	},
 ];
 

@@ -5,11 +5,6 @@ import { MdPhone } from "react-icons/md";
 import { z } from "zod";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 import { servicesProvided, urgContact } from "@/utilities/data";
-import type { socialMediaLinks } from "@/utilities/types";
-
-type HomepageContactProps = {
-	urgSocialMedia: socialMediaLinks[];
-};
 
 const emailJSServiceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const emailJSTemplateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -25,9 +20,7 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export default function HomepageContact({
-	urgSocialMedia,
-}: HomepageContactProps) {
+export default function HomepageContact() {
 	const {
 		register,
 		handleSubmit,
@@ -82,6 +75,7 @@ export default function HomepageContact({
 						</div>
 						<SocialMediaIcons
 							flexAndGap="flex flex-row gap-10 items-center"
+							logoStyles="hover:fill-urg-blue "
 							color="var(--color-urg-black)"
 							size={45}
 						/>
@@ -100,7 +94,7 @@ export default function HomepageContact({
 									{...register("client_name")}
 									type="text"
 									placeholder="Enter Your Name..."
-									className="p-big text-urg-black w-full lg:w-[340px] h-11 border-b-2 border-urg-black p-4 focus:outline-none focus:border-urg-blue placeholder:text-urg-black-50"
+									className="p-big text-urg-black w-full lg:w-[340px] h-11 border-b-2 border-urg-black p-4 focus:outline-urg-blue focus:border-urg-blue placeholder:text-urg-black-50"
 								/>
 							</label>
 							{errors.client_name && (
@@ -114,7 +108,7 @@ export default function HomepageContact({
 									{...register("client_phone")}
 									type="tel"
 									placeholder="Enter Your Phone number..."
-									className="p-big text-urg-black w-full lg:w-[340px] h-11 border-b-2 border-urg-black p-4 focus:outline-none focus:border-urg-blue placeholder:text-urg-black-50"
+									className="p-big text-urg-black w-full lg:w-[340px] h-11 border-b-2 border-urg-black p-4 focus:outline-urg-blue focus:border-urg-blue placeholder:text-urg-black-50"
 								/>
 							</label>
 							{errors.client_phone && (
@@ -129,7 +123,7 @@ export default function HomepageContact({
 								{...register("client_email")}
 								type="email"
 								placeholder="example@gmail.com"
-								className="p-big text-urg-black w-full lg:w-[500px] h-11 border-b-2 border-urg-black p-4 focus:outline-none focus:border-urg-blue placeholder:text-urg-black-50"
+								className="p-big text-urg-black w-full lg:w-[500px] h-11 border-b-2 border-urg-black p-4 focus:outline-urg-blue focus:border-urg-blue placeholder:text-urg-black-50"
 							/>
 						</label>
 						{errors.client_email && (
@@ -176,7 +170,7 @@ export default function HomepageContact({
 								{...register("client_message")}
 								placeholder="Send me a message..."
 								rows={4}
-								className="p-big text-urg-black w-full border-2 border-urg-black px-4 py-2 rounded-lg focus:outline-none focus:border-urg-blue placeholder:text-urg-black-50"
+								className="p-big text-urg-black w-full border-2 border-urg-black px-4 py-2 rounded-lg focus:outline-urg-blue focus:border-urg-blue placeholder:text-urg-black-50"
 							/>
 						</label>
 						{errors.client_message && (
