@@ -3,7 +3,6 @@ import type { LenisRef } from "lenis/react";
 import { ReactLenis } from "lenis/react";
 import { cancelFrame, frame } from "motion/react";
 import { useEffect, useRef } from "react";
-import GrainyBackground from "@/components/GrainyBackground";
 import HomepageContact from "@/sections/HomepageContact";
 import HomepageCreativeOutlet from "@/sections/HomepageCreativeOutlet";
 import HomepageServices from "@/sections/HomepageServices";
