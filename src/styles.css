@@ -114,7 +114,7 @@ body {
 	}
 
 	.tag {
-		@apply font-secondary text-sm text-urg-black-50 font-medium  before:content-['#'];
+		@apply font-secondary text-sm text-urg-black-25 font-medium  before:content-['#'];
 	}
 
 	.p-small {
