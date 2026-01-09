@@ -83,7 +83,7 @@ export async function getIndividualCreativeContent(slug: string) {
 // Function to fetch featured portfolio projects for the homepage
 export async function getHomepagePortfolioProjects() {
 	try {
-		const query = `*[_type == "portfolio-projects" && featured == true][0...3] | order(publishedAt desc)`;
+		const query = `*[_type == "portfolio-projects" || _type == "creative-content" && featured == true][0...6] | order(publishedAt desc)`;
 		const data = await client.fetch<SanityDocument[]>(query);
 
 		// Check if the returned data is an array and has items

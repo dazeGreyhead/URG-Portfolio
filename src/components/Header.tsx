@@ -129,11 +129,12 @@ export default function Header() {
 					</li>
 				</ul>
 			</nav>
+			{/* The blurry, white background of the header */}
 			<motion.div
 				initial={false}
 				animate={{ opacity: headerBackdrop ? 1 : 0 }}
 				transition={{ duration: 1 }}
-				className="absolute inset-0 -z-1 bg-white/50 backdrop-blur-sm"
+				className="absolute inset-0 -z-1 bg-white/30 backdrop-blur-sm"
 			/>
 		</motion.header>
 	);

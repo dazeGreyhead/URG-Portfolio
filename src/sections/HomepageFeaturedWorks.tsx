@@ -165,13 +165,17 @@ export default function HomepageFeaturedWorks({
 								className="absolute z-20 left-9 top-30 sm:left-16 sm:bottom-35 sm:top-auto flex flex-col gap-4 min-w-0 max-w-[345px] w-fit sm:max-w-[1000px] "
 							>
 								<Link
-									to="/portfolio-projects/$slug"
+									to={
+										project._type === "portfolio-projects"
+											? "/portfolio-projects/$slug"
+											: "/creative-corner/$slug"
+									}
 									params={{
 										slug: project.slug.current,
 									}}
 								>
 									<div className="group">
-										<div className="flex gap-2 items-center">
+										<div className="flex gap-10 items-center">
 											<h1 className="text-urg-white text-6xl uppercase group-hover:underline">
 												{project.title}
 											</h1>
