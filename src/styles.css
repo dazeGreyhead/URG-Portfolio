@@ -94,7 +94,7 @@ body {
 
 @layer components {
 	.primary-button {
-		@apply font-primary text-lg xl:text-xl text-urg-white py-2 px-3 xl:py-3 xl:px-6 w-fit rounded-[5px] bg-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue hover:cursor-pointer;
+		@apply font-primary text-lg xl:text-xl text-urg-white py-2 px-3 xl:py-3 xl:px-6 w-fit rounded-[5px] border-2 border-urg-black hover:border-urg-blue bg-urg-black hover:shadow-[0px_4px_4px_0px_rgba(144,_207,_238,_1),0px_8px_22.2px_0px_rgba(144,_207,_238,_1)] hover:bg-urg-blue hover:cursor-pointer;
 	}
 
 	.secondary-button {
@@ -266,4 +266,9 @@ body {
 		transparent 100%
 	);
 	overflow: hidden;
+}
+
+.text-trim {
+	text-box-trim: trim-both;
+	text-box-edge: cap alphabetic;
 }

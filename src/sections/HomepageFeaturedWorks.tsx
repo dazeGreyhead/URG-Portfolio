@@ -162,7 +162,7 @@ export default function HomepageFeaturedWorks({
 							<motion.div
 								animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
 								transition={{ delay: 0.8, duration: 1.2 }}
-								className="absolute z-20 left-9 top-30 sm:left-16 sm:bottom-35 sm:top-auto flex flex-col gap-4 min-w-0 max-w-[345px] w-fit sm:max-w-[1000px] "
+								className="absolute z-20 left-9 sm:left-16 top-auto bottom-63 lg:bottom-40 flex flex-col gap-4 min-w-0 max-w-[355px] w-fit sm:max-w-[950px] "
 							>
 								<Link
 									to={
@@ -174,17 +174,17 @@ export default function HomepageFeaturedWorks({
 										slug: project.slug.current,
 									}}
 								>
-									<div className="group">
-										<div className="flex gap-10 items-center">
-											<h1 className="text-urg-white text-6xl uppercase group-hover:underline">
+									<div className="group flex flex-col gap-2 lg:gap-3">
+										<div className="flex flex-col-reverse lg:flex-row gap-2 lg:gap-10 lg:items-center">
+											<h1 className="text-urg-white text-3xl lg:text-6xl uppercase group-hover:underline">
 												{project.title}
 											</h1>
 
-											<div className="relative size-[120px] xl:size-[140px] cursor-pointer group-hover:scale-108 transition-transform duration-300 shrink-0">
+											<div className="relative size-[80px] lg:size-[140px] cursor-pointer group-hover:scale-108 transition-transform duration-300">
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
 													viewBox="0 0 100 100"
-													className="absolute overflow-visible continuous-spin-circle-animation size-[120px] xl:size-[140px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+													className="absolute overflow-visible continuous-spin-circle-animation size-[80px] lg:size-[140px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 												>
 													<title>Spinning Circle Text</title>
 													<path
@@ -209,10 +209,10 @@ export default function HomepageFeaturedWorks({
 														</textPath>
 													</text>
 												</svg>
-												<FancyArrow className="absolute fill-urg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] xl:size-[70px] rotate-45 group-hover:fill-urg-blue" />
+												<FancyArrow className="absolute fill-urg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 spinning-text-button size-[40px] lg:size-[70px] rotate-45 group-hover:fill-urg-blue" />
 											</div>
 										</div>
-										<p className="text-urg-white text-2xl">
+										<p className="text-urg-white text-lg lg:text-2xl">
 											{project.description}
 										</p>
 										<div className="flex flex-wrap gap-2">
@@ -227,7 +227,7 @@ export default function HomepageFeaturedWorks({
 									</div>
 								</Link>
 							</motion.div>
-							<div className="h-full w-4/5 sm:w-full absolute z-10 bg-radial-[at_60%_30%] from-black/10 from-35% to-black/80 to-100%" />
+							<div className="h-full w-full absolute z-10 bg-radial-[at_60%_30%] from-black/10 from-35% to-black/80 to-100%" />
 							{project.localIntroVideo ? (
 								<video
 									src={`/${project.localIntroVideo}`}
@@ -266,7 +266,7 @@ export default function HomepageFeaturedWorks({
 						className="h-full bg-urg-blue shadow-[0_0_10px_rgba(32,156,218,0.5)]"
 					/>
 				</div>
-				<div className="absolute bottom-10 left-16 z-50 flex gap-20 items-center">
+				<div className="absolute bottom-28 lg:bottom-13 left-9 sm:left-16 z-50 flex flex-col lg:flex-row gap-6 lg:gap-20 lg:items-center">
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={currentProjectIndex}
@@ -274,10 +274,10 @@ export default function HomepageFeaturedWorks({
 							animate={{ opacity: 1, x: 0 }}
 							exit={{ opacity: 0 }}
 							transition={{ duration: 0.8 }}
-							className="text-white font-bold text-5xl font-secondary min-w-[100px]"
+							className="text-white font-bold text-3xl lg:text-5xl font-secondary min-w-[100px]"
 						>
 							{currentProjectIndex + 1}
-							<span className="text-white/20 text-2xl ml-2 font-secondary">
+							<span className="text-white/20 text-lg lg:text-2xl ml-2 font-secondary">
 								/ {portfolioProjects.length}
 							</span>
 						</motion.div>
@@ -285,32 +285,32 @@ export default function HomepageFeaturedWorks({
 					<div className="flex gap-5">
 						<button
 							onClick={() => paginate(-1)}
-							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							className="px-8 py-3 lg:px-10 lg:py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
 							type="button"
 						>
-							<FancyArrow className="size-11 -rotate-90 fill-urg-white" />
+							<FancyArrow className="size-9 lg:size-11 -rotate-90 fill-urg-white" />
 						</button>
 						<button
 							onClick={() => paginate(1)}
-							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							className="px-8 py-3 lg:px-10 lg:py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
 							type="button"
 						>
-							<FancyArrow className="size-11 rotate-90 fill-urg-white" />
+							<FancyArrow className="size-9 lg:size-11 rotate-90 fill-urg-white" />
 						</button>
 						<button
 							onClick={() => setIsPaused(!isPaused)}
-							className="px-10 py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
+							className="px-8 py-3 lg:px-10 lg:py-2 hover:bg-white/10 text-white transition-colors border border-white/10 rounded-2xl backdrop-blur-sm cursor-pointer"
 							type="button"
 						>
 							<PlayButton
-								className="size-9 fill-urg-white"
+								className="size-7 lg:size-9 fill-urg-white"
 								playVideo={!isPaused}
 							/>
 						</button>
 					</div>
 				</div>
 
-				<div className="absolute bottom-10 right-16 z-50 flex gap-4">
+				<div className="absolute bottom-13 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-16 z-50 flex gap-4">
 					<motion.div
 						animate={{
 							y: [8, -8, 8],

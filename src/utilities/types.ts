@@ -16,6 +16,8 @@ export type serviceCardData = {
 	softwareKnowledgeLogos?: string[]; // The logos of the software used in the service
 	representingColor: string; // The color representing the service
 	shadowColor: string;
+	slug: string; // For individual service pages
+	externalLink?: string; // If i want to redirect to an external website.
 };
 
 export type socialMediaLinks = {

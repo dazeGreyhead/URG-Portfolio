@@ -136,3 +136,22 @@ export async function getIndividualProject(slug: string) {
 		return [];
 	}
 }
+
+// Function to fetch a project documents by its category
+export async function getContentByCategory(categorySlug: string) {
+	try {
+		const query = `*[$categorySlug in categories[]->slug.current] | order(publishedAt desc) `;
+		const data = await client.fetch<SanityDocument[]>(query, { categorySlug });
+
+		// Check if the returned data is an array and has items
+		if (!data || data.length === 0) {
+			console.log("No projects of this category found.");
+		}
+
+		return data;
+	} catch (error) {
+		console.error("Failed to fetch projects of this category:", error);
+		// Return an empty array to prevent the app from crashing
+		return [];
+	}
+}

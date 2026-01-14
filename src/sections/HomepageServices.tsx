@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion, stagger } from "motion/react";
 import FancyArrow from "@/assets/svg/FancyArrow";
 import type { serviceCardData } from "@/utilities/types";
@@ -37,7 +38,7 @@ export default function HomepageServices({
 	servicesProvided,
 }: HomepageServicesProps) {
 	return (
-		<section className="min-h-screen px-9 pt-12 pb-18 sm:pt-22 sm:pb-48 sm:px-16">
+		<section className="min-h-screen px-9 py-18 md:pt-22 sm:pb-48 sm:px-16">
 			<h3>Services</h3>
 			<div className="flex justify-center mt-10 sm:mt-18">
 				<motion.div
@@ -48,53 +49,60 @@ export default function HomepageServices({
 						once: true,
 						amount: 0.2,
 					}}
-					className="flex flex-wrap gap-x-25 w-full sm:w-[84%] gap-y-17"
+					className="flex flex-wrap justify-center gap-x-25 w-full sm:w-[84%] gap-y-17"
 				>
 					{servicesProvided.map((service) => {
 						return (
-							<motion.div
+							<Link
 								key={service.title}
-								variants={cardVariants}
-								whileHover={{
-									scale: 1.03,
-									boxShadow: `0px 4px 4px 0px ${service.shadowColor}, 0px 8px 22.2px 0px ${service.shadowColor}`,
-									transition: { duration: 0.3 },
-								}}
-								className="bg-white border border-b-8 flex flex-col items-center gap-12 w-[430px] px-4 pb-6 pt-4 rounded-xl hover:cursor-pointer"
-								style={{
-									borderColor: service.representingColor,
+								to={"/urg-services/$service"}
+								params={{
+									service: service.slug,
 								}}
 							>
-								<div className="flex flex-col items-end gap-2">
-									<div className="p-2 rounded-xl bg-urg-black">
-										<FancyArrow className="size-13 rotate-45 fill-urg-white" />
-									</div>
-									<div className="flex flex-col gap-8 items-center">
-										<img
-											src={service.icon}
-											alt={service.title}
-											className="h-22 w-[102px]"
-										/>
-										<div className="flex flex-col gap-4 items-center">
-											<h4 className="text-urg-black uppercase">
-												{service.title}
-											</h4>
-											<p className="text-center">{service.description}</p>
+								<motion.div
+									variants={cardVariants}
+									whileHover={{
+										scale: 1.03,
+										boxShadow: `0px 4px 4px 0px ${service.shadowColor}, 0px 8px 22.2px 0px ${service.shadowColor}`,
+										transition: { duration: 0.3 },
+									}}
+									className="bg-white/30 border border-b-8 flex flex-col items-center gap-12 w-full sm:w-[430px] px-4 pb-6 pt-4 rounded-xl hover:cursor-pointer"
+									style={{
+										borderColor: service.representingColor,
+									}}
+								>
+									<div className="flex flex-col items-end gap-2">
+										<div className="p-2 rounded-xl bg-urg-black">
+											<FancyArrow className="size-13 rotate-45 fill-urg-white" />
+										</div>
+										<div className="flex flex-col gap-8 items-center">
+											<img
+												src={service.icon}
+												alt={service.title}
+												className="h-22 w-[102px]"
+											/>
+											<div className="flex flex-col gap-4 items-center">
+												<h4 className="text-urg-black uppercase">
+													{service.title}
+												</h4>
+												<p className="text-center">{service.description}</p>
+											</div>
 										</div>
 									</div>
-								</div>
 
-								<div className="flex gap-6">
-									{service.softwareKnowledgeLogos?.map((logo) => (
-										<img
-											key={logo}
-											src={logo}
-											alt={logo}
-											className="h-12 w-12 object-contain"
-										/>
-									))}
-								</div>
-							</motion.div>
+									<div className="flex gap-6">
+										{service.softwareKnowledgeLogos?.map((logo) => (
+											<img
+												key={logo}
+												src={logo}
+												alt={logo}
+												className="h-12 w-12 object-contain"
+											/>
+										))}
+									</div>
+								</motion.div>
+							</Link>
 						);
 					})}
 				</motion.div>

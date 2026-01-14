@@ -12,13 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutMeRouteImport } from './routes/about-me'
+import { Route as UrgServicesRouteRouteImport } from './routes/urg-services/route'
 import { Route as PortfolioProjectsRouteRouteImport } from './routes/portfolio-projects/route'
 import { Route as CreativeCornerRouteRouteImport } from './routes/creative-corner/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UrgServicesIndexRouteImport } from './routes/urg-services/index'
 import { Route as PortfolioProjectsIndexRouteImport } from './routes/portfolio-projects/index'
 import { Route as CreativeCornerIndexRouteImport } from './routes/creative-corner/index'
+import { Route as UrgServicesServiceRouteRouteImport } from './routes/urg-services/$service/route'
 import { Route as PortfolioProjectsSlugRouteRouteImport } from './routes/portfolio-projects/$slug/route'
 import { Route as CreativeCornerSlugRouteRouteImport } from './routes/creative-corner/$slug/route'
+import { Route as UrgServicesServiceIndexRouteImport } from './routes/urg-services/$service/index'
 import { Route as PortfolioProjectsSlugIndexRouteImport } from './routes/portfolio-projects/$slug/index'
 import { Route as CreativeCornerSlugIndexRouteImport } from './routes/creative-corner/$slug/index'
 
@@ -37,6 +41,11 @@ const AboutMeRoute = AboutMeRouteImport.update({
   path: '/about-me',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UrgServicesRouteRoute = UrgServicesRouteRouteImport.update({
+  id: '/urg-services',
+  path: '/urg-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioProjectsRouteRoute = PortfolioProjectsRouteRouteImport.update({
   id: '/portfolio-projects',
   path: '/portfolio-projects',
@@ -52,6 +61,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UrgServicesIndexRoute = UrgServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => UrgServicesRouteRoute,
+} as any)
 const PortfolioProjectsIndexRoute = PortfolioProjectsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,6 +75,11 @@ const CreativeCornerIndexRoute = CreativeCornerIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => CreativeCornerRouteRoute,
+} as any)
+const UrgServicesServiceRouteRoute = UrgServicesServiceRouteRouteImport.update({
+  id: '/$service',
+  path: '/$service',
+  getParentRoute: () => UrgServicesRouteRoute,
 } as any)
 const PortfolioProjectsSlugRouteRoute =
   PortfolioProjectsSlugRouteRouteImport.update({
@@ -72,6 +91,11 @@ const CreativeCornerSlugRouteRoute = CreativeCornerSlugRouteRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => CreativeCornerRouteRoute,
+} as any)
+const UrgServicesServiceIndexRoute = UrgServicesServiceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => UrgServicesServiceRouteRoute,
 } as any)
 const PortfolioProjectsSlugIndexRoute =
   PortfolioProjectsSlugIndexRouteImport.update({
@@ -89,15 +113,19 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/creative-corner': typeof CreativeCornerRouteRouteWithChildren
   '/portfolio-projects': typeof PortfolioProjectsRouteRouteWithChildren
+  '/urg-services': typeof UrgServicesRouteRouteWithChildren
   '/about-me': typeof AboutMeRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugRouteRouteWithChildren
   '/portfolio-projects/$slug': typeof PortfolioProjectsSlugRouteRouteWithChildren
+  '/urg-services/$service': typeof UrgServicesServiceRouteRouteWithChildren
   '/creative-corner/': typeof CreativeCornerIndexRoute
   '/portfolio-projects/': typeof PortfolioProjectsIndexRoute
+  '/urg-services/': typeof UrgServicesIndexRoute
   '/creative-corner/$slug/': typeof CreativeCornerSlugIndexRoute
   '/portfolio-projects/$slug/': typeof PortfolioProjectsSlugIndexRoute
+  '/urg-services/$service/': typeof UrgServicesServiceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,23 +134,29 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/creative-corner': typeof CreativeCornerIndexRoute
   '/portfolio-projects': typeof PortfolioProjectsIndexRoute
+  '/urg-services': typeof UrgServicesIndexRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugIndexRoute
   '/portfolio-projects/$slug': typeof PortfolioProjectsSlugIndexRoute
+  '/urg-services/$service': typeof UrgServicesServiceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/creative-corner': typeof CreativeCornerRouteRouteWithChildren
   '/portfolio-projects': typeof PortfolioProjectsRouteRouteWithChildren
+  '/urg-services': typeof UrgServicesRouteRouteWithChildren
   '/about-me': typeof AboutMeRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
   '/creative-corner/$slug': typeof CreativeCornerSlugRouteRouteWithChildren
   '/portfolio-projects/$slug': typeof PortfolioProjectsSlugRouteRouteWithChildren
+  '/urg-services/$service': typeof UrgServicesServiceRouteRouteWithChildren
   '/creative-corner/': typeof CreativeCornerIndexRoute
   '/portfolio-projects/': typeof PortfolioProjectsIndexRoute
+  '/urg-services/': typeof UrgServicesIndexRoute
   '/creative-corner/$slug/': typeof CreativeCornerSlugIndexRoute
   '/portfolio-projects/$slug/': typeof PortfolioProjectsSlugIndexRoute
+  '/urg-services/$service/': typeof UrgServicesServiceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,15 +164,19 @@ export interface FileRouteTypes {
     | '/'
     | '/creative-corner'
     | '/portfolio-projects'
+    | '/urg-services'
     | '/about-me'
     | '/contact'
     | '/experience'
     | '/creative-corner/$slug'
     | '/portfolio-projects/$slug'
+    | '/urg-services/$service'
     | '/creative-corner/'
     | '/portfolio-projects/'
+    | '/urg-services/'
     | '/creative-corner/$slug/'
     | '/portfolio-projects/$slug/'
+    | '/urg-services/$service/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -147,28 +185,35 @@ export interface FileRouteTypes {
     | '/experience'
     | '/creative-corner'
     | '/portfolio-projects'
+    | '/urg-services'
     | '/creative-corner/$slug'
     | '/portfolio-projects/$slug'
+    | '/urg-services/$service'
   id:
     | '__root__'
     | '/'
     | '/creative-corner'
     | '/portfolio-projects'
+    | '/urg-services'
     | '/about-me'
     | '/contact'
     | '/experience'
     | '/creative-corner/$slug'
     | '/portfolio-projects/$slug'
+    | '/urg-services/$service'
     | '/creative-corner/'
     | '/portfolio-projects/'
+    | '/urg-services/'
     | '/creative-corner/$slug/'
     | '/portfolio-projects/$slug/'
+    | '/urg-services/$service/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreativeCornerRouteRoute: typeof CreativeCornerRouteRouteWithChildren
   PortfolioProjectsRouteRoute: typeof PortfolioProjectsRouteRouteWithChildren
+  UrgServicesRouteRoute: typeof UrgServicesRouteRouteWithChildren
   AboutMeRoute: typeof AboutMeRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
@@ -197,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutMeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/urg-services': {
+      id: '/urg-services'
+      path: '/urg-services'
+      fullPath: '/urg-services'
+      preLoaderRoute: typeof UrgServicesRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio-projects': {
       id: '/portfolio-projects'
       path: '/portfolio-projects'
@@ -218,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/urg-services/': {
+      id: '/urg-services/'
+      path: '/'
+      fullPath: '/urg-services/'
+      preLoaderRoute: typeof UrgServicesIndexRouteImport
+      parentRoute: typeof UrgServicesRouteRoute
+    }
     '/portfolio-projects/': {
       id: '/portfolio-projects/'
       path: '/'
@@ -232,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreativeCornerIndexRouteImport
       parentRoute: typeof CreativeCornerRouteRoute
     }
+    '/urg-services/$service': {
+      id: '/urg-services/$service'
+      path: '/$service'
+      fullPath: '/urg-services/$service'
+      preLoaderRoute: typeof UrgServicesServiceRouteRouteImport
+      parentRoute: typeof UrgServicesRouteRoute
+    }
     '/portfolio-projects/$slug': {
       id: '/portfolio-projects/$slug'
       path: '/$slug'
@@ -245,6 +311,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/creative-corner/$slug'
       preLoaderRoute: typeof CreativeCornerSlugRouteRouteImport
       parentRoute: typeof CreativeCornerRouteRoute
+    }
+    '/urg-services/$service/': {
+      id: '/urg-services/$service/'
+      path: '/'
+      fullPath: '/urg-services/$service/'
+      preLoaderRoute: typeof UrgServicesServiceIndexRouteImport
+      parentRoute: typeof UrgServicesServiceRouteRoute
     }
     '/portfolio-projects/$slug/': {
       id: '/portfolio-projects/$slug/'
@@ -321,10 +394,38 @@ const PortfolioProjectsRouteRouteWithChildren =
     PortfolioProjectsRouteRouteChildren,
   )
 
+interface UrgServicesServiceRouteRouteChildren {
+  UrgServicesServiceIndexRoute: typeof UrgServicesServiceIndexRoute
+}
+
+const UrgServicesServiceRouteRouteChildren: UrgServicesServiceRouteRouteChildren =
+  {
+    UrgServicesServiceIndexRoute: UrgServicesServiceIndexRoute,
+  }
+
+const UrgServicesServiceRouteRouteWithChildren =
+  UrgServicesServiceRouteRoute._addFileChildren(
+    UrgServicesServiceRouteRouteChildren,
+  )
+
+interface UrgServicesRouteRouteChildren {
+  UrgServicesServiceRouteRoute: typeof UrgServicesServiceRouteRouteWithChildren
+  UrgServicesIndexRoute: typeof UrgServicesIndexRoute
+}
+
+const UrgServicesRouteRouteChildren: UrgServicesRouteRouteChildren = {
+  UrgServicesServiceRouteRoute: UrgServicesServiceRouteRouteWithChildren,
+  UrgServicesIndexRoute: UrgServicesIndexRoute,
+}
+
+const UrgServicesRouteRouteWithChildren =
+  UrgServicesRouteRoute._addFileChildren(UrgServicesRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreativeCornerRouteRoute: CreativeCornerRouteRouteWithChildren,
   PortfolioProjectsRouteRoute: PortfolioProjectsRouteRouteWithChildren,
+  UrgServicesRouteRoute: UrgServicesRouteRouteWithChildren,
   AboutMeRoute: AboutMeRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,

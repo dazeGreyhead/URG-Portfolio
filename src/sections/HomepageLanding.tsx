@@ -142,7 +142,7 @@ export default function HomepageLanding({ className }: HomepageLandingProps) {
 					<a href={`mailto:${urgContact.email}`}>
 						<URGButton
 							buttonType={ButtonType.secondary}
-							className="text-2xl px-12"
+							className="text-2xl px-6 xl:px-12"
 						>
 							{urgContact.email}
 						</URGButton>

@@ -34,6 +34,7 @@ export const servicesProvided: serviceCardData[] = [
 		],
 		representingColor: "#209cda",
 		shadowColor: "rgba(144, 207, 238, 1)",
+		slug: "web-development",
 	},
 	{
 		title: "Video Production",
@@ -47,6 +48,7 @@ export const servicesProvided: serviceCardData[] = [
 		],
 		representingColor: "#e79536",
 		shadowColor: "rgba(231, 159, 54, 0.5)",
+		slug: "video-production",
 	},
 	{
 		title: "Graphic Design",
@@ -61,6 +63,7 @@ export const servicesProvided: serviceCardData[] = [
 		],
 		representingColor: "#239884",
 		shadowColor: "rgba(35, 152, 132, 0.5)",
+		slug: "graphic-design",
 	},
 	{
 		title: "Writing",
@@ -70,6 +73,7 @@ export const servicesProvided: serviceCardData[] = [
 
 		representingColor: "#cc5c3b",
 		shadowColor: "rgba(204, 92, 59, 0.5)",
+		slug: "writing",
 	},
 	{
 		title: "Tour Guiding",
@@ -79,6 +83,8 @@ export const servicesProvided: serviceCardData[] = [
 
 		representingColor: "#3c525d",
 		shadowColor: "rgba(60, 82, 93, 0.5)",
+		slug: "tour-guiding",
+		externalLink: "https://nepaltourandtrek.com/",
 	},
 ];
 

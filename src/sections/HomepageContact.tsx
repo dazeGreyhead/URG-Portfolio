@@ -50,7 +50,7 @@ export default function HomepageContact() {
 	};
 
 	return (
-		<section className="px-9 py-12 xl:pt-22 xl:px-16 xl:pb-35 h-fit min-h-screen">
+		<section className="px-9 py-18 md:pt-22 xl:px-16 xl:pb-35 h-fit min-h-screen">
 			<div className="flex flex-col gap-4 mb-14 xlm:mb-0 w-full xl:w-[430px]">
 				<h3 className="text-urg-black">Let's Work Together</h3>
 				<p className="text-urg-black-75">
@@ -62,7 +62,7 @@ export default function HomepageContact() {
 					<h2>Connect With Me</h2>
 					<a href={`mailto:${urgContact.email}`}>
 						<button
-							className="primary-button text-2xl px-12 w-fit"
+							className="primary-button text-2xl px-6 xl:px-12 w-fit"
 							type="button"
 						>
 							{urgContact.email}
@@ -86,7 +86,7 @@ export default function HomepageContact() {
 					className="flex flex-col gap-10 w-full lg:w-[50%] items-center lg:items-start"
 					onSubmit={handleSubmit(sendEmail)}
 				>
-					<div className=" flex flex-col w-full lg:flex-row gap-10 lg:gap-20">
+					<div className=" flex flex-col w-full 2xl:flex-row gap-10 2xl:gap-20">
 						<div>
 							<label>
 								<h6 className="uppercase mb-1">Name</h6>
@@ -116,7 +116,7 @@ export default function HomepageContact() {
 							)}
 						</div>
 					</div>
-					<div>
+					<div className="w-full">
 						<label className="w-full">
 							<h6 className="uppercase mb-1">Email</h6>
 							<input
@@ -130,7 +130,7 @@ export default function HomepageContact() {
 							<div className="error mt-2">{errors.client_email.message}</div>
 						)}
 					</div>
-					<div>
+					<div className="w-full">
 						<h6 className="uppercase mb-5 lg:mb-3">What do you need?</h6>
 						<div className="flex flex-col lg:flex-row lg:flex-wrap gap-4 lg:gap-x-16 lg:gap-y-6">
 							{servicesProvided.map((service) => (
@@ -181,7 +181,7 @@ export default function HomepageContact() {
 					<button
 						disabled={isSubmitting}
 						type="submit"
-						className="secondary-button"
+						className="secondary-button w-full xl:w-fit"
 					>
 						{isSubmitting ? "Sending..." : "Send Me Your Message"}
 					</button>

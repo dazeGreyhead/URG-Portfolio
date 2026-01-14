@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import FancyArrow from "@/assets/svg/FancyArrow";
 
 export default function Footer() {
 	const scrollToTop = () => {
@@ -20,11 +21,12 @@ export default function Footer() {
 					<button
 						onClick={scrollToTop}
 						type="button"
-						className="cursor-pointer"
+						className="cursor-pointer flex flex-row items-center gap-2"
 					>
 						<h6 className="font-light hover:underline hover:underline-offset-10">
 							Go back to the top
 						</h6>
+						<FancyArrow className="size-6" />
 					</button>
 				</div>
 				<ul className="flex flex-col items-center 2xl:items-start gap-8">
@@ -61,6 +63,18 @@ export default function Footer() {
 						>
 							<h5 className="font-light hover:underline hover:underline-offset-10">
 								Creative Corner
+							</h5>
+						</Link>
+					</li>
+					<li>
+						<Link
+							to="/urg-services"
+							activeProps={{
+								className: "underline underline-offset-10",
+							}}
+						>
+							<h5 className="font-light hover:underline hover:underline-offset-10">
+								Services
 							</h5>
 						</Link>
 					</li>

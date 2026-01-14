@@ -103,7 +103,7 @@ export default function HomepageCreativeOutlet() {
 					</div>
 				</Link>
 			</div>
-			<div className="flex flex-col items-center mt-8">
+			<div className="flex flex-col items-center mt-15 xl:mt-8">
 				<div className="w-full xl:w-[84%] flex flex-col gap-16 xl:gap-24">
 					{creativeContent.map((content) =>
 						content.featured ? (
@@ -111,13 +111,13 @@ export default function HomepageCreativeOutlet() {
 								key={content._id}
 								className="flex flex-col xl:flex-row gap-8 group "
 							>
-								<figure className="h-[400px] xl:h-auto w-[65%] aspect-video overflow-hidden shrink-0 ">
-									<Link
-										to="/creative-corner/$slug"
-										params={{
-											slug: content.slug.current,
-										}}
-									>
+								<Link
+									to="/creative-corner/$slug"
+									params={{
+										slug: content.slug.current,
+									}}
+								>
+									<figure className="h-auto w-full aspect-video overflow-hidden shrink-0 ">
 										<img
 											src={urlFor(content.mainImage)
 												.width(1000)
@@ -126,8 +126,8 @@ export default function HomepageCreativeOutlet() {
 											alt={content.title}
 											className="h-auto w-full object-cover group-hover:brightness-75"
 										/>
-									</Link>
-								</figure>
+									</figure>
+								</Link>
 								<Link
 									to="/creative-corner/$slug"
 									params={{
