@@ -29,6 +29,9 @@ export default function ContentPage({ content }: ContentPageProps) {
 									<p className="text-urg-orange p-normal xl:p-big">
 										{dateFormatter(content.publishedAt)}
 									</p>
+									<p className="text-urg-black-75 p-big">
+										{content.description}
+									</p>
 									<div className="flex flex-wrap gap-2 xl:gap-4">
 										{content.tags.map((tag: string) => {
 											return (

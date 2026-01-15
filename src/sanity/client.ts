@@ -61,6 +61,7 @@ export async function getIndividualCreativeContent(slug: string) {
     title,
     mainImage,
     tags,
+	description,
 	coverVideo,
     publishedAt,
     body,

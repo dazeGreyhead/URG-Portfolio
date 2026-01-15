@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 import type { LenisRef } from "lenis/react";
 import { ReactLenis } from "lenis/react";
 import { cancelFrame, frame } from "motion/react";
@@ -38,6 +39,7 @@ function App() {
 
 			<HomepageCreativeOutlet />
 			<HomepageContact />
+			<Analytics />
 		</main>
 	);
 }
