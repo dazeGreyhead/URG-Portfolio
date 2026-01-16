@@ -1,4 +1,4 @@
-import { motion, stagger } from "motion/react";
+// import { motion, stagger } from "motion/react";
 import StarRating from "@/components/StarRating";
 import URGButton from "@/components/URGButton";
 import { ButtonType, type testimonials } from "@/utilities/types";
@@ -7,38 +7,38 @@ type HomepageTestimonialsProps = {
 	urgTestimonials?: testimonials[];
 };
 
-// Container variants to coordinate the staggering of children
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			delayChildren: stagger(0.5), // Delay between each child animation
-		},
-	},
-};
+// // Container variants to coordinate the staggering of children
+// const containerVariants = {
+// 	hidden: { opacity: 0 },
+// 	visible: {
+// 		opacity: 1,
+// 		transition: {
+// 			delayChildren: stagger(0.5), // Delay between each child animation
+// 		},
+// 	},
+// };
 
-// Individual card variants
-const cardVariants = {
-	hidden: {
-		opacity: 0,
-		y: 100,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.7,
-			ease: "easeInOut",
-		},
-	},
-} as const;
+// // Individual card variants
+// const cardVariants = {
+// 	hidden: {
+// 		opacity: 0,
+// 		y: 100,
+// 	},
+// 	visible: {
+// 		opacity: 1,
+// 		y: 0,
+// 		transition: {
+// 			duration: 0.7,
+// 			ease: "easeInOut",
+// 		},
+// 	},
+// } as const;
 
 export default function HomepageTestimonials({
 	urgTestimonials,
 }: HomepageTestimonialsProps) {
 	return (
-		<section className="min-h-screen px-9 pt-12 pb-12 sm:pt-22 sm:pb-22 sm:px-16 ">
+		<section className="h-fit px-9 pt-12 pb-12 sm:pt-22 sm:pb-22 sm:px-16 ">
 			<div className="flex flex-col gap-4 w-full xl:w-[430px]">
 				<h3 className="text-urg-black">Testimonials</h3>
 				<p className="text-urg-black-75">
@@ -47,22 +47,9 @@ export default function HomepageTestimonials({
 			</div>
 			<div className="flex justify-center mt-10 sm:mt-18">
 				{urgTestimonials && urgTestimonials.length > 0 ? (
-					<motion.div
-						variants={containerVariants}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{
-							once: true,
-							amount: 0.4,
-						}}
-						className="grid grid-cols-1 xl:grid-cols-2 gap-20 xl:gap-10"
-					>
+					<div className="grid grid-cols-1 xl:grid-cols-2 gap-20 xl:gap-10">
 						{urgTestimonials.map((testimonial) => (
-							<motion.div
-								key={testimonial.clientName}
-								variants={cardVariants}
-								className="p-0 sm:p-6"
-							>
+							<div key={testimonial.clientName} className="p-0 sm:p-6">
 								<div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-x-7 gap-y-4">
 									<figure className="relative w-30 h-40 sm:w-50 sm:h-60 rounded-xl overflow-hidden row-span-1 xl:row-span-2">
 										<img
@@ -98,9 +85,9 @@ export default function HomepageTestimonials({
 										{testimonial.review}
 									</p>
 								</div>
-							</motion.div>
+							</div>
 						))}
-					</motion.div>
+					</div>
 				) : (
 					<p>No testimonials available.</p>
 				)}

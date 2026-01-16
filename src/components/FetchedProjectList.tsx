@@ -33,6 +33,7 @@ export default function FetchedProjectList({
 								params={{
 									slug: project.slug.current,
 								}}
+								className="w-full xl:w-2/3"
 							>
 								<figure className="h-auto w-full aspect-video overflow-hidden shrink-0 ">
 									<img

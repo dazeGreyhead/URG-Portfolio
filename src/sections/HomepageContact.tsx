@@ -20,7 +20,13 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export default function HomepageContact() {
+type HomepageContactProps = {
+	isHomepage: boolean;
+};
+
+export default function HomepageContact({
+	isHomepage = false,
+}: HomepageContactProps) {
 	const {
 		register,
 		handleSubmit,
@@ -50,7 +56,9 @@ export default function HomepageContact() {
 	};
 
 	return (
-		<section className="px-9 py-18 md:pt-22 xl:px-16 xl:pb-35 h-fit min-h-screen">
+		<section
+			className={`px-9 py-18 md:pt-22 xl:px-16 xl:pb-35  ${isHomepage ? "h-fit" : "min-h-screen"}`}
+		>
 			<div className="flex flex-col gap-4 mb-14 xlm:mb-0 w-full xl:w-[430px]">
 				<h3 className="text-urg-black">Let's Work Together</h3>
 				<p className="text-urg-black-75">

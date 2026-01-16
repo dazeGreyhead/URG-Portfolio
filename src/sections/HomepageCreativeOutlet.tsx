@@ -116,13 +116,11 @@ export default function HomepageCreativeOutlet() {
 									params={{
 										slug: content.slug.current,
 									}}
+									className="w-full xl:w-2/3"
 								>
 									<figure className="h-auto w-full aspect-video overflow-hidden shrink-0 ">
 										<img
-											src={urlFor(content.mainImage)
-												.width(1000)
-												.height(600)
-												.url()}
+											src={urlFor(content.mainImage).url()}
 											alt={content.title}
 											className="h-auto w-full object-cover group-hover:brightness-75"
 										/>

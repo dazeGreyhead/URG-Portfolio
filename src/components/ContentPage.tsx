@@ -60,6 +60,7 @@ export default function ContentPage({ content }: ContentPageProps) {
 											aspectRatio: 16 / 9,
 											marginBottom: "24px",
 										}}
+										controls={true}
 									/>
 								) : (
 									<div>

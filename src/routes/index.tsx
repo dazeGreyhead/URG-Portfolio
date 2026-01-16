@@ -35,10 +35,10 @@ function App() {
 
 			<StickyContentWrapper />
 			<HomepageTestimonials urgTestimonials={urgTestimonials} />
-			<HomepageServices servicesProvided={servicesProvided} />
+			<HomepageServices isHomepage={true} servicesProvided={servicesProvided} />
 
 			<HomepageCreativeOutlet />
-			<HomepageContact />
+			<HomepageContact isHomepage={true} />
 			<Analytics />
 		</main>
 	);

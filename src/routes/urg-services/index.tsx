@@ -10,7 +10,10 @@ export const Route = createFileRoute("/urg-services/")({
 function Services() {
 	return (
 		<div>
-			<HomepageServices servicesProvided={servicesProvided} />
+			<HomepageServices
+				servicesProvided={servicesProvided}
+				isHomepage={false}
+			/>
 			<GrainyBackground />
 		</div>
 	);

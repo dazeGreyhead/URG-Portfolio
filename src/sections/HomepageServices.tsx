@@ -1,56 +1,51 @@
 import { Link } from "@tanstack/react-router";
-import { motion, stagger } from "motion/react";
+import { motion } from "motion/react";
 import FancyArrow from "@/assets/svg/FancyArrow";
 import type { serviceCardData } from "@/utilities/types";
 
 type HomepageServicesProps = {
 	servicesProvided: serviceCardData[];
+	isHomepage: boolean;
 };
 
-// Container variants to coordinate the staggering of children
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			delayChildren: stagger(0.5), // Delay between each child animation
-		},
-	},
-};
+// // Container variants to coordinate the staggering of children
+// const containerVariants = {
+// 	hidden: { opacity: 0 },
+// 	visible: {
+// 		opacity: 1,
+// 		transition: {
+// 			delayChildren: stagger(0.5), // Delay between each child animation
+// 		},
+// 	},
+// };
 
-// Individual card variants
-const cardVariants = {
-	hidden: {
-		opacity: 0,
-		y: 100,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.7,
-			ease: "easeInOut",
-		},
-	},
-} as const;
+// // Individual card variants
+// const cardVariants = {
+// 	hidden: {
+// 		opacity: 0,
+// 		y: 100,
+// 	},
+// 	visible: {
+// 		opacity: 1,
+// 		y: 0,
+// 		transition: {
+// 			duration: 0.7,
+// 			ease: "easeInOut",
+// 		},
+// 	},
+// } as const;
 
 export default function HomepageServices({
 	servicesProvided,
+	isHomepage = false,
 }: HomepageServicesProps) {
 	return (
-		<section className="min-h-screen px-9 py-18 md:pt-22 sm:pb-48 sm:px-16">
+		<section
+			className={` ${isHomepage ? "h-fit" : "min-h-screen"} px-9 py-18 md:pt-22 sm:pb-48 sm:px-16`}
+		>
 			<h3>Services</h3>
 			<div className="flex justify-center mt-10 sm:mt-18">
-				<motion.div
-					variants={containerVariants}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{
-						once: true,
-						amount: 0.2,
-					}}
-					className="flex flex-wrap justify-center gap-x-25 w-full sm:w-[84%] gap-y-17"
-				>
+				<div className="flex flex-wrap justify-center gap-x-25 w-full sm:w-[84%] gap-y-17">
 					{servicesProvided.map((service) => {
 						return (
 							<Link
@@ -61,7 +56,6 @@ export default function HomepageServices({
 								}}
 							>
 								<motion.div
-									variants={cardVariants}
 									whileHover={{
 										scale: 1.03,
 										boxShadow: `0px 4px 4px 0px ${service.shadowColor}, 0px 8px 22.2px 0px ${service.shadowColor}`,
@@ -105,7 +99,7 @@ export default function HomepageServices({
 							</Link>
 						);
 					})}
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	);

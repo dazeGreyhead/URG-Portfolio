@@ -9,7 +9,7 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
 	return (
 		<>
-			<HomepageContact />
+			<HomepageContact isHomepage={false} />
 			<GrainyBackground />
 		</>
 	);
