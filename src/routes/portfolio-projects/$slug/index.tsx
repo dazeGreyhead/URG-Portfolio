@@ -1,48 +1,59 @@
-import type { SanityDocument } from "@sanity/client";
 import { createFileRoute } from "@tanstack/react-router";
 import ContentPage from "@/components/ContentPage";
 import { getIndividualProject } from "@/sanity/client";
+import type { PortfolioProjects } from "@/sanity/sanity.types";
+import { urlFor } from "@/sanity/sanityImageUrl";
 
 export const Route = createFileRoute("/portfolio-projects/$slug/")({
 	component: PortfolioProject,
 	loader: async ({ params }) => await getIndividualProject(params.slug),
 	head: ({ params, loaderData }) => {
+		// 1. Check if loaderData exists AND isn't an array
+		const project =
+			loaderData && !Array.isArray(loaderData) ? loaderData : null;
+		// Only generate the Sanity URL if both project and mainImage exist
+		const imageUrl = project?.mainImage
+			? urlFor(project.mainImage).url()
+			: "/Urg Website Landing Page.png";
+
+		const title = `${project ? project.title : "Portfolio Projects"} - Umang Raj Gurung`;
+		const description = project
+			? project.description
+			: "Portfolio projects of Umang Raj Gurung.";
+
+		const keywords = project ? project.tags?.join(", ") : "";
+		const url = `https://www.umangrajgurung.com.np/portfolio-projects/${params.slug}`;
 		return {
 			meta: [
 				{
-					title: `${loaderData ? loaderData.title : "Portfolio Projects"} - Umang Raj Gurung`,
+					title: title,
 				},
 				{
 					name: "description",
-					content: loaderData
-						? loaderData.description
-						: "Portfolio projects of Umang Raj Gurung.",
+					content: description,
 				},
 
 				{
 					name: "keywords",
-					content: loaderData ? loaderData.tags?.join(", ") : "",
+					content: keywords,
 				},
 
 				{
 					property: "og:title",
-					content: `${loaderData ? loaderData.title : "Portfolio Projects"} - Umang Raj Gurung`,
+					content: title,
 				},
 				{
 					property: "og:description",
-					content: loaderData
-						? loaderData.description
-						: "Portfolio projects of Umang Raj Gurung.",
+					content: description,
 				},
+
 				{
 					property: "og:image",
-					content: loaderData
-						? loaderData.mainImage?.url
-						: "/Urg Website Landing Page.png",
+					content: imageUrl,
 				},
 				{
 					property: "og:url",
-					content: `https://www.umangrajgurung.com.np/portfolio-projects/${params.slug}`,
+					content: url,
 				},
 				{
 					property: "og:type",
@@ -58,25 +69,22 @@ export const Route = createFileRoute("/portfolio-projects/$slug/")({
 				},
 				{
 					name: "twitter:title",
-					content: `${loaderData ? loaderData.title : "Portfolio Projects"} - Umang Raj Gurung`,
+					content: title,
 				},
 				{
 					name: "twitter:description",
-					content: loaderData
-						? loaderData.description
-						: "Portfolio projects of Umang Raj Gurung.",
+					content: description,
 				},
+
 				{
 					name: "twitter:image",
-					content: loaderData
-						? loaderData.mainImage?.url
-						: "/Urg Website Landing Page.png",
+					content: imageUrl,
 				},
 			],
 			links: [
 				{
 					rel: "canonical",
-					href: `https://www.umangrajgurung.com.np/portfolio-projects/${params.slug}`,
+					href: url,
 				},
 			],
 		};
@@ -84,7 +92,7 @@ export const Route = createFileRoute("/portfolio-projects/$slug/")({
 });
 
 function PortfolioProject() {
-	const portfolioProject: SanityDocument = Route.useLoaderData();
+	const portfolioProject: PortfolioProjects = Route.useLoaderData();
 
 	return <ContentPage content={portfolioProject} />;
 }

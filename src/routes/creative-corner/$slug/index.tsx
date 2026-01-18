@@ -3,47 +3,58 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import ContentPage from "@/components/ContentPage";
 import { getIndividualCreativeContent } from "@/sanity/client";
+import { urlFor } from "@/sanity/sanityImageUrl";
 
 export const Route = createFileRoute("/creative-corner/$slug/")({
 	component: CreativeCornerContent,
 	loader: async ({ params }) => await getIndividualCreativeContent(params.slug),
 	head: ({ params, loaderData }) => {
+		// 1. Check if loaderData exists AND isn't an array
+		const project =
+			loaderData && !Array.isArray(loaderData) ? loaderData : null;
+		// Only generate the Sanity URL if both project and mainImage exist
+		const imageUrl = project?.mainImage
+			? urlFor(project.mainImage).url()
+			: "/Urg Website Landing Page.png";
+
+		const title = `${project ? project.title : "Creative Content"} - Umang Raj Gurung`;
+		const description = project
+			? project.description
+			: "Creative works of Umang Raj Gurung.";
+
+		const keywords = project ? project.tags?.join(", ") : "";
+		const url = `https://www.umangrajgurung.com.np/creative-corner/${params.slug}`;
+
 		return {
 			meta: [
 				{
-					title: `${loaderData ? loaderData.title : "Creative Content"} - Umang Raj Gurung`,
+					title: title,
 				},
 				{
 					name: "description",
-					content: loaderData
-						? loaderData.description
-						: "Creative works of Umang Raj Gurung.",
+					content: description,
 				},
 
 				{
 					name: "keywords",
-					content: loaderData ? loaderData.tags?.join(", ") : "",
+					content: keywords,
 				},
 
 				{
 					property: "og:title",
-					content: `${loaderData ? loaderData.title : "Creative Content"} - Umang Raj Gurung`,
+					content: title,
 				},
 				{
 					property: "og:description",
-					content: loaderData
-						? loaderData.description
-						: "Creative works of Umang Raj Gurung.",
+					content: description,
 				},
 				{
 					property: "og:image",
-					content: loaderData
-						? loaderData.mainImage?.url
-						: "/Urg Website Landing Page.png",
+					content: imageUrl,
 				},
 				{
 					property: "og:url",
-					content: `https://www.umangrajgurung.com.np/creative-corner/${params.slug}`,
+					content: url,
 				},
 				{
 					property: "og:type",
@@ -59,25 +70,21 @@ export const Route = createFileRoute("/creative-corner/$slug/")({
 				},
 				{
 					name: "twitter:title",
-					content: `${loaderData ? loaderData.title : "Creative Content"} - Umang Raj Gurung`,
+					content: title,
 				},
 				{
 					name: "twitter:description",
-					content: loaderData
-						? loaderData.description
-						: "Creative works of Umang Raj Gurung.",
+					content: description,
 				},
 				{
 					name: "twitter:image",
-					content: loaderData
-						? loaderData.mainImage?.url
-						: "/Urg Website Landing Page.png",
+					content: imageUrl,
 				},
 			],
 			links: [
 				{
 					rel: "canonical",
-					href: `https://www.umangrajgurung.com.np/creative-corner/${params.slug}`,
+					href: url,
 				},
 			],
 		};

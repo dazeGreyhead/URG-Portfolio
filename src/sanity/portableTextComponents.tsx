@@ -1,5 +1,4 @@
 import type { PortableTextComponents } from "@portabletext/react";
-import { Link } from "@tanstack/react-router";
 import ReactPlayer from "react-player";
 import { urlFor } from "./sanityImageUrl";
 

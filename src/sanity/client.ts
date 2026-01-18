@@ -1,4 +1,5 @@
-import { createClient, type SanityDocument } from "@sanity/client";
+import { createClient } from "@sanity/client";
+import type { CreativeContent, PortfolioProjects } from "./sanity.types";
 
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
 const dataset = import.meta.env.VITE_SANITY_DATASET;
@@ -15,7 +16,7 @@ export const client = createClient({
 export async function getCreativeContent() {
 	try {
 		const query = `*[_type == 'creative-content'] | order(publishedAt desc)`;
-		const data = await client.fetch<SanityDocument[]>(query);
+		const data = await client.fetch<CreativeContent[]>(query);
 
 		// Check if the returned data is an array and has items
 		if (!data || data.length === 0) {
@@ -37,7 +38,7 @@ export async function getHomepageCreativeContent() {
   ...*[_type == "creative-content" && (!defined(featured) || featured != true)] | order(publishedAt desc)[0...3]]
 
 `;
-		const data = await client.fetch<SanityDocument[]>(query);
+		const data = await client.fetch<CreativeContent[]>(query);
 
 		// Check if the returned data is an array and has items
 		if (!data || data.length === 0) {
@@ -66,10 +67,10 @@ export async function getIndividualCreativeContent(slug: string) {
     publishedAt,
     body,
   }[0]`;
-		const data = await client.fetch<SanityDocument>(query, { slug });
+		const data = await client.fetch<CreativeContent>(query, { slug });
 
 		// Check if the returned data is an array and has items
-		if (!data || data.length === 0) {
+		if (!data) {
 			console.log("No creative content found.");
 		}
 
@@ -85,7 +86,7 @@ export async function getIndividualCreativeContent(slug: string) {
 export async function getHomepagePortfolioProjects() {
 	try {
 		const query = `*[_type == "portfolio-projects" || _type == "creative-content" && featured == true][0...6] | order(publishedAt desc)`;
-		const data = await client.fetch<SanityDocument[]>(query);
+		const data = await client.fetch<PortfolioProjects[]>(query);
 
 		// Check if the returned data is an array and has items
 		if (!data || data.length === 0) {
@@ -104,7 +105,7 @@ export async function getHomepagePortfolioProjects() {
 export async function getPortfolioProjects() {
 	try {
 		const query = `*[_type == "portfolio-projects"] | order(publishedAt desc)`;
-		const data = await client.fetch<SanityDocument[]>(query);
+		const data = await client.fetch<PortfolioProjects[]>(query);
 
 		// Check if the returned data is an array and has items
 		if (!data || data.length === 0) {
@@ -123,10 +124,10 @@ export async function getPortfolioProjects() {
 export async function getIndividualProject(slug: string) {
 	try {
 		const query = `*[_type == 'portfolio-projects' && slug.current == $slug][0]`;
-		const data = await client.fetch<SanityDocument>(query, { slug });
+		const data = await client.fetch<PortfolioProjects>(query, { slug });
 
 		// Check if the returned data is an array and has items
-		if (!data || data.length === 0) {
+		if (!data) {
 			console.log("No portfolio project found.");
 		}
 
@@ -142,7 +143,9 @@ export async function getIndividualProject(slug: string) {
 export async function getContentByCategory(categorySlug: string) {
 	try {
 		const query = `*[$categorySlug in categories[]->slug.current] | order(publishedAt desc) `;
-		const data = await client.fetch<SanityDocument[]>(query, { categorySlug });
+		const data = await client.fetch<PortfolioProjects[]>(query, {
+			categorySlug,
+		});
 
 		// Check if the returned data is an array and has items
 		if (!data || data.length === 0) {
