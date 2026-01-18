@@ -6,6 +6,70 @@ import { getCreativeContent } from "@/sanity/client";
 export const Route = createFileRoute("/creative-corner/")({
 	component: CreativeCorner,
 	loader: getCreativeContent,
+	head: () => ({
+		meta: [
+			{
+				title: "Creative Corner - Umang Raj Gurung",
+			},
+			{
+				name: "description",
+				content: "Creative works of Umang Raj Gurung.",
+			},
+
+			{
+				name: "keywords",
+				content:
+					"Umang Raj Gurung, Umang Gurung, URG, Web Developer, Tourist Guide, Video Producer, Nepal Tour Guide, Freelance Web Developer, Creative, Portfolio, Services, Writer, Director, Designer",
+			},
+
+			{
+				property: "og:title",
+				content: "Creative Corner - Umang Raj Gurung",
+			},
+			{
+				property: "og:description",
+				content: "Creative works of Umang Raj Gurung.",
+			},
+			{
+				property: "og:image",
+				content: "/Urg Website Landing Page.png",
+			},
+			{
+				property: "og:url",
+				content: "https://www.umangrajgurung.com.np/creative-corner",
+			},
+			{
+				property: "og:type",
+				content: "website",
+			},
+			{
+				property: "site_name",
+				content: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				name: "twitter:card",
+				content: "summary_large_image",
+			},
+			{
+				name: "twitter:title",
+				content: "Creative Corner - Umang Raj Gurung",
+			},
+			{
+				name: "twitter:description",
+				content: "Creative works of Umang Raj Gurung.",
+			},
+			{
+				name: "twitter:image",
+				content: "/Urg Website Landing Page.png",
+			},
+		],
+		links: [
+			{
+				rel: "canonical",
+				href: "https://www.umangrajgurung.com.np/creative-corner",
+			},
+		],
+	}),
 });
 
 function CreativeCorner() {

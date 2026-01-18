@@ -12,6 +12,81 @@ export const Route = createFileRoute("/urg-services/$service/")({
 	loader: async ({ params }) => {
 		return await getContentByCategory(params.service);
 	},
+	head: ({ params }) => {
+		const serviceData = servicesProvided.find(
+			(item) => item.slug === params.service,
+		);
+		return {
+			meta: [
+				{
+					title: `${serviceData?.title || "Service"} - Umang Raj Gurung`,
+				},
+				{
+					name: "description",
+					content:
+						serviceData?.description ||
+						"Services provided by Umang Raj Gurung.",
+				},
+
+				{
+					name: "keywords",
+					content:
+						"Umang Raj Gurung, Umang Gurung, URG, Web Developer, Tourist Guide, Video Producer, Nepal Tour Guide, Freelance Web Developer, Creative, Portfolio, Services, Writer, Director, Designer",
+				},
+
+				{
+					property: "og:title",
+					content: `${serviceData?.title || "Service"} - Umang Raj Gurung`,
+				},
+				{
+					property: "og:description",
+					content:
+						serviceData?.description ||
+						"Services provided by Umang Raj Gurung.",
+				},
+				{
+					property: "og:image",
+					content: "/Urg Website Landing Page.png",
+				},
+				{
+					property: "og:url",
+					content: `https://www.umangrajgurung.com.np/urg-services/${params.service}`,
+				},
+				{
+					property: "og:type",
+					content: "article",
+				},
+				{
+					property: "site_name",
+					content: "Umang Raj Gurung Portfolio Website",
+				},
+				{
+					name: "twitter:card",
+					content: "summary_large_image",
+				},
+				{
+					name: "twitter:title",
+					content: `${serviceData?.title || "Service"} - Umang Raj Gurung`,
+				},
+				{
+					name: "twitter:description",
+					content:
+						serviceData?.description ||
+						"Services provided by Umang Raj Gurung.",
+				},
+				{
+					name: "twitter:image",
+					content: "/Urg Website Landing Page.png",
+				},
+			],
+			links: [
+				{
+					rel: "canonical",
+					href: `https://www.umangrajgurung.com.np/urg-services/${params.service}`,
+				},
+			],
+		};
+	},
 });
 
 function Service() {

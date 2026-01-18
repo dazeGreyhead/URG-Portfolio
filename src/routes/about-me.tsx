@@ -4,6 +4,70 @@ import { urgThingsILove } from "@/utilities/data";
 
 export const Route = createFileRoute("/about-me")({
 	component: AboutMe,
+	head: () => ({
+		meta: [
+			{
+				title: "About Me - Umang Raj Gurung",
+			},
+			{
+				name: "description",
+				content: "Learn more about Umang Raj Gurung.",
+			},
+
+			{
+				name: "keywords",
+				content:
+					"Umang Raj Gurung, Umang Gurung, URG, Web Developer, Tourist Guide, Video Producer, Nepal Tour Guide, Freelance Web Developer, Creative, Portfolio, Services, Writer, Director, Designer",
+			},
+
+			{
+				property: "og:title",
+				content: "About Me - Umang Raj Gurung",
+			},
+			{
+				property: "og:description",
+				content: "Learn more about Umang Raj Gurung.",
+			},
+			{
+				property: "og:image",
+				content: "/Umang-Photo.jpg",
+			},
+			{
+				property: "og:url",
+				content: "https://www.umangrajgurung.com.np/about-me",
+			},
+			{
+				property: "og:type",
+				content: "website",
+			},
+			{
+				property: "site_name",
+				content: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				name: "twitter:card",
+				content: "summary_large_image",
+			},
+			{
+				name: "twitter:title",
+				content: "About Me - Umang Raj Gurung",
+			},
+			{
+				name: "twitter:description",
+				content: "Learn more about Umang Raj Gurung.",
+			},
+			{
+				name: "twitter:image",
+				content: "/Umang-Photo.jpg",
+			},
+		],
+		links: [
+			{
+				rel: "canonical",
+				href: "https://www.umangrajgurung.com.np/about-me",
+			},
+		],
+	}),
 });
 
 function AboutMe() {

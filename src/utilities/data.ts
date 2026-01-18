@@ -303,40 +303,14 @@ export const urgSoftwareProficiencies = [
 
 export const urgTestimonials: testimonials[] = [
 	{
-		clientName: "John Wick",
-		clientPosition: "Badass Hassassin",
-		companyName: "Babayaga Inc.",
-		companyLogo: "/John_Wick_franchise.png",
+		clientName: "Avib Adhikari",
+		clientPosition: "CEO",
+		companyName: "German Exam Nepal",
+		companyLogo: "/German Exam Nepal Logo.jpg",
 		stars: 5,
-		review:
-			"I fear Umang. Such a badass! I don't think I could take him in a fight.",
-		clientPhoto: "/john wick.jpeg",
-	},
-	{
-		clientName: "Some Model",
-		clientPosition: "A Model",
-		stars: 3.5,
-		review:
-			"Yup Umang did my photoshoot and it was quite good. I liked the way he directed me and the shots came out really well. Would recommend to other models as well.",
-		clientPhoto: "/test-model-photo.jpg",
-	},
-	{
-		clientName: "Nikita Mazepin",
-		clientPosition: "F1 Driver",
-		companyName: "Williams F1 Team",
-		companyLogo: "/Logo_Williams_F1.png",
-		stars: 1.8,
-		review: "What the hell Umang! This is not my photo! Also I'm a man!",
-		clientPhoto: "/person 1.jpg",
-	},
-	{
-		clientName: "Alejandro Zivicci",
-		clientPosition: "Dota 2 Pro",
-		stars: 4,
-		review:
-			"I am miffed! I am dying! Umang delivered a plague onto our houses, burned our crops and poisoned our water supply! But he's quite an amazing Dota 2 player nonetheless I guess.",
-		clientPhoto: "/person 2.jpg",
-		companyName: "OG Esports",
-		companyLogo: "/OG_(Redbull).png",
+		review: `Starting German Exam Nepal, we were moving the German Language space in Nepal and when announcing TELC we  knew we didn't want the same old boring reels everyone else was doing. We had a vision for a funky, retro vibe but a very tight startup budget of under 5,000 Rs.
+
+That’s where Umang stepped in. He didn't just direct; he captured our concept perfectly and handled the entire edit, delivering something far beyond our expectations. If you want to move away from the 'standard' and actually bring a unique idea to life, Umang is your guy. He truly knows the craft of filmmaking.`,
+		clientPhoto: "/German Exam Nepal Logo.jpg",
 	},
 ];

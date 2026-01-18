@@ -13,6 +13,72 @@ import { servicesProvided, urgTestimonials } from "@/utilities/data";
 
 export const Route = createFileRoute("/")({
 	component: App,
+	head: () => ({
+		meta: [
+			{
+				name: "description",
+				content:
+					"Hi!, I'm Umang. I'm a creative web developer, tourist guide, video producer and much more!",
+			},
+			{
+				title: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				name: "keywords",
+				content:
+					"Umang Raj Gurung, Umang Gurung, URG, Web Developer, Tourist Guide, Video Producer, Nepal Tour Guide, Freelance Web Developer, Creative, Portfolio, Services, Writer, Director, Designer",
+			},
+
+			{
+				property: "og:title",
+				content: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				property: "og:description",
+				content:
+					"Hi!, I'm Umang. I'm a creative web developer, tourist guide, video producer and much more!",
+			},
+			{
+				property: "og:image",
+				content: "/Urg Website Landing Page.png",
+			},
+			{
+				property: "og:url",
+				content: "https://www.umangrajgurung.com.np/",
+			},
+			{
+				property: "og:type",
+				content: "website",
+			},
+			{
+				property: "site_name",
+				content: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				name: "twitter:card",
+				content: "summary_large_image",
+			},
+			{
+				name: "twitter:title",
+				content: "Umang Raj Gurung Portfolio Website",
+			},
+			{
+				name: "twitter:description",
+				content:
+					"Hi!, I'm Umang. I'm a creative web developer, tourist guide, video producer and much more!",
+			},
+			{
+				name: "twitter:image",
+				content: "/Urg Website Landing Page.png",
+			},
+		],
+		links: [
+			{
+				rel: "canonical",
+				href: "https://www.umangrajgurung.com.np/",
+			},
+		],
+	}),
 });
 
 function App() {
@@ -39,6 +105,7 @@ function App() {
 
 			<HomepageCreativeOutlet />
 			<HomepageContact isHomepage={true} />
+
 			<Analytics />
 		</main>
 	);
