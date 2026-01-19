@@ -51,11 +51,11 @@ export default function HomepageTestimonials({
 						{urgTestimonials.map((testimonial) => (
 							<div key={testimonial.clientName} className="p-0 sm:p-6">
 								<div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-x-7 gap-y-4">
-									<figure className="relative w-30 h-40 sm:w-50 sm:h-60 rounded-xl overflow-hidden row-span-1 xl:row-span-2">
+									<figure className="w-30 h-40 sm:w-50 sm:h-60 rounded-xl overflow-hidden row-span-1 xl:row-span-2">
 										<img
 											src={testimonial.clientPhoto}
 											alt={testimonial.clientName}
-											className="absolute h-auto w-full block transform -translate-x-1/2 left-1/2"
+											className="h-full w-full block object-cover"
 										/>
 									</figure>
 									<div className="flex flex-col gap-4 ">

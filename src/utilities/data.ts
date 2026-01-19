@@ -311,6 +311,6 @@ export const urgTestimonials: testimonials[] = [
 		review: `Starting German Exam Nepal, we were moving the German Language space in Nepal and when announcing TELC we  knew we didn't want the same old boring reels everyone else was doing. We had a vision for a funky, retro vibe but a very tight startup budget of under 5,000 Rs.
 
 That’s where Umang stepped in. He didn't just direct; he captured our concept perfectly and handled the entire edit, delivering something far beyond our expectations. If you want to move away from the 'standard' and actually bring a unique idea to life, Umang is your guy. He truly knows the craft of filmmaking.`,
-		clientPhoto: "/German Exam Nepal Logo.jpg",
+		clientPhoto: "/Abiv Photo 2.jpeg",
 	},
 ];

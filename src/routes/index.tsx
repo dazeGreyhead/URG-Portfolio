@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { LenisRef } from "lenis/react";
 import { ReactLenis } from "lenis/react";
 import { cancelFrame, frame } from "motion/react";
@@ -105,7 +106,7 @@ function App() {
 
 			<HomepageCreativeOutlet />
 			<HomepageContact isHomepage={true} />
-
+			<SpeedInsights />
 			<Analytics />
 		</main>
 	);
