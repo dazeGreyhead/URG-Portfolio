@@ -68,7 +68,7 @@ export const servicesProvided: serviceCardData[] = [
 	{
 		title: "Writing",
 		description:
-			"Oh wait, there’s some writing to be done? Be it fiction or technical, hit me up! You want a story to tell but you don’t know how to do it? I’m hear for you.",
+			"Oh wait, there’s some writing to be done? Be it fiction or technical, hit me up! You want a story to tell but you don’t know how to do it? I’m here for you.",
 		icon: "/writingServiceLogo.svg",
 
 		representingColor: "#cc5c3b",
@@ -78,7 +78,7 @@ export const servicesProvided: serviceCardData[] = [
 	{
 		title: "Tour Guiding",
 		description:
-			"So you want to experience the best parts of Nepal - it's culture, history, heritage, religious heritage and of course the mountains? You've found the right guy to show all that Nepal has to offer and more!",
+			"So you want to experience the best parts of Nepal - it's culture, history, heritage, religious harmony and of course the mountains? You've found the right guy to show all that Nepal has to offer and much more!",
 		icon: "/guideServiceLogo.svg",
 
 		representingColor: "#3c525d",
