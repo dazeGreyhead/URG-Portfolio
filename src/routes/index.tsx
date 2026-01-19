@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { LenisRef } from "lenis/react";
 import { ReactLenis } from "lenis/react";
 import { cancelFrame, frame } from "motion/react";
