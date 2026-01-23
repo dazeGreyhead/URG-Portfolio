@@ -1,0 +1,1 @@
+import{j as t}from"./main-CkMuiZ1B.js";function n(){return t.jsx("div",{className:"h-full w-full absolute top-0 left-0 -z-100 bg-[url(/grainy-background.png)] bg-contain bg-repeat opacity-35 bg-blend-multiply"})}export{n as G};

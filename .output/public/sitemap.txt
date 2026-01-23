@@ -1,0 +1,10 @@
+https://umangrajgurung.com.np/
+https://umangrajgurung.com.np/creative-corner
+https://umangrajgurung.com.np/portfolio-projects
+https://umangrajgurung.com.np/urg-services
+https://umangrajgurung.com.np/about-me
+https://umangrajgurung.com.np/contact
+https://umangrajgurung.com.np/experience
+https://umangrajgurung.com.np/creative-corner/$slug
+https://umangrajgurung.com.np/portfolio-projects/$slug
+https://umangrajgurung.com.np/urg-services/$service

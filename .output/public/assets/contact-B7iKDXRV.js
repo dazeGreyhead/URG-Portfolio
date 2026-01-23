@@ -1,0 +1,1 @@
+import{j as o}from"./main-CkMuiZ1B.js";import{G as r}from"./GrainyBackground-DEV28-n0.js";import{H as t}from"./HomepageContact-bDstUaKn.js";import"./index-DwOTw4Ko.js";function e(){return o.jsxs(o.Fragment,{children:[o.jsx(t,{isHomepage:!1}),o.jsx(r,{})]})}export{e as component};
