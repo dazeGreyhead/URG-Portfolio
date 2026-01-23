@@ -1,3 +1,4 @@
+import { ClientOnly } from "@tanstack/react-router";
 import { interpolate } from "flubber";
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
@@ -15,21 +16,24 @@ export default function PlayButton({
 	onClick,
 }: PlayButtonProps) {
 	return (
-		<div>
-			<svg
-				width="173"
-				height="173"
-				viewBox="0 0 173 173"
-				className={className}
-				xmlns="http://www.w3.org/2000/svg"
-				onClick={onClick}
-			>
-				<g>
-					<SVGMorph paths={[tri1, rect1, tri1]} playVideo={playVideo} />
-					<SVGMorph paths={[tri2, rect2, tri2]} playVideo={playVideo} />
-				</g>
-			</svg>
-		</div>
+		<ClientOnly>
+			<div>
+				<svg
+					width="173"
+					height="173"
+					viewBox="0 0 173 173"
+					className={className}
+					xmlns="http://www.w3.org/2000/svg"
+					onKeyDown={onClick}
+				>
+					<title>Play pause button</title>
+					<g>
+						<SVGMorph paths={[tri1, rect1, tri1]} playVideo={playVideo} />
+						<SVGMorph paths={[tri2, rect2, tri2]} playVideo={playVideo} />
+					</g>
+				</svg>
+			</div>
+		</ClientOnly>
 	);
 }
 
