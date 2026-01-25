@@ -1,1 +1,0 @@
-import{a8 as o,j as e}from"./main-CkMuiZ1B.js";import{C as n}from"./ContentPage-658MbmZt.js";import"./dateFormatter-kYCX6GPW.js";import"./index-DwOTw4Ko.js";import"./GrainyBackground-DEV28-n0.js";function p(){const t=o.useLoaderData();return e.jsx(n,{content:t})}export{p as component};

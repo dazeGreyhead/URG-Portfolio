@@ -1,1 +1,0 @@
-import{j as e,a1 as r}from"./main-CkMuiZ1B.js";import{G as s}from"./GrainyBackground-DEV28-n0.js";import{H as o}from"./HomepageServices-hbOttQE2.js";function n(){return e.jsxs("div",{children:[e.jsx(o,{servicesProvided:r,isHomepage:!1}),e.jsx(s,{})]})}export{n as component};

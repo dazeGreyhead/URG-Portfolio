@@ -1,0 +1,1 @@
+import{a7 as t,j as r}from"./main-BwpfEz-K.js";import{C as e}from"./ContentPage-CgnFI3KV.js";import"./dateFormatter-kYCX6GPW.js";import"./index-ZHP9EJOY.js";import"./GrainyBackground-C30pY-dD.js";function s(){const o=t.useLoaderData();return r.jsx(e,{content:o})}export{s as component};

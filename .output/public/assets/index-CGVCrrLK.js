@@ -1,0 +1,1 @@
+import{j as e,a1 as r}from"./main-BwpfEz-K.js";import{G as s}from"./GrainyBackground-C30pY-dD.js";import{H as o}from"./HomepageServices-wErZFjCk.js";function n(){return e.jsxs("div",{children:[e.jsx(o,{servicesProvided:r,isHomepage:!1}),e.jsx(s,{})]})}export{n as component};
