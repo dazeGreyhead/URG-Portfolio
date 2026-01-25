@@ -1,13 +1,15 @@
 {
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"framework": "tanstack-start",
 	"functions": {
 		"app/server.ts": {
 			"runtime": "nodejs18.x"
 		}
 	},
-	"routes": [
+	"rewrites": [
 		{
-			"src": "/(.*)",
-			"dest": "/api/server"
+			"source": "/(.*)",
+			"destination": "/api/server"
 		}
 	]
 }
